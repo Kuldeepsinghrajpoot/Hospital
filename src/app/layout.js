@@ -2,7 +2,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import Head from 'next/head';
 import Script from 'next/Script';
-import Nav from './nav'
+// import Nav from './nav'
 import "../assets/vendor/fonts/fontawesome.css"
 import "../assets/vendor/fonts/tabler-icons.css"
 import "../assets/vendor/fonts/flag-icons.css";
@@ -68,13 +68,18 @@ https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js
       <Script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></Script>
       <Script src="https://cdnjs.cloudflare.com/ajax/libs/mmenu-js/9.3.0/mmenu.js" integrity="sha512-D1qgHT+xXRgN9gLLLYHbQ/c8wkrADqfXg1kr1dRbP9nOtNzIKKNDU+hmFqR1fSbsU1YFBkw6TbvfZo+SyI0K6w==" crossorigin="anonymous" referrerpolicy="no-referrer"></Script>
       <Script src='https://cdn.jsdelivr.net/npm/i18n-js@4.3.2/dist/browser/index.min.js'></Script>
-
-
       <Script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/10.3.1/swiper-bundle.js" integrity="sha512-4mlFrp9qno3Tz7HfKNi6hTnBS9Bb+Uzw6frb2U/4Jc0wHdL36LprwQqgDemKNvLVWSfoeQfrgLDDQA0N4oHxgA==" crossorigin="anonymous" referrerpolicy="no-referrer"></Script>
-
       {/* helper */}
       <Script src='https://cdn.jsdelivr.net/npm/helper-js@3.1.5/dist/index.iife.min.js'></Script>
-      <body suppressHydrationWarning={true} >
+      <Script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></Script>
+    <Script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></Script>
+    <Script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></Script> 
+    
+    <Script src=' <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>'></Script>
+    <Script src="js/jquery-1.11.0.min.js"></Script>
+<Script src="js/bootstrap.min.js"></Script>
+<Script src="js/wow.min.js"></Script>
+    <body suppressHydrationWarning={true} >
         {/* <Nav/> */}
         {children}</body>
     </html>

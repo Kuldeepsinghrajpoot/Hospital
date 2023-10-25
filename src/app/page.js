@@ -1,10 +1,12 @@
 import React from 'react';
 
+// import Register from './Register/page'
 const page = () => {
   return (
-    <div>
-      
-    </div>
+
+   <>
+     {/* <Register/> */}
+   </>
   );
 }
 
