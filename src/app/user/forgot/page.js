@@ -4,16 +4,16 @@ import React from 'react';
 const page = () => {
   return (
     <div>
-      <div class="container-xxl">
-      <div class="authentication-wrapper authentication-basic container-p-y">
-        <div class="authentication-inner py-4">
+      <div className="container-xxl">
+      <div className="authentication-wrapper authentication-basic container-p-y">
+        <div className="authentication-inner py-4">
           {/* <!-- Forgot Password --> */}
-          <div class="card">
-            <div class="card-body">
+          <div className="card">
+            <div className="card-body">
               {/* <!-- Logo --> */}
-              <div class="app-brand justify-content-center mb-4 mt-2">
-                <a href="index.html" class="app-brand-link gap-2">
-                  <span class="app-brand-logo demo">
+              <div className="app-brand justify-content-center mb-4 mt-2">
+                <a href="index.html" className="app-brand-link gap-2">
+                  <span className="app-brand-logo demo">
                     <svg width="32" height="22" viewBox="0 0 32 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path
                         fill-rule="evenodd"
@@ -43,31 +43,31 @@ const page = () => {
                       />
                     </svg>
                   </span>
-                  <span class="app-brand-text demo text-body fw-bold">Vuexy</span>
+                  <span className="app-brand-text demo text-body fw-bold">Vuexy</span>
                 </a>
               </div>
               {/* <!-- /Logo --> */}
-              <h4 class="mb-1 pt-2">Forgot Password? 🔒</h4>
-              <p class="mb-4">Enter your email and we{"'"}ll send you instructions to reset your password</p>
-              <form id="formAuthentication" class="mb-3" action="auth-reset-password-basic.html" method="POST">
-                <div class="mb-3">
-                  <label for="email" class="form-label">Email</label>
+              <h4 className="mb-1 pt-2">Forgot Password? 🔒</h4>
+              <p className="mb-4">Enter your email and we{"'"}ll send you instructions to reset your password</p>
+              <form id="formAuthentication" className="mb-3" action="auth-reset-password-basic.html" method="POST">
+                <div className="mb-3">
+                  <label for="email" className="form-label">Email</label>
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     id="email"
                     name="email"
                     placeholder="Enter your email"
                     autofocus
                   />
                 </div>
-                <button class="btn btn-primary d-grid w-100">Send Reset Link</button>
+                <button className="btn btn-primary d-grid w-100">Send Reset Link</button>
               </form>
-              <div class="text-center">
+              <div className="text-center">
                 
     
-                <Link href="./login" class="d-flex align-items-center justify-content-center">
-                  <i class="ti ti-chevron-left scaleX-n1-rtl"></i>
+                <Link href="./login" className="d-flex align-items-center justify-content-center">
+                  <i className="ti ti-chevron-left scaleX-n1-rtl"></i>
                   Back to login
                 </Link>
               </div>

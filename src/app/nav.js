@@ -1,14 +1,30 @@
 'use client'
 import Link from 'next/link'
+import { useState } from 'react';
+
 // import Chat from './page/chat/index'
 export default function Home() {
+  // console.log("clicked");
+  const [divClass, setDivClass] = useState('initial-class');
+
+  function handleClick (){
+    // alert("clicked")
+    // console.log("onclicked");
+    setDivClass(divClass === 'initial-class' ? 'transition ease-in-out delay-150  light-style layout-navbar-fixed layout-menu-100vh layout-menu-fixed layout-footer-fixed layout-menu-expanded' : 'initial-class');
+
+  }
+
+
+
+
   return (
-    <>
-    <div className=" absolute layout-content-navbar">
+    // light-style layout-navbar-fixed layout-menu-100vh layout-menu-fixed layout-footer-fixed layout-menu-expanded 
+    <div   id='hello' className={divClass}>
+    <div className="absolute layout-content-navbar">
       <div className="">
         {/* <!-- Menu --> */}
 
-        <aside id="layout-menu" className="layout-menu menu-vertical menu bg-menu-theme">
+        <aside id="layout-menu" className="layout-menu menu-vertical menu bg-menu-theme  drop-shadow-2xl  md:drop-shadow-0 xl:drop-shadow-sm overflow-hidden overflow-y-auto" >
           <div className="app-brand demo">
             <Link href="index.html" className="app-brand-link">
               <span className="app-brand-logo demo">
@@ -43,11 +59,10 @@ export default function Home() {
               </span>
               <span className="app-brand-text demo menu-text fw-bold text-2xl">Kuldeep</span>
             </Link>
-
-            <Link href="" className="layout-menu-toggle menu-link text-large ms-auto">
-              <i className="ti menu-toggle-icon d-none d-xl-block ti-sm align-middle"></i>
+            <div  onClick={handleClick} className=" cursor-pointer layout-menu-toggle menu-link text-large ms-auto">
+              <i  className="ti menu-toggle-icon d-none d-xl-block ti-sm align-middle"></i>
               <i className="ti ti-x d-block d-xl-none ti-sm align-middle"></i>
-            </Link>
+            </div>
           </div>
 
           <div className="menu-inner-shadow"></div>
@@ -975,10 +990,10 @@ export default function Home() {
             className="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
             id="layout-navbar"
           >
-            <div className="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
-              <Link className="nav-item nav-link px-0 me-xl-4" href="">
-                <i className="ti ti-menu-2 ti-sm"></i>
-              </Link>
+            <div className="layout-menu-toggle  navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+              <div className="nav-item nav-link px-0 me-xl-4 cursor-pointer" onClick={handleClick} >
+                <i  className="ti ti-menu-2 ti-sm"></i>
+              </div>
             </div>
 
             <div className="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
@@ -1226,7 +1241,7 @@ export default function Home() {
       </div>
     </div>
    
-      </>
+      </div>
 
 
 
