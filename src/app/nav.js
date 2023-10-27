@@ -18,15 +18,14 @@ export default function Home() {
 
 
   return (
-    // light-style layout-navbar-fixed layout-menu-100vh layout-menu-fixed layout-footer-fixed layout-menu-expanded 
-    <div   id='hello' className={divClass}>
+    <div className={divClass}>
     <div className="absolute layout-content-navbar">
       <div className="">
         {/* <!-- Menu --> */}
 
-        <aside id="layout-menu" className="layout-menu menu-vertical menu bg-menu-theme  drop-shadow-2xl  md:drop-shadow-0 xl:drop-shadow-sm overflow-hidden overflow-y-auto" >
-          <div className="app-brand demo">
-            <Link href="index.html" className="app-brand-link">
+        <aside id="layout-menu" className="layout-menu menu-vertical menu bg-menu-theme  drop-shadow-2xl  md:drop-shadow-0 xl:drop-shadow-sm" >
+          <div className="app-brand demo ">
+            <Link href="/" className="app-brand-link">
               <span className="app-brand-logo demo">
                 <svg width="32" height="22" viewBox="0 0 32 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
@@ -67,10 +66,10 @@ export default function Home() {
 
           <div className="menu-inner-shadow"></div>
 
-          <ul className="menu-inner py-1">
+          <ul className=" menu-inner py-1 w-full h-full overflow-y-auto  overflow-x-hidden" id='webkit'>
             {/* <!-- Dashboards --> */}
             {/* active */}
-            <li className="menu-item active ">
+            <li className="menu-item  ">
               <Link href="" className="menu-link menu-toggle">
                 <i className="menu-icon tf-icons ti ti-smart-home"></i>
                 <div data-i18n="Dashboards">Dashboards</div>
