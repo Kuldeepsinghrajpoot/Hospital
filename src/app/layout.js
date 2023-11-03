@@ -1,7 +1,10 @@
 import { Inter } from 'next/font/google';
 import './globals.css';
 import Head from 'next/head';
-import Script from 'next/script'
+import Script from 'next/Script'
+import { ToastContainer} from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
 // import Nav from './nav'
 import "../assets/vendor/fonts/fontawesome.css"
 import "../assets/vendor/fonts/tabler-icons.css"
@@ -22,7 +25,12 @@ import "../assets/vendor/libs/bs-stepper/bs-stepper.css"
 import "../assets/vendor/libs/bootstrap-select/bootstrap-select.css"
 import "../assets/vendor/libs/select2/select2.css"
 import "../assets/vendor/libs/formvalidation/dist/css/formValidation.min.css"
+import 'swiper/css';
+import 'swiper/css/free-mode';
+import 'swiper/css/scrollbar';
 import "../assets/vendor/css/pages/page-auth.css"
+import  '../assets/vendor/css/pages/cards-advance.css'
+
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -53,9 +61,10 @@ export default function RootLayout({ children }) {
           content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
         ></meta>
       </Head>
-      <Script src="../assets/js/main.js"></Script>
-    <body suppressHydrationWarning={true} >
+
+   <body suppressHydrationWarning={true} >
         {/* <Nav/> */}
+        <ToastContainer />
         {children}</body>
     </html>
   )

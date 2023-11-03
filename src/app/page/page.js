@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react';
-import Index from './table/index'
+import Index from './table/page'
 const page = () => {
   return (
     <div>
