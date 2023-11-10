@@ -1,9 +1,9 @@
 import { Inter } from 'next/font/google';
 import './globals.css';
 import Head from 'next/head';
-import Script from 'next/Script'
-import { ToastContainer} from 'react-toastify';
 
+import { ToastContainer } from 'react-toastify';
+import { AuthProvider } from './Provider'
 import 'react-toastify/dist/ReactToastify.css';
 // import Nav from './nav'
 import "../assets/vendor/fonts/fontawesome.css"
@@ -29,7 +29,7 @@ import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/scrollbar';
 import "../assets/vendor/css/pages/page-auth.css"
-import  '../assets/vendor/css/pages/cards-advance.css'
+import '../assets/vendor/css/pages/cards-advance.css'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -48,11 +48,7 @@ export default function RootLayout({ children }) {
       data-theme="theme-default"
       data-assets-path="../assets"
       data-template="vertical-menu-template">
-
-
-
-
-      <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
+      <link rel="icon" type="image/x-icon" href="/img/favicon/favicon.ico" />
       {/* <!-- Fonts --> */}
       <Head >
         <meta charset="utf-8" />
@@ -62,10 +58,13 @@ export default function RootLayout({ children }) {
         ></meta>
       </Head>
 
-   <body suppressHydrationWarning={true} >
+      <body suppressHydrationWarning={true} >
         {/* <Nav/> */}
+        <AuthProvider>
         <ToastContainer />
-        {children}</body>
+          {children}
+        </AuthProvider>
+      </body>
     </html>
   )
 }

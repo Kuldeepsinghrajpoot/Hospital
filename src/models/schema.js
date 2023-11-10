@@ -1,6 +1,6 @@
 import mongoose,{Schema} from "mongoose";
 // patation registration
-const patient = new Schema({
+const user = new Schema({
     FirstName:{type:String,require:true},
     LastName:String,
     Email:String,
@@ -21,5 +21,5 @@ const patient = new Schema({
     timestamps:true
 });
 
-const user = mongoose.models.User|| mongoose.model("User",patient);
-export default user
+const User = mongoose.models.user|| mongoose.model("user",user);
+export default User

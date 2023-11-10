@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios'
 const todoItems = async () => {
-  const response = await axios.get('http://localhost:3000/patient/api', {
+  const response = await axios.get('http://localhost:3000/api/userinfo', {
     catch: "no-store"
   });
   const data = response.data.Appointment;
@@ -34,18 +34,16 @@ const Notauthorise = async () => {
                         </thead>
                         <tbody>
                           {patientDetails.map((e) => {
-                            const { Name, Email, ContactNumber, Gender, Problem } = e;                 
-                            const inputDate = new Date('01/09/2001');
-                            const day = inputDate.getUTCDate();
-                            const month = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(inputDate);
-                            const year = inputDate.getUTCFullYear();
+                             const { Name, Email, ContactNumber, Gender, Problem,DOB } = e;                 
+                             const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+                             const standardDate = new Date(DOB).toLocaleDateString('en-US', options);
                             return (
                               <tr key={e._id}>
                                 <td>{Name}</td>
                                 
                                 <td>{Email}</td>
                                 <td>{ContactNumber}</td>
-                                <td>{day+"-"+month+"-"+year}</td>
+                                <td>{standardDate}</td>
                                 <td>{Gender}</td>
                               
                                 <td>{Problem}</td>

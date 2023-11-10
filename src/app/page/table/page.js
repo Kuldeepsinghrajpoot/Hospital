@@ -8,8 +8,9 @@ const todoItems = async () => {
   const data = response.data.patientDetails;
   return data;
 }
-const Notauthorise = async () => {
+const useInformation = async () => {
   const patientDetails = await todoItems();
+  // console.log(patientDetails);
   return (
     <>
       <div className="layout-wrapper layout-content-navbar">
@@ -38,17 +39,18 @@ const Notauthorise = async () => {
                         <tbody>
                           {patientDetails.map((e) => {
                             const { FirstName, LastName, Email, ContactNumber, DOB, Gender, Address, Problem } = e;                 
-                            const inputDate = new Date(DOB);
-                            const day = inputDate.getUTCDate();
-                            const month = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(inputDate);
-                            const year = inputDate.getUTCFullYear();
+                            // const inputDate = new Date(DOB);
+                            const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+                            const standardDate = new Date(DOB).toLocaleDateString('en-US', options);
+                            
                             return (
                               <tr key={e._id}>
                                 <td>{FirstName}</td>
                                 <td>{LastName}</td>
                                 <td>{Email}</td>
                                 <td>{ContactNumber}</td>
-                                <td>{day+"-"+month+"-"+year}</td>
+                                {/* <td>{day+"-"+month+"-"+year}</td> */}
+                                <td>{standardDate}</td>
                                 <td>{Gender}</td>
                                 <td>{Address}</td>
                                 <td>{Problem}</td>
@@ -70,4 +72,4 @@ const Notauthorise = async () => {
   );
 }
 
-export default Notauthorise;
+export default useInformation;

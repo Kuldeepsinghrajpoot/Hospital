@@ -1,9 +1,10 @@
 import React from 'react';
+import Old from './old'
 const page = () => {
   return (
-    <>
-      hi
-    </>
+    <div>
+      <Old></Old>
+    </div>
   );
 }
 

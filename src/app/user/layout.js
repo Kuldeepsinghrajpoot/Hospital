@@ -1,15 +1,15 @@
-'use client'
-import React from 'react'
-import NextNProgress from 'nextjs-progressbar';
+
+import { AuthProvider } from '../Provider'
 import Nav from './index'
 
 export default function Layout({children}){
-
   return (
     <>
-     <NextNProgress />
+    <AuthProvider>
     <Nav/>
+     
     {children}
+    </AuthProvider>
     </>
 
   )
