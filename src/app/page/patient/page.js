@@ -1,10 +1,10 @@
 import React from 'react';
-// import Login from './(auth)/login/login'
+import Old from './old'
 const page = () => {
   return (
-    <>
-    
-    </>
+    <div>
+      <Old></Old>
+    </div>
   );
 }
 

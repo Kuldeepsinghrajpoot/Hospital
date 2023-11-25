@@ -1,23 +1,31 @@
 'use client'
 import Link from 'next/link'
 import { useState } from 'react';
-import {usePathname} from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
+import { signOut, useSession } from 'next-auth/react';
 
-// import Chat from './page/chat/index'
 export default function Home() {
-  const route = usePathname()
-  // console.log("clicked");
+  const { data: session } = useSession();
+
+  const route = usePathname();
+  const router = useRouter();
   const [divClass, setDivClass] = useState('initial-class');
+  const [drop, setdrop] = useState('dropdown-menu');
 
-  function handleClick (){
-    // alert("clicked")
-    // console.log("onclicked");
-    setDivClass(divClass === 'initial-class' ? 'transition ease-in-out delay-150  light-style layout-navbar-fixed layout-menu-100vh layout-menu-fixed layout-footer-fixed layout-menu-expanded' : 'initial-class');
-
+  if (session?.user?.role === 'user') {
+    router.replace("/user")
+    return;
+  } else if (session?.user?.role === 'Admin') {
+    router.replace("/page");
+    return;
   }
-
-
-
+ 
+  function dropDown() {
+    setdrop(drop === 'dropdown-menu' ? '' : 'dropdown-menu')
+  }
+  function handleClick() {
+    setDivClass(divClass === 'initial-class' ? 'transition ease-in-out delay-150  light-style layout-navbar-fixed layout-menu-100vh layout-menu-fixed layout-footer-fixed layout-menu-expanded' : 'initial-class');
+  }
 
   return (
     <div className={divClass}>
@@ -58,10 +66,10 @@ export default function Home() {
                   />
                 </svg>
               </span>
-              <span className="app-brand-text demo menu-text fw-bold text-2xl">Kuldeep</span>
+              <span className="app-brand-text demo menu-text fw-bold text-2xl">{session?.user?.name}</span>
             </Link>
-            <div  onClick={handleClick} className=" cursor-pointer layout-menu-toggle menu-link text-large ms-auto">
-              <i  className="ti menu-toggle-icon d-none d-xl-block ti-sm align-middle"></i>
+            <div onClick={handleClick} className=" cursor-pointer layout-menu-toggle menu-link text-large ms-auto">
+              <i className="ti menu-toggle-icon d-none d-xl-block ti-sm align-middle"></i>
               <i className="ti ti-x d-block d-xl-none ti-sm align-middle"></i>
             </div>
           </div>
@@ -71,37 +79,40 @@ export default function Home() {
           <ul className=" menu-inner py-1 w-full h-full overflow-y-auto  overflow-x-hidden" id='webkit'>
             {/* <!-- Dashboards --> */}
             {/* active */}
-        
+
 
             {/* <!-- Layouts --> */}
-            <li className={`${route=='/doctor'?'menu-item active':'menu-item'} `}>
-                  <Link href="/doctor" className="menu-link">
-                    <div data-i18n="Analytics">Dashboard</div>
-                  </Link>
-                
-              
+            <li className={`${route == '/doctor' ? 'menu-item active' : 'menu-item'} `}>
+              <Link href="/doctor" className="menu-link">
+              <i className="menu-icon tf-icons ti ti-smart-home"></i>
+
+                <div data-i18n="Analytics">Dashboard</div>
+              </Link>
+
+
             </li>
 
             {/* <!-- Apps & Pages --> */}
             <li className="menu-header small text-uppercase">
               <span className="menu-header-text">Apps &amp; Pages</span>
             </li>
-            <li className={`${route=='/doctor/patientInfo'?'menu-item active':'menu-item'} `}>
+            <li className={`${route == '/doctor/patientInfo' ? 'menu-item active' : 'menu-item'} `}>
               <Link href="/doctor/patientInfo" className="menu-link">
-                <i className="menu-icon tf-icons ti ti-mail"></i>
+              <i className="menu-icon tf-icons ti ti-users"></i>
                 <div data-i18n="Email">Patients</div>
               </Link>
             </li>
-            <li className="menu-item">
-              <Link href="./page/chat" className="menu-link">
-                <i className="menu-icon tf-icons ti ti-messages"></i>
-                <div data-i18n="Chat">Chat</div>
+            <li className={`${route ==='/doctor/profile' || route=== "/doctor/profile/updatepassword" ? 'menu-item active' : 'menu-item'} `}>
+              <Link href="/doctor/profile" className="menu-link">
+              <i className="menu-icon tf-icons ti ti-users"></i>
+
+                <div data-i18n="Chat">Profile</div>
               </Link>
             </li>
-            
-            
-            
-            <li className="menu-item">
+
+
+
+            {/* <li className="menu-item">
               <Link href="" className="menu-link menu-toggle">
                 <i className="menu-icon tf-icons ti ti-forms"></i>
                 <div data-i18n="Wizard Examples">Wizard Examples</div>
@@ -123,54 +134,54 @@ export default function Home() {
                   </Link>
                 </li>
               </ul>
-            </li>
-            <li className="menu-item">
+            </li> */}
+            {/* <li className="menu-item">
               <Link href="modal-examples.html" className="menu-link">
                 <i className="menu-icon tf-icons ti ti-square"></i>
                 <div data-i18n="Modal Examples">Modal Examples</div>
               </Link>
-            </li>
+            </li> */}
 
             {/* <!-- Components --> */}
-            <li className="menu-header small text-uppercase">
+            {/* <li className="menu-header small text-uppercase">
               <span className="menu-header-text">Components</span>
-            </li>
+            </li> */}
             {/* <!-- Cards --> */}
-            <li className="menu-item">
+            {/* <li className="menu-item">
               <Link href="" className="menu-link menu-toggle">
                 <i className="menu-icon tf-icons ti ti-id"></i>
                 <div data-i18n="Cards">Cards</div>
                 <div className="badge bg-label-primary rounded-pill ms-auto">6</div>
               </Link>
-              
-            </li>
+
+            </li> */}
             {/* <!-- User interface --> */}
-            <li className="menu-item">
+            {/* <li className="menu-item">
               <Link href="" className="menu-link menu-toggle">
                 <i className="menu-icon tf-icons ti ti-color-swatch"></i>
                 <div data-i18n="User interface">User interface</div>
               </Link>
-              
-            </li>
+
+            </li> */}
 
             {/* <!-- Extended components --> */}
-            <li className="menu-item">
+            {/* <li className="menu-item">
               <Link href="" className="menu-link menu-toggle">
                 <i className="menu-icon tf-icons ti ti-components"></i>
                 <div data-i18n="Extended UI">Extended UI</div>
               </Link>
-              
-            </li>
+
+            </li> */}
 
             {/* <!-- Icons --> */}
-            <li className="menu-item">
+            {/* <li className="menu-item">
               <Link href="" className="menu-link menu-toggle">
                 <i className="menu-icon tf-icons ti ti-brand-tabler"></i>
                 <div data-i18n="Icons">Icons</div>
               </Link>
-            </li>
+            </li> */}
 
-            </ul>
+          </ul>
 
         </aside>
         {/* <!-- / Menu --> */}
@@ -185,7 +196,7 @@ export default function Home() {
           >
             <div className="layout-menu-toggle  navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
               <div className="nav-item nav-link px-0 me-xl-4 cursor-pointer" onClick={handleClick} >
-                <i  className="ti ti-menu-2 ti-sm"></i>
+                <i className="ti ti-menu-2 ti-sm"></i>
               </div>
             </div>
 
@@ -203,7 +214,7 @@ export default function Home() {
 
               <ul className="navbar-nav flex-row align-items-center ms-auto">
                 {/* <!-- Language --> */}
-                <li className="nav-item dropdown-language dropdown me-2 me-xl-0">
+                {/* <li className="nav-item dropdown-language dropdown me-2 me-xl-0">
                   <Link className="nav-link dropdown-toggle hide-arrow" href="" data-bs-toggle="dropdown">
                     <i className="fi fi-us fis rounded-circle me-1 fs-3"></i>
                   </Link>
@@ -214,11 +225,11 @@ export default function Home() {
                         <span className="align-middle">English</span>
                       </Link>
                     </li>
-                    </ul>
-                </li>
+                  </ul>
+                </li> */}
                 {/* <!--/ Language -->
 
-               <!-- Style Switcher --> */}
+             <!-- Style Switcher --> */}
                 <li className="nav-item me-2 me-xl-0">
                   <Link className="nav-link style-switcher-toggle hide-arrow" href="">
                     <i className="ti ti-md"></i>
@@ -226,7 +237,7 @@ export default function Home() {
                 </li>
                 {/* <!--/ Style Switcher -->
 
-               <!-- Quick links  --> */}
+             <!-- Quick links  --> */}
                 <li className="nav-item dropdown-shortcuts navbar-dropdown dropdown me-2 me-xl-0">
                   <Link
                     className="nav-link dropdown-toggle hide-arrow"
@@ -320,87 +331,63 @@ export default function Home() {
                 </li>
                 {/* <!-- Quick links -->
 
-               <!-- Notification --> */}
+             <!-- Notification --> */}
 
                 {/* <!--/ Notification --> */}
 
                 {/* <!-- User --> */}
                 <li className="nav-item navbar-dropdown dropdown-user dropdown">
-                  <Link className="nav-link dropdown-toggle hide-arrow" href="" data-bs-toggle="dropdown">
+                  <button className="nav-link dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                     <div className="avatar avatar-online">
-                      <img src="./img/avatars/1.png" alt="picture" className="h-auto rounded-circle" />
+                      <img src="/img/avatars/1.png" alt="img" className="h-auto rounded-circle" />
                     </div>
-                  </Link>
-                  {/* dropdown menue */}
-                  <ul className="dropdown-menu dropdown-menu-end bg-white text-start py-1 px-4 -mx-40 absolute shadow-lg ">
-                    <li>
-                      <Link className="dropdown-item" href="pages-account-settings-account.html">
+                  </button>
+                  {/*  dropdown-menu */}
+                  <ul className={`dropdown-menu  dropdown-menu-end  bg-white text-start  absolute shadow-lg`}>
+                    <li className=''>
+                      <a className="dropdown-item" href="pages-account-settings-account.html">
                         <div className="d-flex">
                           <div className="flex-shrink-0 me-3">
                             <div className="avatar avatar-online">
-                              <img src="./img/avatars/1.png" alt="picture" className="h-auto rounded-circle" />
+                              <img src="/img/avatars/1.png" alt="img" className="h-auto rounded-circle" />
                             </div>
                           </div>
                           <div className="flex-grow-1">
-                            <span className="fw-semibold d-block">John Doe</span>
-                            <small className="text-muted">Admin</small>
+                            <span className="fw-semibold d-block">{session?.user?.name}</span>
+                            <small className="text-muted">{session?.user?.role}</small>
                           </div>
                         </div>
-                      </Link>
+                      </a>
                     </li>
                     <li>
                       <div className="dropdown-divider"></div>
                     </li>
-                    <li>
-                      <Link className="dropdown-item" href="pages-profile-user.html">
+                    <li >
+
+                      <Link className="dropdown-item" href="/doctor/profile">
                         <i className="ti ti-user-check me-2 ti-sm"></i>
                         <span className="align-middle">My Profile</span>
                       </Link>
                     </li>
                     <li>
-                      <Link className="dropdown-item" href="pages-account-settings-account.html">
-                        <i className="ti ti-settings me-2 ti-sm"></i>
+
+                      <Link className="dropdown-item" href="/doctor/profile/updatepassword">
+                        <i className=" ti ti-settings me-2 ti-sm"></i>
                         <span className="align-middle">Settings</span>
                       </Link>
                     </li>
-                    <li>
-                      <Link className="dropdown-item" href="pages-account-settings-billing.html">
-                        <span className="d-flex align-items-center align-middle">
-                          <i className="flex-shrink-0 ti ti-credit-card me-2 ti-sm"></i>
-                          <span className="flex-grow-1 align-middle">Billing</span>
-                          <span className="flex-shrink-0 badge badge-center rounded-pill bg-label-danger w-px-20 h-px-20">2</span>
-                        </span>
-                      </Link>
-                    </li>
+
+
+
                     <li>
                       <div className="dropdown-divider"></div>
                     </li>
                     <li>
-                      <Link className="dropdown-item" href="pages-help-center-landing.html">
-                        <i className="ti ti-lifebuoy me-2 ti-sm"></i>
-                        <span className="align-middle">Help</span>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link className="dropdown-item" href="pages-faq.html">
-                        <i className="ti ti-help me-2 ti-sm"></i>
-                        <span className="align-middle">FAQ</span>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link className="dropdown-item" href="pages-pricing.html">
-                        <i className="ti ti-currency-dollar me-2 ti-sm"></i>
-                        <span className="align-middle">Pricing</span>
-                      </Link>
-                    </li>
-                    <li>
-                      <div className="dropdown-divider"></div>
-                    </li>
-                    <li>
-                      <Link className="dropdown-item" href="auth-login-cover.html" target="_blank">
-                        <i className="ti ti-logout me-2 ti-sm"></i>
+
+                      <button className="dropdown-item" onClick={() => signOut()}>
+                        <i className=" ti ti-logout me-2 ti-sm"></i>
                         <span className="align-middle">Log Out</span>
-                      </Link>
+                      </button>
                     </li>
                   </ul>
                 </li>
@@ -411,12 +398,12 @@ export default function Home() {
 
           </nav>
           {/* <!-- Content wrapper --> */}
-        
+
         </div>
       </div>
     </div>
-   
-      </div>
+
+  </div>
 
 
 
