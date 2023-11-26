@@ -9,7 +9,7 @@ const Page = () => {
 
   const getData = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/individualUserInformation', {
+      const response = await axios.get('api/individualUserInformation', {
       });
       const data = response.data;
       setData(data);
@@ -25,13 +25,15 @@ const Page = () => {
   }, []);
 
 
-
+if (!data) {
+  return;
+}
   return (<>
 
     {data.map((e) => {
       return (
         <>
-          {console.log("Gender->", e.gender)}
+         
           <div key={e._id}><Update firstName={e.name} lastName={e.lastname} email={e.email} contactNumber={e.contactnumber} dOB={e.dob} gender={e.gender} address={e.address}></Update></div>
         </>
       )

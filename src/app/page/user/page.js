@@ -1,5 +1,5 @@
 const todoItems = async () => {
-    const url = process.env.URL;
+    const url = process.env.URI;
     try {
         const response = await fetch(`${url}/api/mongodb`, {
             cache: "no-store",
