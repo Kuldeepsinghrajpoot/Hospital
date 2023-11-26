@@ -13,7 +13,7 @@ export default function Home() {
   if (session?.user?.role === 'user') {
     route.replace("/user")
     return;
-  } else if (session?.user?.role === 'doctor') {
+  } else if (session?.user?.role === 'Doctor') {
     route.replace("/doctor");
     return;
   }

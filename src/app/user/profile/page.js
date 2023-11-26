@@ -5,11 +5,9 @@ import axios from 'axios';
 const Page = () => {
 
   const [data, setData] = useState([]);
-
-
   const getData = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/individualUserInformation', {
+      const response = await axios.get('/api/individualUserInformation', {
       });
       const data = response.data;
       setData(data);
@@ -24,10 +22,10 @@ const Page = () => {
     getData();
   }, []);
 
-
-
+  if (!data) {
+    return;
+  }
   return (<>
-
     {data.map((e) => {
       return (
         <>
@@ -36,8 +34,6 @@ const Page = () => {
         </>
       )
     })}
-
-
   </>
   )
 }

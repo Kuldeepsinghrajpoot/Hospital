@@ -21,9 +21,7 @@ const DoctorTable = () => {
                         </div>
                     </div>
                 </div>
-
                 <div className="layout-overlay layout-menu-toggle"></div>
-
                 <div className="drag-target"></div>
             </div>
         </div>

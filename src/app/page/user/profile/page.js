@@ -24,7 +24,9 @@ const Page = () => {
     getData();
   }, []);
 
-
+if (!data) {
+  return;
+}
 
   return (<>
 

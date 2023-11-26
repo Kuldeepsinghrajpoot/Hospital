@@ -9,7 +9,7 @@ const Page = () => {
 
     const getData = async () => {
         try {
-            const response = await axios.get('http://localhost:3000/api/appointmentsDetalis', {
+            const response = await axios.get('/api/appointmentsDetalis', {
                 // You can set additional configurations here
             });
             const data = response.data.Appointment;
@@ -26,6 +26,9 @@ const Page = () => {
         getData();
     }, []);
 
+    if (!data) {
+        return;
+    }
     return (
         <div>
             <div className="layout-wrapper layout-content-navbar">

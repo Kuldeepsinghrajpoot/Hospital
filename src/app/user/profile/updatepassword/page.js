@@ -43,7 +43,7 @@ const UpdateData = () => {
         }),
         onSubmit: async (values) => {
             
-            const res = await fetch("http://localhost:3000/api/updatepassword", {
+            const res = await fetch("/api/updatepassword", {
                 method: "PUT",
                 headers: {
                     "Content-type": "application/json",

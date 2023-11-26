@@ -1,14 +1,22 @@
 import React from 'react';
-import axios from 'axios'
 const todoItems = async () => {
-  const response = await axios.get('http://localhost:3000/api/userinfo', {
-    catch: "no-store"
-  });
-  const data = response.data.Appointment;
-  return data;
+  const url = process.env.URL;
+  try {
+      const response = await fetch(`${url}/api/userinfo`, {
+          cache: "no-store",
+      });
+      // setData(response.data);
+      const data = await response.json();
+      return data;
+  } catch (error) {
+      console.log(error);
+  }
 }
-const Notauthorise = async () => {
+const UserInformation = async () => {
   const patientDetails = await todoItems();
+  if (!patientDetails) {
+    return;
+  }
   return (
     <>
       <div className="layout-wrapper layout-content-navbar">
@@ -66,4 +74,4 @@ const Notauthorise = async () => {
   );
 }
 
-export default Notauthorise;
+export default UserInformation;

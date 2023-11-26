@@ -1,10 +1,29 @@
 import { getServerSession } from 'next-auth';
 import React from 'react';
 import { authOptions } from '../api/auth/[...nextauth]/route';
+import axios from 'axios'
+
+const getData = async () => {
+    try {
+        const response = await axios.get(`${process.env.URL}/api/appointmentsDetalis`, {
+            // You can set additional configurations here
+        });
+        const data = response.data.Appointment;
+        return data;
+      // Set loading to false when data is fetched
+    } catch (error) {
+        // Handle any errors that occur during the request
+        console.error('Error fetching data:', error);
+        // Update loading state in case of error
+    }
+};
 
 const page = async() => {
     const session = await getServerSession(authOptions)
-    console.log(session?.user);
+    const data = await getData();
+    if (!data) {
+        return;
+    }
     return (
         <>
             <div className="container-xxl   object-center container-p-y absolute top-10">
@@ -16,8 +35,8 @@ const page = async() => {
                         <div className="card h-100">
                             <div className="card-header text-center">
                                 <div className="">
-                                    <h5 className="mb-1">{JSON.stringify(session)}</h5>
-                                    <small className="text-muted">8.52k Social Visiters</small>
+                                    <h5 className="mb-1"></h5>
+                                    <small className="text-muted">{session?.user?.name}</small>
                                 </div>
 
                             </div>
@@ -26,10 +45,10 @@ const page = async() => {
                                     <li className="mb-4 pb-1 d-flex justify-content-between align-items-center">
                                         <div className="badge bg-label-success rounded p-2"><i className="ti ti-mail ti-sm"></i></div>
                                         <div className="d-flex justify-content-between w-100 flex-wrap">
-                                            <h6 className="mb-0 ms-3">Emails</h6>
+                                            <h6 className="mb-0 ms-3">Email</h6>
                                             <div className="d-flex">
-                                                <p className="mb-0 fw-semibold">12,346</p>
-                                                <p className="ms-3 text-success mb-0">0.3%</p>
+                                                <p className="mb-0 fw-semibold">{session?.user?.email}</p>
+                                               
                                             </div>
                                         </div>
                                     </li>

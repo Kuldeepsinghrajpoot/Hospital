@@ -39,7 +39,7 @@ const Appointment = () => {
     onSubmit: async (values, { resetForm }) => {
       console.log(values)
       try {
-        const response = await fetch("http://localhost:3000/user/api", {
+        const response = await fetch("/user/api", {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -61,7 +61,7 @@ const Appointment = () => {
             theme: "light",
             });
 
-          // resetForm();
+          resetForm();
         } else {
           // Handle errors, e.g., show an error message
           console.error('Registration failed', response);
@@ -73,6 +73,8 @@ const Appointment = () => {
     }
 
   })
+
+  
   return (
     <div>
       <div className="col-xxl relative top-24  d-flex justify-center ">

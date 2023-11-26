@@ -1,15 +1,18 @@
-
-import React from 'react';
-import axios from 'axios'
 const todoItems = async () => {
-  const response = await axios.get('http://localhost:3000/api/mongodb', {
-    catch: "no-store"
-  });
-  const data = response.data.patientDetails;
-  return data;
-}
-const useInformation = async () => {
+    const url = process.env.URL;
+    try {
+        const response = await fetch(`${url}/api/mongodb`, {
+            cache: "no-store",
+        });
+        // setData(response.data);
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.log(error);
+    }
   
+}
+const UserInformation = async () => {
   const patientDetails = await todoItems();
   if (!patientDetails) {
     return;
@@ -73,4 +76,4 @@ const useInformation = async () => {
   );
 }
 
-export default useInformation;
+export default UserInformation;
