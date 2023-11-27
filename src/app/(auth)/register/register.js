@@ -41,7 +41,7 @@ const Register = () => {
         }),
         onSubmit: async (values) => {
             try {
-                const response = await fetch("http://localhost:3000/api/mongodb", {
+                const response = await fetch("/api/mongodb", {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
