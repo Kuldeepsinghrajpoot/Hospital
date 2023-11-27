@@ -1,10 +1,9 @@
 "use client"
 
-import React, { useEffect, useState } from 'react';
-import Img from 'next/image'
+import React from 'react';
 import {useFormik } from 'formik';
 import * as Yup from 'yup';
-import Cookies from 'js-cookie';
+import { toast } from 'react-toastify';
 import {useRouter} from 'next/navigation'
 import Link from 'next/link';
 const Register = () => {
@@ -44,7 +43,7 @@ const Register = () => {
         }),
         onSubmit: async (values) => {
             try {
-                const response = await fetch("http://localhost:3000/api/mongodb", {
+                const res = await fetch("/api/mongodb", {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -52,13 +51,35 @@ const Register = () => {
                     body: JSON.stringify(values),
                 });
 
-                if (response.ok) {
-                    // Handle success, e.g., show a success message or redirect
-                    console.log('Registration successful');
-                } else {
-                    // Handle errors, e.g., show an error message
-                    console.error('Registration failed', response);
-                }
+                if(!res.ok){
+                    toast.error(' something went wrong', {
+                      position: "top-right",
+                      autoClose: 5000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                      theme: "light",
+                    });
+                    route.replace('/login')
+                  }else{
+                    toast.success('Successful Account created', {
+                      position: "top-right",
+                      autoClose: 5000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                      theme: "light",
+            
+                    });
+                    route.refresh()
+                    // route.replace('/user')
+            
+                   
+                  }
             } catch (error) {
                 // Handle network or other errors
                 console.error('An error occurred', error);
@@ -66,14 +87,7 @@ const Register = () => {
         }
     })
 
-    useEffect(() => {
-        const isAuthenticated = Cookies.get('token'); // Check if the user has a valid token
-    
-        if (isAuthenticated) {
-          // If the user is already authenticated, redirect to a different page (e.g., the dashboard)
-          route.push('/page');
-        }
-      })
+ 
 
     return (
         <>
@@ -357,7 +371,8 @@ const Register = () => {
                                         ) : null}
                                     </div>
 
-                                    <button type='submit' className="btn btn-primary d-grid w-100  text-center content-center">Sign up</button>
+                                    <button className="bg-[#7367F0] hover:bg-[#7b70fa] text-white font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded w-full" type="submit">Sign Up</button>
+
                                 </form>
 
                                 <p className="text-center">
