@@ -4,6 +4,7 @@ import user from "@/models/schema";
 import bcrypt from 'bcryptjs'
 import { getSession } from "next-auth/react";
 import { authOptions } from "../auth/[...nextauth]/route";
+
 export async function POST(request) {
   const session = await getSession(authOptions);
   const data = session?.user?.role;

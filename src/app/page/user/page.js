@@ -13,8 +13,8 @@ const todoItems = async () => {
   
 }
 const UserInformation = async () => {
-  const patientDetails = await todoItems();
-  if (!patientDetails) {
+  const data = await todoItems();
+  if (!data) {
     return;
   }
   // console.log(patientDetails);
@@ -42,7 +42,7 @@ const UserInformation = async () => {
                           </tr>
                         </thead>
                         <tbody>
-                          {patientDetails.map((e) => {
+                          {data.patientDetails.map((e) => {
                             const { name, lastname, email, contactnumber, dob, gender, address,role } = e;                 
                             // const inputDate = new Date(DOB);
                             const options = { year: 'numeric', month: '2-digit', day: '2-digit' };

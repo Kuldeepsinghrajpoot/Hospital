@@ -9,9 +9,6 @@ import Link from 'next/link';
 const Register = () => {
 
     const route = useRouter()
-
-
-
     const initialValues = {
         name: "",
         lastname: "",
@@ -43,8 +40,9 @@ const Register = () => {
             // message: Yup.string().required('Message is required'),
         }),
         onSubmit: async (values) => {
+            const url = process.eve.URI;
             try {
-                const res = await fetch("/api/mongodb", {
+                const res = await fetch(`${url}/api/mongodb`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

@@ -55,7 +55,7 @@ const Page = () => {
                       <tbody>
 
                         {data.map((e) => {
-                          const { Name, Appointment, Doctor, Status, Problem, AppointmentDate, Phone, Email } = e;
+                          const { Name, Doctor, Status, Problem, AppointmentDate, Phone, Email } = e;
                           const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
                           const standardDate = new Date(AppointmentDate).toLocaleDateString('en-US', options);
 
