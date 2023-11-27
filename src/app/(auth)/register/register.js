@@ -1,9 +1,11 @@
 "use client"
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import Img from 'next/image'
 import {useFormik } from 'formik';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
+
 import {useRouter} from 'next/navigation'
 import Link from 'next/link';
 const Register = () => {
@@ -19,10 +21,9 @@ const Register = () => {
         dob: '',
         gender: "",
         address: "",
-       
-        role:"user",
+        problem: "",
+        role:"user"
     }
-
     const { values, errors, handleBlur, touched, handleChange, handleSubmit } = useFormik({
         initialValues: initialValues,
         validationSchema: Yup.object({
@@ -36,21 +37,18 @@ const Register = () => {
             gender: Yup.string().required("gender is required"),
             address: Yup.string().required("address is required"),
             problem: Yup.string().required("problem is requried"),
-
             // message: Yup.string().required('Message is required'),
         }),
         onSubmit: async (values) => {
-            const url = process.eve.URI;
             try {
-                const res = await fetch(`${url}/api/mongodb`, {
+                const response = await fetch("http://localhost:3000/api/mongodb", {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify(values),
                 });
-
-                if(!res.ok){
+                if(!response.ok){
                     toast.error(' something went wrong', {
                       position: "top-right",
                       autoClose: 5000,
@@ -61,7 +59,6 @@ const Register = () => {
                       progress: undefined,
                       theme: "light",
                     });
-                    
                   }else{
                     toast.success('Successful Account created', {
                       position: "top-right",
@@ -72,13 +69,8 @@ const Register = () => {
                       draggable: true,
                       progress: undefined,
                       theme: "light",
-            
                     });
-                    route.refresh()
-                    route.replace('/login')
-                    // route.replace('/user')
-            
-                   
+                    route.replace('/login')     
                   }
             } catch (error) {
                 // Handle network or other errors
@@ -86,9 +78,6 @@ const Register = () => {
             }
         }
     })
-
- 
-
     return (
         <>
             <div className="container-xxl">
@@ -353,10 +342,25 @@ const Register = () => {
 
                                     </div>
 
-                                    
+                                    <div className=" mb-3">
+                                        <label htmlFor="problem" className="form-label">Patient problem</label>
+                                        <textarea onChange={handleChange} onBlur={handleBlur} value={values.problem} type="text"className={`form-control ${
+                                                    errors.problem && touched.problem
+                                                      ? "border border-danger"
+                                                      : ""
+                                                  } border border-gray-300 rounded-md focus:outline-none  ${
+                                                    errors.problem && touched.problem
+                                                      ? "focus: border-red-500"
+                                                      : "focus:border-indigo-500"
+                                                  }`}id="problem" name="problem" placeholder="patient problem" />
+                                        {errors.problem && touched.problem ? (
+                                            <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+                                                {errors.problem}
+                                            </span>
+                                        ) : null}
+                                    </div>
 
-                                    <button className="bg-[#7367F0] hover:bg-[#7b70fa] text-white font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded w-full" type="submit">Sign Up</button>
-
+                                    <button type='submit' className="bg-[#7367F0] hover:bg-[#7b70fa] text-white font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded w-full">Sign up</button>
                                 </form>
 
                                 <p className="text-center">
