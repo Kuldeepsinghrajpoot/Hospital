@@ -22,7 +22,8 @@ const Register = () => {
         dob: '',
         gender: "",
         address: "",
-        problem: "",
+       
+        role:"user",
     }
 
     const { values, errors, handleBlur, touched, handleChange, handleSubmit } = useFormik({
@@ -62,7 +63,7 @@ const Register = () => {
                       progress: undefined,
                       theme: "light",
                     });
-                    route.replace('/login')
+                    
                   }else{
                     toast.success('Successful Account created', {
                       position: "top-right",
@@ -76,6 +77,7 @@ const Register = () => {
             
                     });
                     route.refresh()
+                    route.replace('/login')
                     // route.replace('/user')
             
                    
@@ -353,23 +355,7 @@ const Register = () => {
 
                                     </div>
 
-                                    <div className=" mb-3">
-                                        <label htmlFor="problem" className="form-label">Patient problem</label>
-                                        <textarea onChange={handleChange} onBlur={handleBlur} value={values.problem} type="text"className={`form-control ${
-                                                    errors.problem && touched.problem
-                                                      ? "border border-danger"
-                                                      : ""
-                                                  } border border-gray-300 rounded-md focus:outline-none  ${
-                                                    errors.problem && touched.problem
-                                                      ? "focus: border-red-500"
-                                                      : "focus:border-indigo-500"
-                                                  }`}id="problem" name="problem" placeholder="patient problem" />
-                                        {errors.problem && touched.problem ? (
-                                            <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-                                                {errors.problem}
-                                            </span>
-                                        ) : null}
-                                    </div>
+                                    
 
                                     <button className="bg-[#7367F0] hover:bg-[#7b70fa] text-white font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded w-full" type="submit">Sign Up</button>
 
