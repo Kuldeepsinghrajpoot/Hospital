@@ -41,7 +41,7 @@ const UserInformation = async () => {
                           </tr>
                         </thead>
                         <tbody>
-                          {data.patientDetails.map((e) => {
+                          {data.Appointment.map((e) => {
                              const { Name, Email, ContactNumber, Gender, Problem,DOB } = e;                 
                              const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
                              const standardDate = new Date(DOB).toLocaleDateString('en-US', options);
