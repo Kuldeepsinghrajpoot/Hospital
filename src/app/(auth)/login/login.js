@@ -78,7 +78,7 @@ export default function LoginForm() {
               <div className="card-body">
                 {/* <!-- Logo --> */}
                 <div className="app-brand justify-content-center mb-4 mt-2">
-                  <a href="index.html" className="app-brand-link gap-2">
+                  <a href="/login" className="app-brand-link gap-2">
                     <span className="app-brand-logo demo">
                       <svg width="32" height="22" viewBox="0 0 32 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -109,7 +109,7 @@ export default function LoginForm() {
                         />
                       </svg>
                     </span>
-                    <span className="app-brand-text demo text-body fw-bold ms-1">Vuexy</span>
+                    <span className="app-brand-text demo text-body fw-bold ms-1">Uday</span>
                   </a>
                 </div>
                 {/* <!-- /Logo --> */}
@@ -174,7 +174,7 @@ export default function LoginForm() {
                     </div>
                   </div>
                   <div className="mb-3">
-                    <button className="btn btn-primary d-grid w-100" type="submit">Sign in</button>
+                    <button className="bg-[#7367F0] hover:bg-[#7b70fa] text-white font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded w-full" type="submit">Sign in</button>
                   </div>
                 </form>
 
