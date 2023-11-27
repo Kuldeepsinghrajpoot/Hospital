@@ -213,128 +213,15 @@ export default function Home() {
               {/* <!-- /Search --> */}
 
               <ul className="navbar-nav flex-row align-items-center ms-auto">
-                {/* <!-- Language --> */}
-                {/* <li className="nav-item dropdown-language dropdown me-2 me-xl-0">
-                  <Link className="nav-link dropdown-toggle hide-arrow" href="" data-bs-toggle="dropdown">
-                    <i className="fi fi-us fis rounded-circle me-1 fs-3"></i>
-                  </Link>
-                  <ul className="dropdown-menu dropdown-menu-end">
-                    <li>
-                      <Link className="dropdown-item" href="" data-language="en">
-                        <i className="fi fi-us fis rounded-circle me-1 fs-3"></i>
-                        <span className="align-middle">English</span>
-                      </Link>
-                    </li>
-                  </ul>
-                </li> */}
-                {/* <!--/ Language -->
+               
 
-             <!-- Style Switcher --> */}
+             
                 <li className="nav-item me-2 me-xl-0">
                   <Link className="nav-link style-switcher-toggle hide-arrow" href="">
                     <i className="ti ti-md"></i>
                   </Link>
                 </li>
-                {/* <!--/ Style Switcher -->
-
-             <!-- Quick links  --> */}
-                <li className="nav-item dropdown-shortcuts navbar-dropdown dropdown me-2 me-xl-0">
-                  <Link
-                    className="nav-link dropdown-toggle hide-arrow"
-                    href=""
-                    data-bs-toggle="dropdown"
-                    data-bs-auto-close="outside"
-                    aria-expanded="false"
-                  >
-                    <i className="ti ti-layout-grid-add ti-md"></i>
-                  </Link>
-                  <div className="dropdown-menu dropdown-menu-end py-0">
-                    <div className="dropdown-menu-header border-bottom">
-                      <div className="dropdown-header d-flex align-items-center py-3">
-                        <h5 className="text-body mb-0 me-auto">Shortcuts</h5>
-                        <Link
-                          href=""
-                          className="dropdown-shortcuts-add text-body"
-                          data-bs-toggle="tooltip"
-                          data-bs-placement="top"
-                          title="Add shortcuts"
-                        ><i className="ti ti-sm ti-apps"></i ></Link>
-                      </div>
-                    </div>
-                    <div className="dropdown-shortcuts-list scrollable-container">
-                      <div className="row row-bordered overflow-visible g-0">
-                        <div className="dropdown-shortcuts-item col">
-                          <span className="dropdown-shortcuts-icon rounded-circle mb-2">
-                            <i className="ti ti-calendar fs-4"></i>
-                          </span>
-                          <Link href="app-calendar.html" className="stretched-link">Calendar</Link>
-                          <small className="text-muted mb-0">Appointments</small>
-                        </div>
-                        <div className="dropdown-shortcuts-item col">
-                          <span className="dropdown-shortcuts-icon rounded-circle mb-2">
-                            <i className="ti ti-file-invoice fs-4"></i>
-                          </span>
-                          <Link href="app-invoice-list.html" className="stretched-link">Invoice App</Link>
-                          <small className="text-muted mb-0">Manage Accounts</small>
-                        </div>
-                      </div>
-                      <div className="row row-bordered overflow-visible g-0">
-                        <div className="dropdown-shortcuts-item col">
-                          <span className="dropdown-shortcuts-icon rounded-circle mb-2">
-                            <i className="ti ti-users fs-4"></i>
-                          </span>
-                          <Link href="app-user-list.html" className="stretched-link">User App</Link>
-                          <small className="text-muted mb-0">Manage Users</small>
-                        </div>
-                        <div className="dropdown-shortcuts-item col">
-                          <span className="dropdown-shortcuts-icon rounded-circle mb-2">
-                            <i className="ti ti-lock fs-4"></i>
-                          </span>
-                          <Link href="app-access-roles.html" className="stretched-link">Role Management</Link>
-                          <small className="text-muted mb-0">Permission</small>
-                        </div>
-                      </div>
-                      <div className="row row-bordered overflow-visible g-0">
-                        <div className="dropdown-shortcuts-item col">
-                          <span className="dropdown-shortcuts-icon rounded-circle mb-2">
-                            <i className="ti ti-chart-bar fs-4"></i>
-                          </span>
-                          <Link href="index.html" className="stretched-link">Dashboard</Link>
-                          <small className="text-muted mb-0">User Profile</small>
-                        </div>
-                        <div className="dropdown-shortcuts-item col">
-                          <span className="dropdown-shortcuts-icon rounded-circle mb-2">
-                            <i className="ti ti-settings fs-4"></i>
-                          </span>
-                          <Link href="pages-account-settings-account.html" className="stretched-link">Setting</Link>
-                          <small className="text-muted mb-0">Account Settings</small>
-                        </div>
-                      </div>
-                      <div className="row row-bordered overflow-visible g-0">
-                        <div className="dropdown-shortcuts-item col">
-                          <span className="dropdown-shortcuts-icon rounded-circle mb-2">
-                            <i className="ti ti-help fs-4"></i>
-                          </span>
-                          <Link href="pages-help-center-landing.html" className="stretched-link">Help Center</Link>
-                          <small className="text-muted mb-0">FAQs & Articles</small>
-                        </div>
-                        <div className="dropdown-shortcuts-item col">
-                          <span className="dropdown-shortcuts-icon rounded-circle mb-2">
-                            <i className="ti ti-square fs-4"></i>
-                          </span>
-                          <Link href="modal-examples.html" className="stretched-link">Modals</Link>
-                          <small className="text-muted mb-0">Useful Popups</small>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                {/* <!-- Quick links -->
-
-             <!-- Notification --> */}
-
-                {/* <!--/ Notification --> */}
-
+       
                 {/* <!-- User --> */}
                 <li className="nav-item navbar-dropdown dropdown-user dropdown">
                   <button className="nav-link dropdown-toggle hide-arrow" data-bs-toggle="dropdown">

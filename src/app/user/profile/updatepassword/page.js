@@ -80,9 +80,7 @@ const UpdateData = () => {
     })
     return (
         <>
-            < div>
-                <div>No user Found</div>
-                <div className="layout-wrapper layout-content-navbar ">
+            < div>   <div className="layout-wrapper layout-content-navbar ">
                     <div className="layout-container">
                         <div className="layout-page">
                             <div className="content-wrapper">
@@ -199,7 +197,9 @@ const UpdateData = () => {
                                                                 </ul>
                                                             </div>
                                                             <div>
-                                                                <button type="submit" className="btn btn-primary me-2">Save changes</button>
+                                                                
+                                                                <button type='submit' className="bg-[#7367F0] hover:bg-[#7b70fa] text-white font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded ">Save changes</button>
+
                                                                 <button type="reset" className="btn btn-label-secondary">Cancel</button>
                                                             </div>
                                                         </div>

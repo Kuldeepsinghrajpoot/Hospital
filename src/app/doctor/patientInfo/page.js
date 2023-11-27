@@ -32,30 +32,31 @@ const UserInformation = async () => {
                         <thead>
                           <tr>
                             <th>Name</th>
+                            <th>Doctor</th>
                             <th>Email</th>
                             <th>Contact Number</th>
-                            <th>DOB</th>
-                            <th>Gender</th>
+                            <th>Appointment Date </th>
+                            {/* <th>Gender</th> */}
                             <th>Problem</th>
-                            <th>Status</th>
+                            {/* <th>Status</th> */}
                           </tr>
                         </thead>
                         <tbody>
                           {data.Appointment.map((e) => {
-                             const { Name, Email, ContactNumber, Gender, Problem,DOB } = e;                 
+                             const { Name, Email, Phone,AppointmentDate,Doctor, Gender, Problem } = e;                 
                              const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
-                             const standardDate = new Date(DOB).toLocaleDateString('en-US', options);
+                             const standardDate = new Date(AppointmentDate).toLocaleDateString('en-US', options);
                             return (
                               <tr key={e._id}>
                                 <td>{Name}</td>
-                                
+                                <td>{Doctor}</td>
                                 <td>{Email}</td>
-                                <td>{ContactNumber}</td>
+                                <td>{Phone}</td>
                                 <td>{standardDate}</td>
-                                <td>{Gender}</td>
+                                {/* <td>{Gender}</td> */}
                               
                                 <td>{Problem}</td>
-                                <td><span className="badge bg-label-warning me-1">Pending</span></td>
+                                {/* <td><span className="badge bg-label-warning me-1">Pending</span></td> */}
                               </tr>
                             )
                           })}

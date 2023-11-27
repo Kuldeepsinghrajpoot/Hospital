@@ -201,7 +201,7 @@ const UpdateData = ({ firstName, lastName, email, contactNumber, dOB, gender, ad
                                   onChange={(e) => setAddress(e.target.value)} className="form-control" id="address" name="address" placeholder="Address" />
                               </div>
 
-                              <div className="mb-3 col-md-6">
+                              {/* <div className="mb-3 col-md-6">
                                 <label htmlFor="zipCode" className="form-label">Zip Code</label>
                                 <input
                                   type="text"
@@ -285,11 +285,13 @@ const UpdateData = ({ firstName, lastName, email, contactNumber, dOB, gender, ad
                                   <option value="pound">Pound</option>
                                   <option value="bitcoin">Bitcoin</option>
                                 </select>
-                              </div>
+                              </div> */}
                             </div>
 
                             <div className="mt-2">
-                              <button type="submit" className="btn btn-primary me-2">Save changes</button>
+                          
+                              <button type='submit' className="bg-[#7367F0] hover:bg-[#7b70fa] text-white font-semibold hover:text-white py-2 px-4 mx-2 border border-blue-500 hover:border-transparent rounded ">Save Changes</button>
+
                               <button type="reset" className="btn btn-outline-secondary">Cancel</button>
                             </div>
                           </form>

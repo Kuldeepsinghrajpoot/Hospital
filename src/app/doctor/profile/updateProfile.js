@@ -66,27 +66,27 @@ const UpdateData = ({ firstName, lastName, email, contactNumber, dOB, gender, ad
   return (
     <>
       < div>
-        <div>No user Found</div>
+       
         <div className="layout-wrapper layout-content-navbar ">
 
           <div className="layout-container">
             <div className="layout-page">
-            <div class="content-wrapper">
+            <div className="content-wrapper">
             {/* <!-- Content --> */}
 
-            <div class="container-xxl flex-grow-1 container-p-y">
-              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Account Settings /</span> Account</h4>
+            <div className="container-xxl flex-grow-1 container-p-y">
+              <h4 className="fw-bold py-3 mb-4"><span className="text-muted fw-light">Account Settings /</span> Account</h4>
 
 
                     <div className="row">
                       <div className="col-md-12">
-                      <ul class="nav nav-pills flex-column flex-md-row mb-4">
-                    <li class="nav-item">
-                      <div class="nav-link active cursor-pointer"
-                        ><i class="ti-xs ti ti-users me-1"></i> Account</div>
+                      <ul className="nav nav-pills flex-column flex-md-row mb-4">
+                    <li className="nav-item">
+                      <div className="nav-link active cursor-pointer"
+                        ><i className="ti-xs ti ti-users me-1"></i> Account</div>
                     </li>
-                    <li class="nav-item">
-                      <Link class="nav-link" href="/doctor/profile/updatepassword"><i class="ti-xs ti ti-lock me-1"></i> Security</Link>
+                    <li className="nav-item">
+                      <Link className="nav-link" href="/doctor/profile/updatepassword"><i className="ti-xs ti ti-lock me-1"></i> Security</Link>
                     </li>
                     
                   </ul>
@@ -105,7 +105,7 @@ const UpdateData = ({ firstName, lastName, email, contactNumber, dOB, gender, ad
                               />
                               <div className="button-wrapper">
                                 <label htmlFor="upload" className="btn btn-primary me-2 mb-4" tabIndex="0">
-                                  <span className="d-none d-sm-block">Upload new photo</span>
+                                  {/* <span className="d-none d-sm-block">Upload new photo</span> */}
                                   <i className="bx bx-upload d-block d-sm-none"></i>
                                   <input
                                     type="file"
@@ -200,7 +200,7 @@ const UpdateData = ({ firstName, lastName, email, contactNumber, dOB, gender, ad
                                     onChange={(e) => setAddress(e.target.value)} className="form-control" id="address" name="address" placeholder="Address" />
                                 </div>
 
-                                <div className="mb-3 col-md-6">
+                                {/* <div className="mb-3 col-md-6">
                                   <label htmlFor="zipCode" className="form-label">Zip Code</label>
                                   <input
                                     type="text"
@@ -284,11 +284,12 @@ const UpdateData = ({ firstName, lastName, email, contactNumber, dOB, gender, ad
                                     <option value="pound">Pound</option>
                                     <option value="bitcoin">Bitcoin</option>
                                   </select>
-                                </div>
+                                </div> */}
                               </div>
 
                               <div className="mt-2">
-                                <button type="submit" className="btn btn-primary me-2">Save changes</button>
+                              <button type='submit' className="me-2 bg-[#7367F0] hover:bg-[#7b70fa] text-white font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded ">Save changes</button>
+
                                 <button type="reset" className="btn btn-outline-secondary">Cancel</button>
                               </div>
                             </form>

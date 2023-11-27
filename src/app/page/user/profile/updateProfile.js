@@ -66,7 +66,7 @@ const UpdateData = ({ firstName, lastName, email, contactNumber, dOB, gender, ad
   return (
     <>
       < div>
-        <div>No user Found</div>
+
         <div className="layout-wrapper layout-content-navbar ">
 
           <div className="layout-container">
@@ -288,6 +288,9 @@ const UpdateData = ({ firstName, lastName, email, contactNumber, dOB, gender, ad
                               </div>
 
                               <div className="mt-2">
+
+                              <button type='submit' className="bg-[#7367F0] hover:bg-[#7b70fa] text-white font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded ">Save Change</button>
+
                                 <button type="submit" className="btn btn-primary me-2">Save changes</button>
                                 <button type="reset" className="btn btn-outline-secondary">Cancel</button>
                               </div>

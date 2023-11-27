@@ -128,7 +128,7 @@ const Register = () => {
 
                                 <form id="formAuthentication" className="mb-3" onSubmit={handleSubmit} >
                                     <div className=" mb-3">
-                                        <label htmlFor="name" className="form-label">Last Name</label>
+                                        <label htmlFor="name" className="form-label">First Name</label>
                                         <input onChange={handleChange}
                                             type="text"
                                             className={`w-full  px-3 py-2 ${errors.name && touched.name
