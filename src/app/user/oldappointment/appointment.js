@@ -35,9 +35,15 @@ const Appointment = () => {
                 <div className="layout-page">
                     <div className="content-wrapper">
                         {/* Content */}
+                        {loading ? (
+                                    <div><Loading></Loading></div> // Show a loader while fetching data
+                                ) : (
                         <div className="container-xxl flex-grow-1 container-p-y">
                             <div className="row">
-                                {
+                            {data.length === 0 ? (
+                                            <div>No Appointment</div>
+                                        ) : (
+                                
                                     data.map((e) => {
                                         const { Name, Appointment, Doctor, Status, Problem, _id, AppointmentDate, Phone, Email } = e;
                                         const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
@@ -141,19 +147,21 @@ const Appointment = () => {
                                                     </div>
                                                 </div>
                                             </div>
-                                        )
-                                    })
-                                }
+                                             
+                                             )
+                                            })
+                                        )}
                             </div>
                         </div>
 
 
-
+)}
 
 
 
                         <div className="content-backdrop fade"></div>
-                    </div>
+                      
+                        </div>
                     {/* Content wrapper */}
                 </div>
                 {/* / Layout page */}
