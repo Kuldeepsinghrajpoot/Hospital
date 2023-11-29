@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
-
+import "../main/main.css" 
 const page = () => {
   return (
     <>
@@ -140,7 +140,7 @@ const page = () => {
                           on
                           building a high-qualities medicals service by Uday Clinic.</p>
                         <div className="button">
-                          <Link href="https://hospital-bay-rho.vercel.app/login" className="btn bg-black">Book Appointment</Link>
+                          <Link href="https://hospital-bay-rho.vercel.app/login" className="btn">Book Appointment</Link>
                           {/* <a href="" className="btn">About Us</a> */}
                         </div>
                       </div>
