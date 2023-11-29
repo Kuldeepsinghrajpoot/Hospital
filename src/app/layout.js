@@ -1,7 +1,7 @@
 import { Inter } from 'next/font/google';
 import './globals.css';
 import Head from 'next/head';
-import Script from 'next/Script'
+import Script from 'next/script'
 import { ToastContainer } from 'react-toastify';
 import { AuthProvider } from './Provider'
 import 'react-toastify/dist/ReactToastify.css';
