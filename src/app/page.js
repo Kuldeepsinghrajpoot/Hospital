@@ -79,7 +79,7 @@ const page = () => {
                       </ul>
                     </div> {/*- navbar collapse */}
                     <div className="button add-list-button">
-                      <Link href="https://hospital-bay-rho.vercel.app/login" className="btn">Book Appointment</Link>
+                      <Link href={`${process.env.URI}/login`} target='_blank' className="btn">Book Appointment</Link>
                     </div>
                   </nav>
                   {/*- End Navbar */}
@@ -111,7 +111,7 @@ const page = () => {
                           Uday Clinic, our teaming has been focused on
                           building a high-qualities medicals service by Uday Clinic.</p>
                         <div className="button wow fadeInLeft" data-wow-delay=".7s">
-                          <Link href="https://hospital-bay-rho.vercel.app/login" className="btn">Book Appointment</Link>
+                          <Link href={`${process.env.URI}/login`} className="btn">Book Appointment</Link>
                           {/* <a href="about-us.html" className="btn">About Us</a> */}
                         </div>
                       </div>
@@ -140,7 +140,7 @@ const page = () => {
                           on
                           building a high-qualities medicals service by Uday Clinic.</p>
                         <div className="button">
-                          <Link href="https://hospital-bay-rho.vercel.app/login" className="btn">Book Appointment</Link>
+                          <Link href={`${process.env.URI}/login`} className="btn">Book Appointment</Link>
                           {/* <a href="" className="btn">About Us</a> */}
                         </div>
                       </div>
@@ -169,7 +169,7 @@ const page = () => {
                           on
                           building a high-qualities medicals service by Uday Clinic.</p>
                         <div className="button">
-                          <Link href="https://hospital-bay-rho.vercel.app/login" className="btn">Book Appointment</Link>
+                          <Link href={`${process.env.URI}/login`} className="btn">Book Appointment</Link>
                           {/* <a href="about-us.html" className="btn">About Us</a> */}
                         </div>
                       </div>

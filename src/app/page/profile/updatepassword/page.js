@@ -43,7 +43,7 @@ const UpdateData = () => {
         }),
         onSubmit: async (values) => {
             
-            const res = await fetch("http://localhost:3000/api/updatepassword", {
+            const res = await fetch("/api/updatepassword", {
                 method: "PUT",
                 headers: {
                     "Content-type": "application/json",
@@ -81,7 +81,7 @@ const UpdateData = () => {
     return (
         <>
             < div>
-                <div>No user Found</div>
+               
                 <div className="layout-wrapper layout-content-navbar ">
                     <div className="layout-container">
                         <div className="layout-page">
@@ -93,7 +93,7 @@ const UpdateData = () => {
                                         <div className="col-md-12">
                                             <ul className="nav nav-pills flex-column flex-md-row mb-4">
                                                 <li className="nav-item">
-                                                    <Link className="nav-link " href="/doctor/profile"
+                                                    <Link className="nav-link " href="/page/profile"
                                                     ><i className="ti-xs ti ti-users me-1"></i> Account</Link>
                                                 </li>
                                                 <li className="nav-item">

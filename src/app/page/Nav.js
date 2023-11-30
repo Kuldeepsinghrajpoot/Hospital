@@ -11,10 +11,10 @@ export default function Home() {
   const [divClass, setDivClass] = useState('initial-class');
   const [drop, setdrop] = useState('dropdown-menu');
   if (session?.user?.role === 'user') {
-    route.replace("/user")
+    route.push("/user")
     return;
   } else if (session?.user?.role === 'Doctor') {
-    route.replace("/doctor");
+    route.push("/doctor");
     return;
   }
   function dropDown() {
@@ -83,7 +83,7 @@ export default function Home() {
               <li className="menu-header small text-uppercase">
                 <span className="menu-header-text">Apps &amp; Pages</span>
               </li>
-              <li className={`${router == '/page/profile' ? "menu-item active" : "menu-item"}`}>
+              <li className={`${router == '/page/profile'|| router=='/page/profile/updatepassword' ? "menu-item active" : "menu-item"}`}>
                 <Link href="/page/profile" className="menu-link">
                   <i className="menu-icon ti ti-user-check"></i>
                   <div data-i18n="Email">Profile</div>
@@ -149,15 +149,15 @@ export default function Home() {
                   
                   {/* <!-- User --> */}
                   <li className="nav-item navbar-dropdown dropdown-user dropdown">
-                    <button className="nav-link dropdown-toggle hide-arrow" onClick={dropDown} data-bs-toggle="dropdown">
+                    <div className="nav-link dropdown-toggle hide-arrow" onClick={dropDown} data-bs-toggle="dropdown">
                       <div className="avatar avatar-online">
                         <img src="/img/avatars/1.png" alt="user image" className="h-auto rounded-circle" />
                       </div>
-                    </button>
+                    </div>
                     {/*  dropdown-menu */}
                     <ul className={`dropdown-menu  dropdown-menu-end  bg-white text-start  absolute shadow-lg`}>
                       <li className=''>
-                        <a className="dropdown-item" href="pages-account-settings-account.html">
+                        <div className="dropdown-item" >
                           <div className="d-flex">
                             <div className="flex-shrink-0 me-3">
                               <div className="avatar avatar-online">
@@ -169,7 +169,7 @@ export default function Home() {
                               <small className="text-muted">{session?.user?.role}</small>
                             </div>
                           </div>
-                        </a>
+                        </div>
                       </li>
                       <li>
                         <div className="dropdown-divider"></div>

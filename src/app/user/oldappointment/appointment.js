@@ -6,10 +6,10 @@ import Loading from './loading'
 const Appointment = () => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
-
+const url = process.env.URI;
     const getData = async () => {
         try {
-            const response = await axios.get('/api/appointmentsDetalis', {
+            const response = await axios.get(`${url}/api/appointmentsDetalis`, {
                 // You can set additional configurations here
             });
             const data = response.data.Appointment;

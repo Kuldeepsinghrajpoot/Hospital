@@ -15,14 +15,19 @@ export default function Home() {
   const router = useRouter();
   const [divClass, setDivClass] = useState('initial-class');
   const [drop, setdrop] = useState('dropdown-menu');
+  console.log('session-->',session?.user?.role);
 
-  
+if (session?.user?.role==='undefine') {
+  // signOut()
+  router.push("/login")
+  router.refresh()
+}
    if(session?.user?.role==='Doctor'){
-    route.replace("/doctor");
+    router.push("/doctor");
     return;
   }
   else if(session?.user?.role==='Admin'){
-    route.replace("/page");
+    router.push("/page");
     return;
   }
   function handleClick() {
@@ -355,15 +360,15 @@ export default function Home() {
 
                 {/* <!-- User --> */}
                 <li className="nav-item navbar-dropdown dropdown-user dropdown">
-                  <button className="nav-link dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                  <div className="nav-link dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                     <div className="avatar avatar-online">
                       <img src="/img/avatars/1.png" alt="img" className="h-auto rounded-circle" />
                     </div>
-                  </button>
+                  </div>
                   {/*  dropdown-menu */}
                   <ul className={`dropdown-menu  dropdown-menu-end  bg-white text-start  absolute shadow-lg`}>
                     <li className=''>
-                      <a className="dropdown-item" href="pages-account-settings-account.html">
+                      <div className="dropdown-item">
                         <div className="d-flex">
                           <div className="flex-shrink-0 me-3">
                             <div className="avatar avatar-online">
@@ -375,7 +380,7 @@ export default function Home() {
                             <small className="text-muted">{session?.user?.role}</small>
                           </div>
                         </div>
-                      </a>
+                      </div>
                     </li>
                     <li>
                       <div className="dropdown-divider"></div>

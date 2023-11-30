@@ -66,7 +66,7 @@ const UpdateData = ({ firstName, lastName, email, contactNumber, dOB, gender, ad
   return (
     <>
       < div>
-        <div>No user Found</div>
+       
         <div className="layout-wrapper layout-content-navbar ">
 
           <div className="layout-container">
@@ -86,7 +86,7 @@ const UpdateData = ({ firstName, lastName, email, contactNumber, dOB, gender, ad
                         ><i class="ti-xs ti ti-users me-1"></i> Account</div>
                     </li>
                     <li class="nav-item">
-                      <Link class="nav-link" href="/doctor/profile/updatepassword"><i class="ti-xs ti ti-lock me-1"></i> Security</Link>
+                      <Link class="nav-link" href="/page/profile/updatepassword"><i class="ti-xs ti ti-lock me-1"></i> Security</Link>
                     </li>
                     
                   </ul>
