@@ -7,9 +7,9 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 export async function POST(request) {
     const sessionid = await getServerSession(authOptions);
     const id = sessionid?.user?.id;
-    const { Name, Appointment, Doctor, Status, Problem, AppointmentDate, Phone, Email, UserId } = await request.json()
+    const { Name, Appointment, Doctor, Status, Problem, AppointmentDate, Phone, Email,Age } = await request.json()
     await connectMongoDB();
-    await appointment.create({ Name, Appointment, Doctor, Status, Problem, AppointmentDate, Phone, Email, UserId:id });
+    await appointment.create({ Name, Appointment, Doctor, Status, Problem, AppointmentDate, Phone, Email, UserId:id ,Age});
     return NextResponse.json({ message: "successfull created" }, { status: 201 })
 }
 export async function GET() {

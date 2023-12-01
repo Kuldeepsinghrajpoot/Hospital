@@ -5,7 +5,7 @@ import axios from 'axios'
 
 const getData = async () => {
     try {
-        const response = await axios.get(`${process.env.URL}/api/appointmentsDetalis`, {
+        const response = await axios.get(`${process.env.URI}/api/appointmentsDetalis`, {
             // You can set additional configurations here
         });
         const data = response.data.Appointment;

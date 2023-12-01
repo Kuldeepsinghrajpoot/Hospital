@@ -15,7 +15,7 @@ export default function Home() {
   const router = useRouter();
   const [divClass, setDivClass] = useState('initial-class');
   const [drop, setdrop] = useState('dropdown-menu');
-  console.log('session-->',session?.user?.role);
+  // console.log('session-->',session?.user?.role);
 
 if (session?.user?.role==='undefine') {
   // signOut()

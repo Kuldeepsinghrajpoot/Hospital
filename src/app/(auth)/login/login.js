@@ -37,7 +37,7 @@ export default function LoginForm() {
       });
      
      if(res.error){
-        toast.error(' Please enter right Email and password', {
+        toast.error(' Please enter vaild credentials', {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -47,7 +47,7 @@ export default function LoginForm() {
           progress: undefined,
           theme: "light",
         });
-        route.replace('/login')
+        route.push('/login')
       }else{
         toast.success('Successful loged in', {
           position: "top-right",
@@ -114,7 +114,7 @@ export default function LoginForm() {
                 </div>
                 {/* <!-- /Logo --> */}
                 <h4 className="mb-1 pt-2">Welcome to uday clinic! 👋</h4>
-                <p className="mb-4">Please sign-in to your account book appointment</p>
+                <p className="mb-4">Please sign-in to your account</p>
 
                 <form id="formAuthentication" className="mb-3" action="index.html" onSubmit={handleSubmit}>
                   <div className="mb-3">

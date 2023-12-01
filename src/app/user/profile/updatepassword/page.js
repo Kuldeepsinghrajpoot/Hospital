@@ -95,7 +95,7 @@ const UpdateData = () => {
                                                     ><i className="ti-xs ti ti-users me-1"></i> Account</Link>
                                                 </li>
                                                 <li className="nav-item">
-                                                    <div className="nav-link active  cursor-pointer" href="pages-account-settings-security.html"><i className="ti-xs ti ti-lock me-1"></i> Security</div>
+                                                    <div className="nav-link active  cursor-pointer" ><i className="ti-xs ti ti-lock me-1"></i> Security</div>
                                                 </li>
                                             </ul>
                                             <div className="card mb-4">

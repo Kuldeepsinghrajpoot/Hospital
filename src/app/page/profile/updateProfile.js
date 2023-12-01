@@ -104,7 +104,7 @@ const UpdateData = ({ firstName, lastName, email, contactNumber, dOB, gender, ad
                                 id="uploadedAvatar"
                               />
                               <div className="button-wrapper">
-                                <label htmlFor="upload" className="btn btn-primary me-2 mb-4" tabIndex="0">
+                                <label htmlFor="upload" className="bg-[#7367F0] hover:bg-[#7b70fa] text-white font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded me-2 mb-4" tabIndex="0">
                                   <span className="d-none d-sm-block">Upload new photo</span>
                                   <i className="bx bx-upload d-block d-sm-none"></i>
                                   <input
@@ -115,7 +115,7 @@ const UpdateData = ({ firstName, lastName, email, contactNumber, dOB, gender, ad
                                     accept="image/png, image/jpeg"
                                   />
                                 </label>
-                                <button type="button" className="btn btn-outline-secondary account-image-reset mb-4">
+                                <button type="button" className="btn btn-outline-secondary account-image-reset mb-4 bg-[#7367F0] hover:bg-[#7b70fa] text-white font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded ">
                                   <i className="bx bx-reset d-block d-sm-none"></i>
                                   <span className="d-none d-sm-block">Reset</span>
                                 </button>
@@ -288,7 +288,7 @@ const UpdateData = ({ firstName, lastName, email, contactNumber, dOB, gender, ad
                               </div>
 
                               <div className="mt-2">
-                                <button type="submit" className="btn btn-primary me-2">Save changes</button>
+                                <button type="submit" className="bg-[#7367F0] hover:bg-[#7b70fa] text-white font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded  me-2">Save changes</button>
                                 <button type="reset" className="btn btn-outline-secondary">Cancel</button>
                               </div>
                             </form>

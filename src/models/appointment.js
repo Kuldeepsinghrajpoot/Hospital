@@ -12,7 +12,8 @@ const patientSchema = new Schema({
     Email: String,
     DOB:Date,
     Gender:String,
-    UserId:String
+    UserId:String,
+    Age:String
 }, {
     timeseries: true
 });

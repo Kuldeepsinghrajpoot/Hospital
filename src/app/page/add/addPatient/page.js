@@ -80,7 +80,7 @@ const Addpatient = () => {
                         <i className="mb-3 ti ti-user ti-lg"></i>
                         <h5>Add Patient</h5>
 
-                        <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editUser">
+                        <button type="button" className="bg-[#7367F0] hover:bg-[#7b70fa] text-white font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded " data-bs-toggle="modal" data-bs-target="#editUser">
                             Add
                         </button>
                     </div>

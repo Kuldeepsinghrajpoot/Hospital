@@ -17,7 +17,7 @@ const Appointment = () => {
     AppointmentDate: '',
     Phone: '',
     Email: '',
-    DOB: '',
+    Age: '',
     Gender: '',
     UserId: ''
   }
@@ -27,7 +27,7 @@ const Appointment = () => {
 
       Name: Yup.string(),
       Phone: Yup.string(),
-      DOB: Yup.string(),
+      Age: Yup.string(),
       Gender: Yup.string(),
       Doctor: Yup.string(),
       Problem: Yup.string(),
@@ -37,7 +37,6 @@ const Appointment = () => {
     }),
 
     onSubmit: async (values, { resetForm }) => {
-      console.log(values)
       try {
         const response = await fetch("/user/api", {
           method: 'POST',
@@ -74,16 +73,19 @@ const Appointment = () => {
 
   })
 
+  // const [values.Age, setSelectedOption] = useState('Select');
+  const options = Array.from({ length: 100 }, (_, index) => (index + 1).toString());
 
+ 
   return (
     <>
-      <div class="layout-wrapper layout-content-navbar absolute">
-        <div class="layout-container">
-          <div class="layout-page">
-            <div class="content-wrapper">
+      <div className="layout-wrapper layout-content-navbar absolute">
+        <div className="layout-container">
+          <div className="layout-page">
+            <div className="content-wrapper">
               {/* <!-- Content --> */}
 
-              <div class="container-xxl flex-grow-1 container-p-y">
+              <div className="container-xxl flex-grow-1 container-p-y">
                 <div className="col-xxl relative   d-flex justify-center ">
                   <div className="card mb-4">
                     <div className="card-header  ">
@@ -141,7 +143,7 @@ const Appointment = () => {
                               name='Email'
                               aria-describedby="basic-icon-default-email2"
                             />
-                            <span id="basic-icon-default-email2" className="input-group-text">@example.com</span>
+                            <span id="basic-icon-default-email2" className="input-group-text" >@example.com</span>
                           </div>
                           <div className="form-text">You can use letters, numbers & periods</div>
                         </div>
@@ -163,6 +165,26 @@ const Appointment = () => {
                           </div>
                         </div>
                         <div className="mb-3">
+                          <label htmlFor="exampleFormControlSelect1" className="form-label">
+                            Age
+                          </label>
+                          <select
+                            className="form-select"
+                            id="exampleFormControlSelect1"
+                            aria-label="Default select example"
+                            name='Age'
+                            onChange={handleChange}
+                            value={values.Age}
+                          >
+                            <option value="Select">Select</option>
+                            {options.map((value, index) => (
+                              <option key={index} value={value}>
+                                {value}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+                        <div className="mb-3">
                           <label className="form-label" htmlFor="basic-icon-default-message">Problem</label>
                           <div className="input-group input-group-merge">
                             <span id="basic-icon-default-message2" className="input-group-text"><i className="ti ti-message-dots"></i></span>
@@ -179,7 +201,7 @@ const Appointment = () => {
                           </div>
                         </div>
                         <div className="mb-3">
-                          <label className="form-label" htmlFor="basic-icon-default-message">Date</label>
+                          <label className="form-label" htmlFor="basic-icon-default-message">Appointment Date</label>
                           <div className="input-group input-group-merge">
                             <span id="basic-icon-default-message2" className="input-group-text"><i className="ti ti-message-dots"></i></span>
                             <input
