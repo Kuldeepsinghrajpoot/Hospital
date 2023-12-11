@@ -12,3 +12,10 @@ export default async function Home() {
         </main>
     );
 }
+
+export async function generateMetadata({ params }) {
+    return {
+      title: 'Register',
+      deScription: 'Register'
+    }
+  }

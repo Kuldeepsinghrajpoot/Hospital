@@ -89,7 +89,7 @@ const DoctorTable = () => {
 
 
 
-            <div className="modal fade" id="kuldeep" tabindex="-1" aria-hidden="true">
+            <div className="modal fade" id="kuldeep" tabIndex="-1" aria-hidden="true">
                 <div className="modal-dialog modal-lg modal-simple modal-edit-user">
                     <div className="modal-content p-3 p-md-5">
                         <div className="modal-body">
@@ -100,7 +100,7 @@ const DoctorTable = () => {
                             </div>
                             <form id="editUserForm" className="row g-3" onSubmit={handleSubmit} >
                                 <div className="col-12 col-md-6">
-                                    <label className="form-label" for="modalEditUsername">First Name</label>
+                                    <label className="form-label" htmlFor="modalEditUsername">First Name</label>
                                     <input
                                         type="text"
                                         id="modalEditUsername"
@@ -130,7 +130,7 @@ const DoctorTable = () => {
 
                                 </div>
                                 <div className="col-12 col-md-6">
-                                    <label className="form-label" for="modalEditUsername">Last Name</label>
+                                    <label className="form-label" htmlFor="modalEditUsername">Last Name</label>
                                     <input
                                         type="text"
                                         id="modalEditUsername"
@@ -161,7 +161,7 @@ const DoctorTable = () => {
                                 </div>
 
                                 <div className="col-12 col-md-6">
-                                    <label className="form-label" for="modalEditUsername">email </label>
+                                    <label className="form-label" htmlFor="modalEditUsername">email </label>
                                     <input
                                         type="text"
                                         id="email"
@@ -188,7 +188,7 @@ const DoctorTable = () => {
                                     ) : null}
                                 </div>
                                 <div className="col-12 col-md-6">
-                                    <label className="form-label" for="modalEditUsername">Phone Number</label>
+                                    <label className="form-label" htmlFor="modalEditUsername">Phone Number</label>
                                     <input
                                         type="text"
                                         id="modalEditUsername"
@@ -214,7 +214,7 @@ const DoctorTable = () => {
                                     ) : null}
                                 </div>
                                 <div className="col-12 col-md-6">
-                                    <label className="form-label" for="modalEditUsername">Password</label>
+                                    <label className="form-label" htmlFor="modalEditUsername">Password</label>
                                     <input
                                         type="text"
                                         id="password"
@@ -240,7 +240,7 @@ const DoctorTable = () => {
                                     ) : null}
                                 </div>
                                 <div className="col-12 col-md-6">
-                                    <label className="form-label" for="modalEditUsername">Confirm Password</label>
+                                    <label className="form-label" htmlFor="modalEditUsername">Confirm Password</label>
                                     <input
                                         type="text"
                                         id="confirmPassword"

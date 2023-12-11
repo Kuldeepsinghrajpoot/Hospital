@@ -1,77 +1,98 @@
 'use client'
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
+import axios from 'axios';
 
 const Addpatient = () => {
+  const [data, setData] = useState([]);
+  const [inc, setInc] = useState(0);
 
-    const initialize = {
-        Name: '',
-        Appointment: '',
-        Doctor: '',
-        Status: '',
-        Problem: '',
-        AppointmentDate: '',
-        Phone: '',
-        Email: '',
-        DOB: '',
-        Gender: '',
-        UserId: '',
-     
-    }
-    const { values, errors, handleBlur, touched, handleChange, handleSubmit } = useFormik({
-        initialValues: initialize,
-        validationSchema: Yup.object({
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('/api/indexValue');
+        setData(response.data.Appointment);
 
-            Name: Yup.string(),
-            Phone: Yup.string(),
-            DOB: Yup.string(),
-            Gender: Yup.string(),
-            Doctor: Yup.string(),
-            Problem: Yup.string(),
-            AppointmentDate: Yup.string(),
+        // Increment based on the latest AppointmentId from the server
+        const latestAppointmentId = Math.max(...response.data.Appointment.map(appointment => appointment.AppointmentId), 0);
+        setInc(Number(latestAppointmentId) + 1);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
 
+    // Fetch data initially
+    fetchData();
+    // Fetch data every second using setInterval
+    const intervalId = setInterval(fetchData, 1000);
+    // Clear the interval on component unmount
+    return () => clearInterval(intervalId);
+  }, []); // Empty dependency array ensures the effect runs only once
 
-        }),
+  const date = { year: 'numeric', month: '2-digit', day: '2-digit' };
+  const standardDate = new Date().toLocaleDateString('en-US', date);
 
-        onSubmit: async (values, { resetForm }) => {
-            console.log(values)
-            try {
-                const response = await fetch("/user/api", {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(values),
-                });
+  const initialize = {
+    Name: '',
+    AppointmentId: inc,
+    Doctor: '',
+    Status: '',
+    Problem: '',
+    AppointmentDate: standardDate,
+    Phone: '',
+    Email: '',
+    Age: '',
+    Gender: '',
+    UserId: '',
+    Address: '',
+  };
 
-                if (response.ok) {
-                    // Handle success, e.g., show a success message or redirect
-                    // console.log('Registration successful');
-                    toast.success('Registraion Successful', {
-                        position: "top-right",
-                        autoClose: 5000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "light",
-                    });
+  const { values, errors, handleBlur, touched, handleChange, handleSubmit } = useFormik({
+    initialValues: initialize,
+    validationSchema: Yup.object({
+      Name: Yup.string(),
+      Phone: Yup.string(),
+      Age: Yup.string(),
+      Gender: Yup.string(),
+      Doctor: Yup.string(),
+      Problem: Yup.string(),
+      AppointmentDate: Yup.string(),
+      Address: Yup.string(),
+    }),
+    onSubmit: async (values, { resetForm }) => {
+      console.log(values);
+      try {
+        const response = await fetch("/user/api", {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(values),
+        });
 
-                    resetForm();
-                } else {
-                    // Handle errors, e.g., show an error message
-                    console.error('Registration failed', response);
-                }
-            } catch (error) {
-                // Handle network or other errors
-                console.error('An error occurred', error);
-            }
+        if (response.ok) {
+          toast.success('Registration Successful', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+          resetForm();
+        } else {
+          console.error('Registration failed', response);
         }
-
-    })
+      } catch (error) {
+        console.error('An error occurred', error);
+      }
+    },
+  });
+    const options = Array.from({ length: 100 }, (_, index) => (index + 1).toString());
     return (
         <>
             <div className="col-12 col-sm-6 col-lg-4 mb-4">
@@ -79,14 +100,13 @@ const Addpatient = () => {
                     <div className="card-body text-center">
                         <i className="mb-3 ti ti-user ti-lg"></i>
                         <h5>Add Patient</h5>
-
                         <button type="button" className="bg-[#7367F0] hover:bg-[#7b70fa] text-white font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded " data-bs-toggle="modal" data-bs-target="#editUser">
                             Add
                         </button>
                     </div>
                 </div>
             </div>
-            <div className="modal fade" id="editUser" tabindex="-1" aria-hidden="true">
+            <div className="modal fade" id="editUser" tabIndex="-1" aria-hidden="true">
                 <div className="modal-dialog modal-lg modal-simple modal-edit-user">
                     <div className="modal-content p-3 p-md-5">
                         <div className="modal-body">
@@ -96,7 +116,7 @@ const Addpatient = () => {
                             </div>
                             <form id="editUserForm" className="row g-3" onSubmit={handleSubmit}>
                                 <div className="col-12">
-                                    <label className="form-label" for="modalEditUsername">First Name</label>
+                                    <label className="form-label" htmlFor="modalEditUsername">Full Name</label>
                                     <input
                                         type="text"
                                         id="modalEditUsername"
@@ -108,48 +128,40 @@ const Addpatient = () => {
                                         placeholder="John"
                                     />
                                 </div>
-                           
-                                <div className="col-12">
-                                    <label className="form-label" for="modalEditUserName">Date of Birth</label>
-                                    <input
-                                        type="date"
-                                        id="modalEditUserName"
-                                        name="DOB"
-                                        value={values.DOB}
-                                        onBlur={handleBlur}
+                                <div className="col-12 col-md-6">
+                                    <label className="form-label" htmlFor="modalEditUserName">Age</label>
+                                    <select
+                                        className="form-select"
+                                        id="exampleFormControlSelect1"
+                                        aria-label="Default select example"
+                                        name='Age'
                                         onChange={handleChange}
-                                        className="form-control"
-                                        placeholder="john.doe.007"
-                                    />
+                                        value={values.Age}>
+                                        <option value="Select">Select</option>
+                                        {options.map((value, index) => (
+                                            <option key={index} value={value}>
+                                                {value}
+                                            </option>
+                                        ))}
+                                    </select>
                                 </div>
                                 <div className="col-12 col-md-6">
-                                    <label className="form-label" for="modalEditUseremail">Email</label>
-                                    <input
-                                        type="text"
-                                        id="modalEditUseremail"
-                                        name="Email"
-                                        value={values.Email}
-                                        onBlur={handleBlur}
+                                    <label className="form-label" htmlFor="modalEditUserName">Gender</label>
+                                    <select
+                                        className="form-select"
+                                        id="exampleFormControlSelect1"
+                                        aria-label="Default select example"
+                                        name='Gender'
                                         onChange={handleChange}
-                                        className="form-control"
-                                        placeholder="example@domain.com"
-                                    />
+                                        value={values.Gender}>
+                                        <option value="Select">Select</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Other">Other</option>
+                                    </select>
                                 </div>
                                 <div className="col-12 col-md-6">
-                                    <label className="form-label" for="Gender">Gender</label>
-                                    <input
-                                        type="text"
-                                        id="Gender"
-                                        name="Gender"
-                                        value={values.Gender}
-                                        onBlur={handleBlur}
-                                        onChange={handleChange}
-                                        className="form-control"
-                                        placeholder="Gender"
-                                    />
-                                </div>
-                                <div className="col-12 col-md-6">
-                                    <label className="form-label" for="modalEditTaxID">Doctor</label>
+                                    <label className="form-label" htmlFor="modalEditTaxID">Doctor</label>
                                     <input
                                         type="text"
                                         id="modalEditTaxID"
@@ -161,35 +173,8 @@ const Addpatient = () => {
                                         placeholder="Doctor name"
                                     />
                                 </div>
-                                {/* problem */}
                                 <div className="col-12 col-md-6">
-                                    <label className="form-label" for="modalEditTaxID">Problem</label>
-                                    <textarea
-                                        type="text"
-                                        id="modalEditTaxID"
-                                        name="Problem"
-                                        value={values.Problem}
-                                        onBlur={handleBlur}
-                                        onChange={handleChange}
-                                        className="form-control modal-edit-tax-id"
-                                        placeholder="Problem"
-                                    />
-                                </div>
-                                <div className="col-12 col-md-6">
-                                    <label className="form-label" for="modalEditTaxID">Appointment Date</label>
-                                    <input
-                                        type="date"
-                                        id="modalEditTaxID"
-                                        name="AppointmentDate"
-                                        value={values.AppointmentDate}
-                                        onBlur={handleBlur}
-                                        onChange={handleChange}
-                                        className="form-control modal-edit-tax-id"
-                                        placeholder="Doctor name"
-                                    />
-                                </div>
-                                <div className="col-12 col-md-6">
-                                    <label className="form-label" for="modalEditUserPhone">Phone Number</label>
+                                    <label className="form-label" htmlFor="modalEditUserPhone">Phone Number</label>
                                     <div className="input-group">
                                         <span className="input-group-text">IN (+91)</span>
                                         <input
@@ -197,16 +182,26 @@ const Addpatient = () => {
                                             id="modalEditUserPhone"
                                             name="Phone"
                                             onBlur={handleBlur}
-                                        onChange={handleChange}
+                                            onChange={handleChange}
                                             value={values.Phone}
                                             className="form-control phone-number-mask"
                                             placeholder="202 555 0111"
                                         />
                                     </div>
                                 </div>
-                                
-                                
-                                
+                                <div className="col-12">
+                                    <label className="form-label" htmlFor="modalEditUsername">Address</label>
+                                    <textarea
+                                        type="text"
+                                        id="modalEditUsername"
+                                        name="Address"
+                                        value={values.Address}
+                                        onBlur={handleBlur}
+                                        onChange={handleChange}
+                                        className="form-control"
+                                        placeholder="Address......"
+                                    />
+                                </div>
                                 <div className="col-12 text-center">
                                     <button type="submit" className="btn btn-primary me-sm-3 me-1">Submit</button>
                                     <button
@@ -226,5 +221,4 @@ const Addpatient = () => {
         </>
     )
 }
-
 export default Addpatient

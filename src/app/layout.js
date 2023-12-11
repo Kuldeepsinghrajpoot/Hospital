@@ -63,7 +63,7 @@ export default function RootLayout({ children }) {
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"></link>
       </Head>
       
-      <body suppressHydrationWarning={true} >
+      <body suppressHydrationWarning={true}>
         {/* <Nav/> */}
         <AuthProvider>
           <ToastContainer />
@@ -72,15 +72,15 @@ export default function RootLayout({ children }) {
         <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></Script>        
       
            {/* <Script src="./js/bootstrap.min.js"></Script> */}
-    <Script src="./js/wow.min.js"></Script>
+    <Script src="/js/wow.min.js"></Script>
     <Script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></Script>
 
-    <Script src="./js/glightbox.min.js"></Script>
-    <Script src="./js/count-up.min.js"></Script>
-    <Script src="./js/imagesloaded.min.js"></Script>
-    <Script src="./js/isotope.min.js"></Script>
-    <Script src="./js/main.js"></Script>
-    <Script src="./js/embeded.js"></Script>
+    <Script src="/js/glightbox.min.js"></Script>
+    <Script src="/js/count-up.min.js"></Script>
+    <Script src="/js/imagesloaded.min.js"></Script>
+    <Script src="/js/isotope.min.js"></Script>
+    <Script src="/js/main.js"></Script>
+    <Script src="/js/embeded.js"></Script>
       </body>
     </html>
   )
