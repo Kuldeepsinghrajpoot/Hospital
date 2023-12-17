@@ -69,7 +69,7 @@ const Appointment = () => {
                                             return (
                                                 <div className="col-xl-4 col-md-6 mb-4" key={Email}>
                                                     <div className="card h-100">
-                                                        <div className="card-header d-flex bg-red-700 ">
+                                                        <div className="card-header d-flex  ">
                                                             <div className=" ">
                                                                 <h5 className="m-0 me-2 ">{Name}</h5>
                                                                 <h5 className="m-0 me-2">Age-{Age}</h5>
