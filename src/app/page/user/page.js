@@ -77,3 +77,9 @@ const UserInformation = async () => {
 }
 
 export default UserInformation;
+export async function generateMetadata() {
+  return {
+      title: 'Users',
+      deScription: 'Register'
+  }
+}

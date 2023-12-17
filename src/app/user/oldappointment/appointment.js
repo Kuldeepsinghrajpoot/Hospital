@@ -44,9 +44,28 @@ const Appointment = () => {
                                     ) : (
 
                                         data.map((e) => {
-                                            const { Name, Appointment, Doctor, Status, Problem, _id, AppointmentDate, Age, Phone, Email } = e;
+                                            const { Name, Gender, Doctor, Status, _id, AppointmentDate, Age, Phone, Email } = e;
+                                            // const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+                                            // const standardDate = new Date(AppointmentDate).toLocaleDateString('en-IN', options);
+
+
+                                            // new date and time 
+
                                             const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
-                                            const standardDate = new Date(AppointmentDate).toLocaleDateString('en-US', options);
+
+                                            // Replace this with your actual date or date string
+                                            // const appointmentDateString = '2023-12-17T12:34:56.789Z';
+                                            const AppointmentDates = new Date(AppointmentDate);
+
+                                            // Convert to Indian Standard Time (IST)
+                                            const ISTOffset = 5.5 * 60 * 60 * 1000; // IST is UTC+5.5
+                                            const ISTDate = new Date(AppointmentDates.getTime() + ISTOffset);
+
+                                            // Format the date
+                                            const standardDate = ISTDate.toLocaleDateString('en-IN', options);
+
+                                            console.log(standardDate); // Output the formatted date in Indian Standard Time
+
                                             return (
                                                 <div className="col-xl-4 col-md-6 mb-4" key={Email}>
                                                     <div className="card h-100">
@@ -55,7 +74,7 @@ const Appointment = () => {
                                                                 <h5 className="m-0 me-2 ">{Name}</h5>
                                                                 <h5 className="m-0 me-2">Age-{Age}</h5>
 
-                                                                <small className="text-muted">Problem - {Problem}</small>
+
                                                             </div>
                                                         </div>
                                                         <div className="card-body pb-0">
@@ -104,29 +123,9 @@ const Appointment = () => {
                                                                         </div>
 
                                                                         {/* email */}
-                                                                        <div className='w-full grid  grid-cols-2'>
 
-                                                                            <div className="me-2 flex w-fit h-fit gap-2">
-                                                                                <div className="badge bg-label-success rounded p-2"><i className="fa-regular fa-envelope fa-lg"></i></div>
-
-                                                                                <h6 className="mb-0">Email</h6>
-                                                                            </div>
-                                                                            <div className="user-progress">
-                                                                                <small>{Email}</small>
-                                                                            </div>
-                                                                        </div>
                                                                         {/* status */}
-                                                                        <div className='w-full grid  grid-cols-2'>
 
-                                                                            <div className="me-2 flex w-fit h-fit gap-2">
-                                                                                <div className="badge bg-label-success rounded p-2"><i className="fa-regular fa-envelope fa-lg"></i></div>
-
-                                                                                <h6 className="mb-0">Status</h6>
-                                                                            </div>
-                                                                            <div className="user-progress">
-                                                                                <small>{Status}</small>
-                                                                            </div>
-                                                                        </div>
                                                                         {/* Phone */}
                                                                         <div className='w-full grid  grid-cols-2'>
 
@@ -137,6 +136,17 @@ const Appointment = () => {
                                                                             </div>
                                                                             <div className="user-progress">
                                                                                 <small>{Phone}</small>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div className='w-full grid  grid-cols-2'>
+
+                                                                            <div className="me-2 flex w-fit h-fit gap-2">
+                                                                                <div className="badge bg-label-success rounded p-2"><i className="fa-solid fa-user-doctor fa-lg"></i></div>
+
+                                                                                <h6 className="mb-0">Gender</h6>
+                                                                            </div>
+                                                                            <div className="user-progress">
+                                                                                <small>{Gender}</small>
                                                                             </div>
                                                                         </div>
                                                                     </div>

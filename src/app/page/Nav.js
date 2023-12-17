@@ -33,8 +33,8 @@ export default function Home() {
             <div className="app-brand demo ">
               <Link href="/" className="app-brand-link">
                 <span className=" demo">
-          <Img src="/img/favicon/favicon.ico" width={30} height={30} alt="Logo" />
-                  
+                  <Img src="/img/favicon/favicon.ico" width={30} height={30} alt="Logo" />
+
                 </span>
                 <span className="app-brand-text demo menu-text fw-bold text-2xl">{session?.user?.name}</span>
               </Link>
@@ -58,7 +58,7 @@ export default function Home() {
               <li className="menu-header small text-uppercase">
                 <span className="menu-header-text">Apps &amp; Pages</span>
               </li>
-              <li className={`${router == '/page/profile'|| router=='/page/profile/updatepassword' ? "menu-item active" : "menu-item"}`}>
+              <li className={`${router == '/page/profile' || router == '/page/profile/updatepassword' ? "menu-item active" : "menu-item"}`}>
                 <Link href="/page/profile" className="menu-link">
                   <i className="menu-icon ti ti-user-check"></i>
                   <div data-i18n="Email">Profile</div>
@@ -73,17 +73,23 @@ export default function Home() {
               {/* <!-- Icons --> */}
               <li className={`${router == '/page/user' ? "menu-item active" : "menu-item"}`}>
                 <Link href="/page/user" className="menu-link">
-                <i className="ti ti-user-check me-2 ti-sm"></i>
-                  <div data-i18n="Icons">User</div>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-users-group me-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1" /><path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M17 10h2a2 2 0 0 1 2 2v1" /><path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M3 13v-1a2 2 0 0 1 2 -2h2" /></svg> <div data-i18n="Icons">Users</div>
                 </Link>
               </li>
               <li className={`${router == '/page/patient' ? "menu-item active" : "menu-item"}`}>
                 <Link href="/page/patient" className="menu-link">
-                <i className="ti ti-user-check me-2 ti-sm"></i>
-                  <div data-i18n="Icons">Patient</div>
+                  <i class="fa-solid fa-hospital-user me-2" ></i>
+                  <div data-i18n="Icons">Patients</div>
                 </Link>
               </li>
-             
+              <li className={`${router == '/page/doctor' ? "menu-item active" : "menu-item"}`}>
+                <Link href="/page/doctor" className="menu-link">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-stethoscope me-2  " width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M6 4h-1a2 2 0 0 0 -2 2v3.5h0a5.5 5.5 0 0 0 11 0v-3.5a2 2 0 0 0 -2 -2h-1" /><path d="M8 15a6 6 0 1 0 12 0v-3" /><path d="M11 3v2" /><path d="M6 3v2" /><path d="M20 10m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /></svg>
+
+                  <div data-i18n="Icons absolute mx-10">Doctors</div>
+                </Link>
+              </li>
+
             </ul>
           </aside>
           {/* <!-- / Menu --> */}
@@ -111,7 +117,7 @@ export default function Home() {
                 {/* <!-- /Search --> */}
                 <ul className="navbar-nav flex-row align-items-center ms-auto">
                   {/* <!-- Language --> */}
-                  
+
                   {/* <!--/ Language -->
                <!-- Style Switcher --> */}
                   <li className="nav-item me-2 me-xl-0">
@@ -121,12 +127,12 @@ export default function Home() {
                   </li>
                   {/* <!--/ Style Switcher -->
                <!-- Quick links  --> */}
-                  
+
                   {/* <!-- User --> */}
                   <li className="nav-item navbar-dropdown dropdown-user dropdown">
                     <div className="nav-link dropdown-toggle hide-arrow" onClick={dropDown} data-bs-toggle="dropdown">
                       <div className="avatar avatar-online">
-                        <img src="/img/avatars/1.png" alt="user image" className="h-auto rounded-circle" />
+                        <Img src="/img/avatars/1.png" alt="user image" width={100} height={100} className="h-auto rounded-circle" />
                       </div>
                     </div>
                     {/*  dropdown-menu */}
@@ -136,7 +142,7 @@ export default function Home() {
                           <div className="d-flex">
                             <div className="flex-shrink-0 me-3">
                               <div className="avatar avatar-online">
-                                <img src="/img/avatars/1.png" alt="img" className="h-auto rounded-circle" />
+                                <Img src="/img/avatars/1.png" alt="img" width={100} height={100} className="h-auto rounded-circle" />
                               </div>
                             </div>
                             <div className="flex-grow-1">

@@ -9,3 +9,6 @@ const page = () => {
 }
 
 export default page;
+export const metadata = {
+  title: 'Your Appointment',
+}

@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import Link from 'next/link'
+import Img from 'next/image'
 const UpdateData = ({ firstName, lastName, email, contactNumber, dOB, gender, address, problem }) => {
 
 
@@ -9,12 +10,12 @@ const UpdateData = ({ firstName, lastName, email, contactNumber, dOB, gender, ad
   const [LastName, setLastName] = useState(lastName);
   const [Email, setEmail] = useState(email);
   const [ContactNumber, setContactNumber] = useState(contactNumber);
-  const [DOB, setDOB] = useState(dOB);
+  const [Age, setAge] = useState(dOB);
   const [Gender, setGender] = useState(gender);
   const [Address, setAddress] = useState(address);
   const [Problem, setProblem] = useState(problem);
 
-  let date = new Date(DOB);
+  let date = new Date(Age);
   let standardDate = ("0" + date.getDate()).slice(-2) + "-" + ("0" + (date.getMonth() + 1)).slice(-2) + "-" + date.getFullYear().toString().slice(-2);
 
 
@@ -28,7 +29,7 @@ const UpdateData = ({ firstName, lastName, email, contactNumber, dOB, gender, ad
         headers: {
           "Content-type": "application/json",
         },
-        body: JSON.stringify({ FirstName, LastName, Email, ContactNumber, DOB, Address, Gender }),
+        body: JSON.stringify({ FirstName, LastName, Email, ContactNumber, Age, Address, Gender }),
       });
 
 
@@ -96,12 +97,12 @@ const UpdateData = ({ firstName, lastName, email, contactNumber, dOB, gender, ad
                         {/* <!-- Account --> */}
                         <div className="card-body">
                           <div className="d-flex align-items-start align-items-sm-center gap-4">
-                            <img
+                            <Img
                               src="/img/avatars/1.png"
                               alt="user-avatar"
                               className="d-block rounded"
-                              height="100"
-                              width="100"
+                              height={100}
+                              width={100}
                               id="uploadedAvatar"
                             />
                             <div className="button-wrapper">
@@ -164,14 +165,14 @@ const UpdateData = ({ firstName, lastName, email, contactNumber, dOB, gender, ad
                                 />
                               </div>
                               <div className="mb-3 col-md-6">
-                                <label htmlFor="email" className="form-label">Date of birth</label>
+                                <label htmlFor="email" className="form-label">Age</label>
                                 <input
                                   className="form-control"
                                   // type="date"
                                   id="email"
                                   name="email"
-                                  value={standardDate}
-                                  onChange={(e) => setDOB(e.target.value)}
+                                  value={Age}
+                                  onChange={(e) => setAge(e.target.value)}
                                 // placeholder="dd-mm-yy"
                                 />
                               </div>

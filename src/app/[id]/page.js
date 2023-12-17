@@ -14,12 +14,12 @@ const getTopicById = async (id) => {
     console.log("someting went wrong [id]" + error);
   }
 };
-export default async function EditTopic({ params }) {
+export default async function Invoice({ params }) {
   const { id } = params;
   const { printAppointment } = await getTopicById(id);
-  const { Name, Doctor, AppointmentDate, Phone, Age, Gender, Address,AppointmentId } = printAppointment;
+  const { Name, Doctor, AppointmentDate, Phone, Age, Gender, Address,AppointmentId,_id } = printAppointment;
   // console.log(Name);
-  return <PrintAppoitment name={Name} doctor={Doctor} appointmentDate={AppointmentDate} phone={Phone} age={Age} gender={Gender} address={Address} appointmentId={AppointmentId}/>;
+  return <PrintAppoitment name={Name} doctor={Doctor} appointmentDate={AppointmentDate} phone={Phone} age={Age} gender={Gender} address={Address} appointmentId={AppointmentId} id={_id}/>;
 }
 export function generateMetadata() {
   return {

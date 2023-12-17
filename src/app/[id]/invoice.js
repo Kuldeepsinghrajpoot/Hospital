@@ -1,16 +1,13 @@
 'use client'
-
 // import moduleName from 'module'
-
 import Img from 'next/image'
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation'
-const Invoice = ({ name, doctor, appointmentDate, appointmentId, phone, age, gender, address }) => {
+const Invoice = ({ name, doctor, appointmentDate, appointmentId, id, phone, age, gender, address }) => {
   // console.log({para});
   const option = { year: 'numeric', month: '2-digit', day: '2-digit' };
   const inputDate = new Date(appointmentDate).toLocaleDateString('en-US', option);
-
-  //   var inputDate = "12/11/2023";
+  // var inputDate = "12/11/2023";
   // Split the input date into month, day, and year
   var dateParts = inputDate.split("/");
   var month = parseInt(dateParts[0], 10);
@@ -28,16 +25,12 @@ const Invoice = ({ name, doctor, appointmentDate, appointmentId, phone, age, gen
     router.refresh()
   }
   window.print();
-
-
   useEffect(() => {
     const handleAfterPrint = () => {
       // Close the tab after printing (if the user clicks "Cancel" in the print dialog)
       window.close();
     };
-
     window.addEventListener('afterprint', handleAfterPrint);
-
     return () => {
       window.removeEventListener('afterprint', handleAfterPrint);
     };
@@ -57,7 +50,7 @@ const Invoice = ({ name, doctor, appointmentDate, appointmentId, phone, age, gen
           <p className="mb-0">+917398391052</p>
         </div>
         <div>
-          <h4 className="fw-bold">INVOICE #{appointmentId}</h4>
+          <h4 className="fw-bold">INVOICE #{id}</h4>
           <div className="mb-2">
             <span className="text-muted">Date Issues:</span>
             <span className="fw-bold">{standardDate}</span>

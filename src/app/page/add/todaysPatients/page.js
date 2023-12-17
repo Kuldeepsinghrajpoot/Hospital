@@ -57,7 +57,7 @@ const Page = () => {
                           const standardDate = new Date(AppointmentDate).toLocaleDateString('en-IN', options);
                           return (
                             <tr key={e._id}>
-                              <td>{AppointmentId}</td>
+                              <td>{e._id}</td>
                               <td>{Name}</td>
                               <td>{Phone}</td>
                               <td>{Doctor}</td>

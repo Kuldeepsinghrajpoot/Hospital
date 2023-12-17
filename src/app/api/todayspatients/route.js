@@ -16,6 +16,6 @@ export async function GET() {
         const Appointment = await appointment.find({ AppointmentDate: standardDate }).sort({ createdAt: -1 });
         return NextResponse.json({ Appointment })
     } catch (error) {
-        console.log(error);
+        console.log("something went wrong"+error);
     }
 }

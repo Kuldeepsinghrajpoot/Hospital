@@ -32,7 +32,7 @@ const DoctorTable = () => {
         onSubmit: async (values) => {
             console.log(values)
             try {
-                const response = await fetch("http://localhost:3000/api/doctor", {
+                const response = await fetch("/api/doctor", {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

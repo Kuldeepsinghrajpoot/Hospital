@@ -12,8 +12,7 @@ export async function GET() {
     try {
         await connectMongoDB();
         const date = { year: 'numeric', month: '2-digit', day: '2-digit' };
-        const standardDate = new Date().toLocaleDateString('en-US', date);
-        const Appointment = await appointment.find().sort({ createdAt: -1 });
+        const Appointment = await appointment.findOne().sort({ createdAt: -1 });
         return NextResponse.json({ Appointment })
     } catch (error) {
         console.log(error);

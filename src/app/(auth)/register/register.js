@@ -2,13 +2,14 @@
 
 import React, { useEffect, useState } from 'react';
 import Img from 'next/image'
-import {useFormik } from 'formik';
+import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 
-import {useRouter} from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import Link from 'next/link';
 const Register = () => {
+    const options = Array.from({ length: 100 }, (_, index) => (index + 1).toString());
 
     const route = useRouter()
     const initialValues = {
@@ -18,11 +19,11 @@ const Register = () => {
         password: "",
         confirmpassword: "",
         contactnumber: "",
-        dob: '',
+        Age: '',
         gender: "",
         address: "",
-        problem: "",
-        role:"user"
+    
+        role: "user"
     }
     const { values, errors, handleBlur, touched, handleChange, handleSubmit } = useFormik({
         initialValues: initialValues,
@@ -31,12 +32,12 @@ const Register = () => {
             lastname: Yup.string().required("lastname is required"),
             email: Yup.string().required("email is required"),
             password: Yup.string().required("Password is required"),
-            confirmpassword: Yup.string().required("Confirm password is required").oneOf([Yup.ref("password"),null],"password must match"),
+            confirmpassword: Yup.string().required("Confirm password is required").oneOf([Yup.ref("password"), null], "password must match"),
             contactnumber: Yup.string().required("Contact Number is required"),
-            dob: Yup.string().required("Date of birth is required"),
+            Age: Yup.string().required("Date of birth is required"),
             gender: Yup.string().required("gender is required"),
             address: Yup.string().required("address is required"),
-            problem: Yup.string().required("problem is requried"),
+           
             // message: Yup.string().required('Message is required'),
         }),
         onSubmit: async (values) => {
@@ -48,36 +49,37 @@ const Register = () => {
                     },
                     body: JSON.stringify(values),
                 });
-                if(!response.ok){
+                if (!response.ok) {
                     toast.error(' something went wrong', {
-                      position: "top-right",
-                      autoClose: 5000,
-                      hideProgressBar: false,
-                      closeOnClick: true,
-                      pauseOnHover: true,
-                      draggable: true,
-                      progress: undefined,
-                      theme: "light",
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
                     });
-                  }else{
+                } else {
                     toast.success('Successful Account created', {
-                      position: "top-right",
-                      autoClose: 5000,
-                      hideProgressBar: false,
-                      closeOnClick: true,
-                      pauseOnHover: true,
-                      draggable: true,
-                      progress: undefined,
-                      theme: "light",
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
                     });
-                    route.replace('/login')     
-                  }
+                    route.replace('/login')
+                }
             } catch (error) {
                 // Handle network or other errors
                 console.error('An error occurred', error);
             }
         }
     })
+
     return (
         <>
             <div className="container-xxl">
@@ -178,7 +180,7 @@ const Register = () => {
                                         ) : null}
                                     </div>
                                     <div className=" mb-3 ">
-                                        <label htmlFor="email" className="form-label">email</label>
+                                        <label htmlFor="email" className="form-label">Email</label>
                                         <input onChange={handleChange} onBlur={handleBlur} type="email" value={values.email} className={`form-control  ${errors.email && touched.email
                                             ? "border border-danger"
                                             : ""
@@ -217,12 +219,12 @@ const Register = () => {
                                             />
 
                                             <span className={`input-group-text cursor-pointer${errors.password && touched.password
-                                                    ? "border border-danger"
-                                                    : ""
-                                                    } border border-gray-300 rounded-md focus:outline-none  ${errors.password && touched.password
-                                                        ? "focus: border-red-500"
-                                                        : "focus:border-indigo-500"
-                                                    }`} ><i className="ti ti-eye-off"></i></span>
+                                                ? "border border-danger"
+                                                : ""
+                                                } border border-gray-300 rounded-md focus:outline-none  ${errors.password && touched.password
+                                                    ? "focus: border-red-500"
+                                                    : "focus:border-indigo-500"
+                                                }`} ><i className="ti ti-eye-off"></i></span>
                                         </div>
                                         {errors.password && touched.password ? (
                                             <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
@@ -255,12 +257,12 @@ const Register = () => {
                                             />
 
                                             <span className={`input-group-text cursor-pointer${errors.confirmpassword && touched.confirmpassword
-                                                    ? "border border-danger"
-                                                    : ""
-                                                    } border border-gray-300 rounded-md focus:outline-none  ${errors.confirmpassword && touched.confirmpassword
-                                                        ? "focus: border-red-500"
-                                                        : "focus:border-indigo-500"
-                                                    }`} ><i className="ti ti-eye-off"></i></span>
+                                                ? "border border-danger"
+                                                : ""
+                                                } border border-gray-300 rounded-md focus:outline-none  ${errors.confirmpassword && touched.confirmpassword
+                                                    ? "focus: border-red-500"
+                                                    : "focus:border-indigo-500"
+                                                }`} ><i className="ti ti-eye-off"></i></span>
                                         </div>
                                         {errors.confirmpassword && touched.confirmpassword ? (
                                             <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
@@ -273,8 +275,8 @@ const Register = () => {
                                     <div className=" mb-3">
                                         <label htmlFor="contactnumber" className="form-label">contact Number</label>
                                         <input onChange={handleChange} onBlur={handleBlur} value={values.contactnumber} type="text" className={`form-control ${errors.contactnumber && touched.contactnumber
-                                                ? "border border-danger"
-                                                : ""
+                                            ? "border border-danger"
+                                            : ""
                                             } border border-gray-300 rounded-md focus:outline-none  ${errors.contactnumber && touched.pcontactnumberassword
                                                 ? "focus: border-red-500"
                                                 : "focus:border-indigo-500"
@@ -285,24 +287,26 @@ const Register = () => {
                                             </span>
                                         ) : null}
                                     </div>
-                                    <div className=" mb-3">
-                                        <label htmlFor="dob" className="form-label">dob</label>
-                                        <input onChange={handleChange} onBlur={handleBlur} value={values.dob} type="date" className={`form-control ${errors.dob && touched.dob
-                                                ? "border border-danger"
-                                                : ""
-                                            } border border-gray-300 rounded-md focus:outline-none  ${errors.dob && touched.dob
-                                                ? "focus: border-red-500"
-                                                : "focus:border-indigo-500"
-                                            }`} id="dob" name="dob" placeholder="DDDDMMMMYYYY" />
-                                        {errors.dob && touched.dob ? (
-                                            <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-                                                {errors.dob}
-                                            </span>
-                                        ) : null}
+                                    <div className="mb-3">
+                                        <label className="form-label" htmlFor="modalEditUserName">Age</label>
+                                        <select
+                                            className="form-select"
+                                            id="exampleFormControlSelect1"
+                                            aria-label="Default select example"
+                                            name='Age'
+                                            onChange={handleChange}
+                                            value={values.Age}>
+                                            <option value="Select">Select</option>
+                                            {options.map((value, index) => (
+                                                <option key={index} value={value}>
+                                                    {value}
+                                                </option>
+                                            ))}
+                                        </select>
                                     </div>
 
+                                        <label htmlFor="gender" className="form-label mb-2">Gender</label>
                                     <div className=" grid grid-cols-3 gap-1">
-                                        {/* <label htmlFor="gender" className="form-label">gender</label> */}
 
                                         <div className="flex items-center pl-4 border gap-2 border-gray-200 rounded dark:border-gray-700 ">
                                             <input onChange={handleChange} onBlur={handleBlur} id="gender-1" type="radio" value={"Male"} name="gender" />
@@ -326,10 +330,10 @@ const Register = () => {
                                     ) : null}
                                     {/* address */}
                                     <div className=" mb-3">
-                                        <label htmlFor="address" className="form-label">address</label>
+                                        <label htmlFor="address" className="form-label">Address</label>
                                         <textarea onChange={handleChange} onBlur={handleBlur} value={values.address} type="text" className={`form-control ${errors.address && touched.address
-                                                ? "border border-danger"
-                                                : ""
+                                            ? "border border-danger"
+                                            : ""
                                             } border border-gray-300 rounded-md focus:outline-none  ${errors.address && touched.address
                                                 ? "focus: border-red-500"
                                                 : "focus:border-indigo-500"
@@ -342,24 +346,7 @@ const Register = () => {
 
                                     </div>
 
-                                    <div className=" mb-3">
-                                        <label htmlFor="problem" className="form-label">Patient problem</label>
-                                        <textarea onChange={handleChange} onBlur={handleBlur} value={values.problem} type="text"className={`form-control ${
-                                                    errors.problem && touched.problem
-                                                      ? "border border-danger"
-                                                      : ""
-                                                  } border border-gray-300 rounded-md focus:outline-none  ${
-                                                    errors.problem && touched.problem
-                                                      ? "focus: border-red-500"
-                                                      : "focus:border-indigo-500"
-                                                  }`}id="problem" name="problem" placeholder="patient problem" />
-                                        {errors.problem && touched.problem ? (
-                                            <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-                                                {errors.problem}
-                                            </span>
-                                        ) : null}
-                                    </div>
-
+                                    
                                     <button type='submit' className="bg-[#7367F0] hover:bg-[#7b70fa] text-white font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded w-full">Sign up</button>
                                 </form>
 

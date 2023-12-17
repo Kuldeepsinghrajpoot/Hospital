@@ -9,3 +9,9 @@ const page = () => {
 }
 
 export default page;
+export async function generateMetadata() {
+  return {
+      title: 'Patients',
+      deScription: 'Register'
+  }
+}
