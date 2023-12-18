@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useState } from 'react';
 import { usePathname,useRouter } from 'next/navigation'
 import { signOut, useSession } from 'next-auth/react'
+import Img from 'next/image'
 
 // import Chat from './page/chat/index'
 export default function Home() {
@@ -17,6 +18,21 @@ export default function Home() {
   const [drop, setdrop] = useState('dropdown-menu');
   // console.log('session-->',session?.user?.role);
 
+  let timeoutSet = false;
+
+  function myFunction() {
+    if (!timeoutSet) {
+      setTimeout(function() {
+       
+        // Your code to be executed after the timeout
+      }, 1000); // Replace 1000 with the desired delay in milliseconds
+  
+      timeoutSet = true;
+    } 
+  }
+  
+  // Call myFunction to set the timeout
+  myFunction();
 if (session?.user?.role==='undefine') {
   // signOut()
   router.push("/login")
@@ -362,7 +378,7 @@ if (session?.user?.role==='undefine') {
                 <li className="nav-item navbar-dropdown dropdown-user dropdown">
                   <div className="nav-link dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                     <div className="avatar avatar-online">
-                      <img src="/img/avatars/1.png" alt="img" className="h-auto rounded-circle" />
+                      <Img src="/img/avatars/1.png" alt="img"  width={100} height={100} className="h-auto rounded-circle" />
                     </div>
                   </div>
                   {/*  dropdown-menu */}
@@ -372,7 +388,7 @@ if (session?.user?.role==='undefine') {
                         <div className="d-flex">
                           <div className="flex-shrink-0 me-3">
                             <div className="avatar avatar-online">
-                              <img src="/img/avatars/1.png" alt="img" className="h-auto rounded-circle" />
+                              <Img src="/img/avatars/1.png" alt="img" width={100} height={100} className="h-auto rounded-circle" />
                             </div>
                           </div>
                           <div className="flex-grow-1">
