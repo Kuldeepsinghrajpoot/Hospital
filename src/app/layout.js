@@ -80,7 +80,7 @@ export default function RootLayout({ children }) {
     <Script src="/js/wow.min.js"></Script>
     <Script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></Script>
     <Script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></Script>
-    {/* <Script src="https://cdn.tailwindcss.com"></Script> */}
+    <Script src="https://cdn.tailwindcss.com"></Script>
     <Script src="/js/glightbox.min.js"></Script>
     <Script src="/js/count-up.min.js"></Script>
     <Script src="/js/imagesloaded.min.js"></Script>

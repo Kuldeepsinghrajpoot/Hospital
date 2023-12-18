@@ -10,21 +10,17 @@ const fetchData = async () => {
     const fetchdata = response.json();
     return fetchdata;
   } catch (error) {
-    throw new Error("someting went wrong", error)
+    throw new Error("someting went wrong in add patients", error)
   }
 }
 const fatchDoctor = async () => {
   const data = await fetchData();
-  return (
 
-    // <div>{data.doctor.map((e,key)=>{
-    //   return(
-    //     <div key={key}>
-    //       {e.name}
-    //     </div>
-    //   )
-    // })}</div>
-    <Doctor data={data.doctor}/>
+  if (!data) {
+    return null;
+  }
+  return (
+    <Doctor data={data.doctor} />
   )
 }
 

@@ -70,6 +70,9 @@ const Addpatient = ({ data }) => {
             }
         },
     });
+    if (!data) {
+        return null;
+    }
     const options = Array.from({ length: 100 }, (_, index) => (index + 1).toString());
     return (
         <>

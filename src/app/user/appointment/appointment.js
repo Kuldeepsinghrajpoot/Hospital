@@ -77,7 +77,9 @@ const Appointment = ({ data }) => {
     // const [values.Age, setSelectedOption] = useState('Select');
     const options = Array.from({ length: 100 }, (_, index) => (index + 1).toString());
 
-
+    if (!data) {
+        return null;
+    }
     return (
         <>
             <div className="layout-wrapper layout-content-navbar w-96 absolute">

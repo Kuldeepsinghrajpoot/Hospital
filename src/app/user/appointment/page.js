@@ -14,6 +14,10 @@ const fetchData = async () => {
 }
 const fatchDoctor = async () => {
   const data = await fetchData();
+
+  if (!data) {
+   return null; 
+  }
   return (
     <Appointments data={data.doctor}/>
   )
