@@ -10,16 +10,13 @@ export async function POST(request) {
   await connectMongoDB();
   const { email } = await request.json();
   const user = await User.findOne({ email });
-  if (!user) {
+
+  if (user.email!==email) {
     return NextResponse.json({ message: "User not found" });
   }
   const cryptr = new Cryptr(process.env.NEXTAUTH_SECRET);
   const encrypted_email = cryptr.encrypt(user.email)
-  
   const random = cryptoRandomString({ length: 64, type: 'alphanumeric' });
-  if (!email) {
-    return NextResponse.json({ message: "Something went wrong" });
-  }
   try {
     user.token = random;
     await user.save();
@@ -28,14 +25,14 @@ export async function POST(request) {
       port: 587,
       secure: false,
       auth: {
-        user: '2021cs3d03@mitsgwl.ac.in',
+        user: process.env.LOGIN,
         pass: process.env.EMAIL_PASSWORD
       },
     });
 const url = `${process.env.URI}/resetpassword/${encrypted_email}/?signature=${random}`;
     // send mail with defined transport object
     const info = await transporter.sendMail({
-      from: '2021cs3d03@mitsgwl.ac.in', // sender address
+      from: process.env.LOGIN, // sender address
       to: user.email, // list of receivers
       subject: "Reset password ", // Subject line
       html: `<!DOCTYPE html>
