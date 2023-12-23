@@ -2,7 +2,7 @@ import mongoose, { Schema } from "mongoose";
 // patation registration
 const user = new Schema({
     name: {
-        type: String, require: true
+        type: String, require: false
     },
     lastname: String,
     email: String,
@@ -13,7 +13,8 @@ const user = new Schema({
     gender: String,
     address: String,
     problem: String,
-    role: String
+    role: String,
+    token:String
 }, {
     timestamps: true
 });

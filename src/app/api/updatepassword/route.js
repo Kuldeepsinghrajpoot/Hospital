@@ -44,7 +44,6 @@ export async function PUT(request) {
     const id = sessionid?.user?.id;
     
     // const passwordsMatch = await bcrypt.compare(currentPassword, user.password);
-    
     const { confirmPassword:password,userid} = await request.json();
     // const userinfo = await User.findById({_id:userid});
     const hashedPassword = await bcrypt.hash(password, 10);

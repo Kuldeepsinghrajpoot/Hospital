@@ -93,37 +93,33 @@ const UpdateData = ({ firstName, lastName, email, contactNumber, dOB, gender, ad
                         <div className="card mb-4">
                           <h5 className="card-header">Profile Details</h5>
                           {/* <!-- Account --> */}
-                          <div className="card-body">
-                            <div className="d-flex align-items-start align-items-sm-center gap-4">
-                              <img
-                                src="/img/avatars/1.png"
-                                alt="user-avatar"
-                                className="d-block rounded"
-                                height="100"
-                                width="100"
-                                id="uploadedAvatar"
-                              />
-                              <div className="button-wrapper">
-                                <label htmlFor="upload" className="btn btn-primary me-2 mb-4" tabIndex="0">
-                                  {/* <span className="d-none d-sm-block">Upload new photo</span> */}
-                                  <i className="bx bx-upload d-block d-sm-none"></i>
-                                  <input
-                                    type="file"
-                                    id="upload"
-                                    className="account-file-input"
-                                    hidden
-                                    accept="image/png, image/jpeg"
-                                  />
-                                </label>
-                                <button type="button" className="btn btn-outline-secondary account-image-reset mb-4">
-                                  <i className="bx bx-reset d-block d-sm-none"></i>
-                                  <span className="d-none d-sm-block">Reset</span>
-                                </button>
+                          <div class="d-flex align-items-start align-items-sm-center gap-4">
+                        <img
+                          src="../../assets/img/avatars/14.png"
+                          alt="user-avatar"
+                          class="d-block w-px-100 h-px-100 rounded"
+                          id="uploadedAvatar"
+                        />
+                        <div class="button-wrapper">
+                          <label for="upload" class="btn btn-primary me-2 mb-3" tabindex="0">
+                            <span class="d-none d-sm-block">Upload new photo</span>
+                            <i class="ti ti-upload d-block d-sm-none"></i>
+                            <input
+                              type="file"
+                              id="upload"
+                              class="account-file-input"
+                              hidden
+                              accept="image/png, image/jpeg"
+                            />
+                          </label>
+                          <button type="button" class="btn btn-label-secondary account-image-reset mb-3">
+                            <i class="ti ti-refresh-dot d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Reset</span>
+                          </button>
 
-                                <p className="text-muted mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p>
-                              </div>
-                            </div>
-                          </div>
+                          <div class="text-muted">Allowed JPG, GIF or PNG. Max size of 800K</div>
+                        </div>
+                      </div>
                           <hr className="my-0" />
                           <div className="card-body">
                             <form id="formAccountSettings" onSubmit={handleSubmit} >
