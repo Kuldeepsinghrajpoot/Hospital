@@ -40,7 +40,7 @@ const Forgot = () => {
           progress: undefined,
           theme: "light",
         });
-       
+
       } catch (error) {
         toast.error(error.message, {
           position: "top-right",
@@ -119,7 +119,7 @@ const Forgot = () => {
                     />
                   </div>
                   <button
-                                       className="btn btn-primary  w-100 bg-[#7367F0] hover:bg-[#7b70fa] text-white font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded w-full"
+                    className="btn btn-primary   bg-[#1200db] hover:bg-[#7b70fa] text-white font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded w-full"
 
                     type="submit"
                     disabled={loading} // Disable the button when in the loading state

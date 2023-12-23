@@ -10,8 +10,8 @@ export async function POST(request) {
   await connectMongoDB();
   const { email } = await request.json();
   const user = await User.findOne({ email });
-// console.log(user)
-  if (!user) {
+
+  if (user.email!==email) {
     return NextResponse.json({ message: "User not found" });
   }
   const cryptr = new Cryptr(process.env.NEXTAUTH_SECRET);
@@ -21,13 +21,14 @@ export async function POST(request) {
     user.token = random;
     await user.save();
     const transporter = nodemailer.createTransport({
-     service:"gmail",
+      host: process.env.SMTP_SERVER,
+      port: 587,
+      secure: false,
       auth: {
-        user: process.env.EMAIL,
+        user: process.env.LOGIN,
         pass: process.env.EMAIL_PASSWORD
       },
     });
-  
 const url = `${process.env.URI}/resetpassword/${encrypted_email}/?signature=${random}`;
     // send mail with defined transport object
     const info = await transporter.sendMail({
