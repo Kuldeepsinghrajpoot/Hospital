@@ -10,8 +10,8 @@ export async function POST(request) {
   await connectMongoDB();
   const { email } = await request.json();
   const user = await User.findOne({ email });
-  // console.log(user)
-  if (!user) {
+
+  if (user.email!==email) {
     return NextResponse.json({ message: "User not found" });
   }
   const cryptr = new Cryptr(process.env.NEXTAUTH_SECRET);
@@ -21,13 +21,15 @@ export async function POST(request) {
     user.token = random;
     await user.save();
     const transporter = nodemailer.createTransport({
-      service: "gmail",
+      host: process.env.SMTP_SERVER,
+      port: 587,
+      secure: false,
       auth: {
-        user: process.env.EMAIL,
+        user: process.env.LOGIN,
         pass: process.env.EMAIL_PASSWORD
       },
     });
-    const url = `${process.env.URI}/resetpassword/${encrypted_email}/?signature=${random}`;
+const url = `${process.env.URI}/resetpassword/${encrypted_email}/?signature=${random}`;
     // send mail with defined transport object
     const info = await transporter.sendMail({
       from: process.env.LOGIN, // sender address
@@ -99,4 +101,17 @@ export async function POST(request) {
     console.log("\nerror on token", error);
     return NextResponse.json({ message: "Error updating token" });
   }
+}
+
+
+
+
+export async function PUT(request) {
+  // const passwordsMatch = await bcrypt.compare(currentPassword, user.password);
+  const { confirmPassword: password, userid } = await request.json();
+  // const userinfo = await User.findById({_id:userid});
+  const hashedPassword = await bcrypt.hash(password, 10);
+  await connectMongoDB();
+  const user = await User.findByIdAndUpdate(userid, { password: hashedPassword }, { new: true });
+  return NextResponse.json({ message: "update password" }, { status: 200 });
 }

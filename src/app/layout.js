@@ -87,6 +87,7 @@ export default function RootLayout({ children }) {
     <Script src="/js/isotope.min.js"></Script>
     <Script src="/js/main.js"></Script>
     <Script src="/js/embeded.js"></Script>
+    {/* <Script src="https://cdn.tailwindcss.com"></Script> */}
       </body>
     </html>
   )
