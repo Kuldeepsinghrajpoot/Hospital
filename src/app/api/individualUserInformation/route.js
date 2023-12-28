@@ -19,8 +19,8 @@ export async function GET() {
 export async function PUT(request) {
     const sessionid = await getServerSession(authOptions);
     const id = sessionid?.user?.id;
-    const { FirstName: name, LastName: lastname, Email: email, ContactNumber: contactnumber, DOB: dob, Gender: gender, Address: address } = await request.json();
+    const { FirstName: name, LastName: lastname, Email: email, ContactNumber: contactnumber, DOB: Age, Gender: gender, Address: address } = await request.json();
     await connectMongoDB();
-    await user.findByIdAndUpdate(id, { name, lastname, email, contactnumber, dob, gender, address });
+    await user.findByIdAndUpdate(id, { name, lastname, email, contactnumber, Age, gender, address });
     return NextResponse.json({ message: "Profile is  updated" }, { status: 200 });
 }

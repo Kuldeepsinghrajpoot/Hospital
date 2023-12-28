@@ -85,7 +85,7 @@ const url = `${process.env.URI}/resetpassword/${encrypted_email}/?signature=${ra
               <img src=${img} alt="Uday Clinic" />
               <h1>Uday Clinic</h1>
             </div>
-            <h2 class="message">Hi Kuldeep Singh Rajpoot,</h2>
+            <h2 class="message">Hi ${user.name} ${user.lastname},</h2>
             <p class="message">We received a request to reset your password for your account on Uday Clinic.</p>
             <p class="message">If you requested this password reset, click the button below to choose a new password:</p>
             <a href=${url} class="button">Reset Password</a>

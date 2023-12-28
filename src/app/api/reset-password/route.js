@@ -10,22 +10,23 @@ export async function POST(request) {
     const decryptedEmail = cryptr.decrypt(email);
     const hasPassword = await bcrypt.hash(password, 10);
     try {
-        const user = await User.findOne({ email: decryptedEmail});
-
-        if (user.token===null) {
-            console.log(user.token);
-            return NextResponse.json({message:"invalid token"})
+        const user = await User.findOne({ email: decryptedEmail });
+        
+        if (!user.token && user.email) {
+            // console.log("token", user.token);
+            return NextResponse.json({ message: "invalid token" }, { status: 404 })
         }
-        if (user) {
+        else if (user.token && user.email) {
             user.password = hasPassword;
+            // console.log('user name inside', user);
             user.token = null
             await user.save();
             return NextResponse.json({ status: 200 })
         } else {
-            return NextResponse.json({ message: 'invalid token' }, { satus: 201 })
+            return NextResponse.json({ message: 'invalid token' }, { satus: 404 })
         }
     } catch (error) {
         console.log(error)
-        return NextResponse.json(error)
+        return NextResponse.json("Some thing went wrong", error)
     }
 }

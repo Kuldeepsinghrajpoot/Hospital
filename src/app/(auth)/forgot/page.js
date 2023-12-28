@@ -4,6 +4,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 import Link from 'next/link'
+import Img from 'next/image'
 const Forgot = () => {
   const [loading, setLoading] = useState(false);
   const initialValues = {
@@ -14,8 +15,8 @@ const Forgot = () => {
     validationSchema: Yup.object({
       email: Yup.string().required("First Name is required"),
     }),
-    onSubmit: async (values) => {
-      console.log(values);
+    onSubmit: async (values,{resetForm}) => {
+      // console.log(values);
       setLoading(true); // Set loading to true when the form is submitted
 
       try {
@@ -40,6 +41,7 @@ const Forgot = () => {
           progress: undefined,
           theme: "light",
         });
+        resetForm()
 
       } catch (error) {
         toast.error(error.message, {
@@ -66,40 +68,13 @@ const Forgot = () => {
               <div className="card-body">
                 {/* <!-- Logo --> */}
                 <div className="app-brand justify-content-center mb-4 mt-2">
-                  <a href="index.html" className="app-brand-link gap-2">
-                    <span className="app-brand-logo demo">
-                      <svg width="32" height="22" viewBox="0 0 32 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          fillRule="evenodd"
-                          clipRule="evenodd"
-                          d="M0.00172773 0V6.85398C0.00172773 6.85398 -0.133178 9.01207 1.98092 10.8388L13.6912 21.9964L19.7809 21.9181L18.8042 9.88248L16.4951 7.17289L9.23799 0H0.00172773Z"
-                          fill="#7367F0"
-                        />
-                        <path
-                          opacity="0.06"
-                          fillRule="evenodd"
-                          clipRule="evenodd"
-                          d="M7.69824 16.4364L12.5199 3.23696L16.5541 7.25596L7.69824 16.4364Z"
-                          fill="#161616"
-                        />
-                        <path
-                          opacity="0.06"
-                          fillRule="evenodd"
-                          clipRule="evenodd"
-                          d="M8.07751 15.9175L13.9419 4.63989L16.5849 7.28475L8.07751 15.9175Z"
-                          fill="#161616"
-                        />
-                        <path
-                          fillRule="evenodd"
-                          clipRule="evenodd"
-                          d="M7.77295 16.3566L23.6563 0H32V6.88383C32 6.88383 31.8262 9.17836 30.6591 10.4057L19.7824 22H13.6938L7.77295 16.3566Z"
-                          fill="#7367F0"
-                        />
-                      </svg>
-                    </span>
-                    <span className="app-brand-text demo text-body fw-bold">Vuexy</span>
-                  </a>
-                </div>
+                                    <Link href="/" className="app-brand-link gap-2">
+                                        <span className="app-brand-logo ">
+                                            <Img src="/img/favicon/favicon.ico" width={50} height={50} alt="Logo" />
+                                        </span>
+                                        <span className="app-brand-text demo text-body fw-bold ms-1">Uday Clinic</span>
+                                    </Link>
+                                </div>
                 {/* <!-- /Logo --> */}
                 <h4 className="mb-1 pt-2">Forgot Password? 🔒</h4>
                 <p className="mb-4">Enter your email and we{"'"}ll send you instructions to reset your password</p>

@@ -6,23 +6,22 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 import Link from 'next/link'
+import Img from 'next/image'
 const Reset = ({ params }) => {
-    const [password, setpassword] = useState("")
-    // const [currentPassword, setcurrentPassword] = useState(false);
-    // const [confirmPassword, setconfirmPassword] = useState(false);
-    // const [newPassword, setnewPassword] = useState(false);
+    const [password, setpassword] = useState(false)
+    const [confirmPassword, setconfirmPassword] = useState(false);
+    const [loading, setLoading] = useState(false);
+
     const searchParams = useSearchParams()
     const Signature = searchParams.get('signature');
-    // const slashpassword = (e) => {
-    // console.log("value of e-->"+e);
-    //     if (e === "confirmPassword") {
-    //         setconfirmPassword(!confirmPassword)
-    //     } else if (e === "newPassword") {
-    //         setnewPassword(!newPassword)
-    //     } else if (e === "currentPassword") {
-    //         setcurrentPassword(!currentPassword)
-    //     }
-    // }
+    const slashpassword = (e) => {
+        // console.log("value of e-->" + e);
+        if (e === "confirmPassword") {
+            setconfirmPassword(!confirmPassword)
+        } else if (e === 'password') {
+            setpassword(!password)
+        }
+    }
     const initialize = {
         email: params.id,
         token: Signature,
@@ -39,24 +38,52 @@ const Reset = ({ params }) => {
             // .matches(
             //   "^(?=.*[A-Za-z])(?=.*d)(?=.*[@$!%*#?&])[A-Za-zd@$!%*#?&]{8,}$",
             //   "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character"
-            // ),
+            // )
             ,
             confirmPassword: Yup.string().required().oneOf([Yup.ref("password"), null], "Passwords must match")
         }),
         onSubmit: async (values) => {
-            console.log(values);
-            const res = await fetch("/api/reset-password", {
-                method: "POST",
-                headers: {
-                    "Content-type": "application/json",
-                },
-                body: JSON.stringify(
-                    values
-                ),
-            });
+            console.log("values",values);
+            setLoading(true); // Set loading to true when the form is submitted
+            try {
+                const res = await fetch("/api/reset-password", {
+                    method: "POST",
+                    headers: {
+                        "Content-type": "application/json",
+                    },
+                    body: JSON.stringify(
+                        values
+                    ),
+                });
 
-            if (!res.ok) {
-                toast.error('invalid token', {
+                if (res.ok) {
+                    toast.success('Successful Updated password', {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
+                    
+                    route.replace('/login')
+                    route.refresh();
+                } else {
+                    toast.error(' Invalid token', {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
+                }
+            } catch (error) {
+                toast.error(error, {
                     position: "top-right",
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -66,18 +93,8 @@ const Reset = ({ params }) => {
                     progress: undefined,
                     theme: "light",
                 });
-            } else {
-                toast.success('Successful loged in', {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                });
-                route.refresh()
+            } finally {
+                setLoading(false); // Set loading to false regardless of success or failure
             }
         }
     })
@@ -91,53 +108,27 @@ const Reset = ({ params }) => {
                             <div className="card-body">
                                 {/* <!-- Logo --> */}
                                 <div className="app-brand justify-content-center mb-4 mt-2">
-                                    <a href="index.html" className="app-brand-link gap-2">
-                                        <span className="app-brand-logo demo">
-                                            <svg width="32" height="22" viewBox="0 0 32 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    fillRule="evenodd"
-                                                    clipRule="evenodd"
-                                                    d="M0.00172773 0V6.85398C0.00172773 6.85398 -0.133178 9.01207 1.98092 10.8388L13.6912 21.9964L19.7809 21.9181L18.8042 9.88248L16.4951 7.17289L9.23799 0H0.00172773Z"
-                                                    fill="#7367F0"
-                                                />
-                                                <path
-                                                    opacity="0.06"
-                                                    fillRule="evenodd"
-                                                    clipRule="evenodd"
-                                                    d="M7.69824 16.4364L12.5199 3.23696L16.5541 7.25596L7.69824 16.4364Z"
-                                                    fill="#161616"
-                                                />
-                                                <path
-                                                    opacity="0.06"
-                                                    fillRule="evenodd"
-                                                    clipRule="evenodd"
-                                                    d="M8.07751 15.9175L13.9419 4.63989L16.5849 7.28475L8.07751 15.9175Z"
-                                                    fill="#161616"
-                                                />
-                                                <path
-                                                    fillRule="evenodd"
-                                                    clipRule="evenodd"
-                                                    d="M7.77295 16.3566L23.6563 0H32V6.88383C32 6.88383 31.8262 9.17836 30.6591 10.4057L19.7824 22H13.6938L7.77295 16.3566Z"
-                                                    fill="#7367F0"
-                                                />
-                                            </svg>
+                                    <Link href="/" className="app-brand-link gap-2">
+                                        <span className="app-brand-logo ">
+                                            <Img src="/img/favicon/favicon.ico" width={50} height={50} alt="Logo" />
                                         </span>
-                                        <span className="app-brand-text demo text-body fw-bold ms-1">Vuexy</span>
-                                    </a>
+                                        <span className="app-brand-text demo text-body fw-bold ms-1">Uday Clinic</span>
+                                    </Link>
                                 </div>
-                                {/* <!-- /Logo --> */}<div className="alert alert-danger">
-                                    <strong>Danger!</strong> Indicates a dangerous or potentially negative action.
-                                </div>
+                                {/* <!-- /Logo --> */}
                                 <h4 className="mb-1 pt-2">Reset Password 🔒</h4>
-                                <p className="mb-4">for <span className="fw-bold">john.doe@email.com</span></p>
+                                {/* <p className="mb-4">for <span className="fw-bold">john.doe@email.com</span></p> */}
                                 <form id="formAuthentication" onClick={handleSubmit}>
                                     <div className="mb-3 form-password-toggle">
                                         <label className="form-label" htmlFor="password">New Password</label>
                                         <div className="input-group input-group-merge">
                                             <input
-                                                type="password"
+                                                type={password ? "text" : "password"}
                                                 id="password"
-                                                className="form-control"
+                                                className={errors.password && touched.password
+                                                    ? "form-control  border-danger"
+                                                    : "form-control"
+                                                  }
                                                 name="password"
                                                 value={values.password}
                                                 placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
@@ -145,16 +136,19 @@ const Reset = ({ params }) => {
                                                 onChange={handleChange}
                                                 onBlur={handleBlur}
                                             />
-                                            <span className="input-group-text cursor-pointer"><i className="ti ti-eye-off"></i></span>
+                                            <span className={errors.password && touched.password ?"input-group-text cursor-pointer border-danger ":"input-group-text cursor-pointer"} onClick={() => slashpassword('password')}><i className={password ? "ti ti-eye" : "ti ti-eye-off"}></i></span>
                                         </div>
                                     </div>
                                     <div className="mb-3 form-password-toggle">
                                         <label className="form-label" htmlFor="confirm-password">Confirm Password</label>
                                         <div className="input-group input-group-merge">
                                             <input
-                                                type="password"
+                                                type={confirmPassword ? "text" : "password"}
                                                 id="confirm-password"
-                                                className="form-control"
+                                                className={errors.confirmPassword && touched.confirmPassword
+                                                    ? "form-control  border-danger"
+                                                    : "form-control"
+                                                  }
                                                 name="confirmPassword"
                                                 onChange={handleChange}
                                                 onBlur={handleBlur}
@@ -162,10 +156,26 @@ const Reset = ({ params }) => {
                                                 placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                                                 aria-describedby="password"
                                             />
-                                            <span className="input-group-text cursor-pointer"><i className="ti ti-eye-off"></i></span>
+                                            <span className={errors.confirmPassword && touched.confirmPassword ?"input-group-text cursor-pointer border-danger":"input-group-text cursor-pointer"} onClick={() => slashpassword('confirmPassword')}><i className={confirmPassword ? "ti ti-eye" : "ti ti-eye-off"}></i></span>
                                         </div>
                                     </div>
-                                    <button type='submit' className="btn btn-primary d-grid w-100 mb-3">Set new password</button>
+                                    <button
+                                        className=" mb-2 flex justify-center items-center w-100 bg-[#7367F0] hover:bg-[#7b70fa] text-white font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded w-full"
+                                        type="submit"
+                                        disabled={loading} // Disable the button when in the loading state
+                                    >
+                                        {loading ? (
+                                            <>
+                                                <svg width="20" height="20" fill="currentColor" className="mr-2 animate-spin" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M526 1394q0 53-37.5 90.5t-90.5 37.5q-52 0-90-38t-38-90q0-53 37.5-90.5t90.5-37.5 90.5 37.5 37.5 90.5zm498 206q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-704-704q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm1202 498q0 52-38 90t-90 38q-53 0-90.5-37.5t-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-964-996q0 66-47 113t-113 47-113-47-47-113 47-113 113-47 113 47 47 113zm1170 498q0 53-37.5 90.5t-90.5 37.5-90.5-37.5-37.5-90.5 37.5-90.5 90.5-37.5 90.5 37.5 37.5 90.5zm-640-704q0 80-56 136t-136 56-136-56-56-136 56-136 136-56 136 56 56 136zm530 206q0 93-66 158.5t-158 65.5q-93 0-158.5-65.5t-65.5-158.5q0-92 65.5-158t158.5-66q92 0 158 66t66 158z">
+                                                    </path>
+                                                </svg>                         
+                                                 Loading...
+                                            </>
+                                        ) : (
+                                            'Set new password'
+                                        )}
+                                    </button>
                                     <div className="text-center">
                                         <Link href="/login">
                                             <i className="ti ti-chevron-left scaleX-n1-rtl"></i>

@@ -27,7 +27,7 @@ const Page = () => {
     {data.map((e) => {
       return (
         <>
-          <div key={e._id}><Update firstName={e.name} lastName={e.lastname} email={e.email} contactNumber={e.contactnumber} dOB={e.dob} gender={e.gender} address={e.address}></Update></div>
+          <div key={e._id}><Update firstName={e.name} lastName={e.lastname} email={e.email} contactNumber={e.contactnumber} dOB={e.Age} gender={e.gender} address={e.address}></Update></div>
         </>
       )
     })}

@@ -1,58 +1,38 @@
 'use client'
 
 import Link from 'next/link'
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { usePathname,useRouter } from 'next/navigation'
-import { signOut, useSession } from 'next-auth/react'
+import { signOut } from 'next-auth/react'
 import Img from 'next/image'
-
+import context from '../context/createContext';
 // import Chat from './page/chat/index'
 export default function Home() {
+ const{role,Name}= useContext(context)
 
-  const { data: session } = useSession();
   
   // console.log(session?.user?.email);
   const route = usePathname();
   const router = useRouter();
   const [divClass, setDivClass] = useState('initial-class');
-  const [drop, setdrop] = useState('dropdown-menu');
-  // console.log('session-->',session?.user?.role);
+ 
 
-  let timeoutSet = false;
-
-  function myFunction() {
-    if (!timeoutSet) {
-      setTimeout(function() {
-       
-        // Your code to be executed after the timeout
-      }, 1000); // Replace 1000 with the desired delay in milliseconds
-  
-      timeoutSet = true;
-    } 
-  }
-  
-  // Call myFunction to set the timeout
-  myFunction();
-if (session?.user?.role==='undefine') {
+if (role==='undefine') {
   // signOut()
   router.push("/login")
   router.refresh()
 }
-   if(session?.user?.role==='Doctor'){
+   if(role==='Doctor'){
     router.push("/doctor");
     return;
   }
-  else if(session?.user?.role==='Admin'){
+  else if(role==='Admin'){
     router.push("/page");
     return;
   }
   function handleClick() {
     setDivClass(divClass === 'initial-class' ? 'transition ease-in-out delay-150  light-style layout-navbar-fixed layout-menu-100vh layout-menu-fixed layout-footer-fixed layout-menu-expanded' : 'initial-class');
   }
-  function dropDown() {
-    setdrop(drop === 'dropdown-menu' ? '' : 'dropdown-menu')
-  }
-
   return (
     <div className={divClass}>
     <div className="absolute layout-content-navbar">
@@ -66,7 +46,7 @@ if (session?.user?.role==='undefine') {
                   <Img src="/img/favicon/favicon.ico" width={30} height={30} alt="Logo" />
 
                 </span>
-              <span className="app-brand-text demo menu-text fw-bold text-2xl">{session?.user?.name}</span>
+              <span className="app-brand-text demo menu-text fw-bold text-2xl">{Name}</span>
             </Link>
             <div onClick={handleClick} className=" cursor-pointer layout-menu-toggle menu-link text-large ms-auto">
               <i className="ti menu-toggle-icon d-none d-xl-block ti-sm align-middle"></i>
@@ -366,8 +346,8 @@ if (session?.user?.role==='undefine') {
                             </div>
                           </div>
                           <div className="flex-grow-1">
-                            <span className="fw-semibold d-block">{session?.user?.name}</span>
-                            <small className="text-muted">{session?.user?.role}</small>
+                            <span className="fw-semibold d-block">{Name}</span>
+                            <small className="text-muted">{role}</small>
                           </div>
                         </div>
                       </div>

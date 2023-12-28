@@ -1,5 +1,6 @@
 import { getServerSession } from 'next-auth';
 import React from 'react';
+import redirect from 'next/navigation'
 import { authOptions } from '../api/auth/[...nextauth]/route';
 import axios from 'axios'
 
@@ -20,6 +21,9 @@ const getData = async () => {
 
 const page = async() => {
     const session = await getServerSession(authOptions)
+
+
+
     const data = await getData();
     if (!data) {
         return;
@@ -52,21 +56,15 @@ const page = async() => {
                                             </div>
                                         </div>
                                     </li>
-
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </>
-
-
-
     );
 }
-
 export default page;
 export const metadata = {
     title: 'Dashboard',

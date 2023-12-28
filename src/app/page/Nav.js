@@ -1,20 +1,24 @@
 'use client'
 import Link from 'next/link'
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Img from 'next/image'
 import { usePathname, useRouter } from 'next/navigation'
-import { signOut, useSession } from 'next-auth/react';
+import { signOut } from 'next-auth/react';
+import context from '../context/createContext';
 
 export default function Home() {
-  const { data: session } = useSession();
+  const{role,Name}=useContext(context)
+ 
   const router = usePathname();
+ 
+ 
   const route = useRouter();
   const [divClass, setDivClass] = useState('initial-class');
   const [drop, setdrop] = useState('dropdown-menu');
-  if (session?.user?.role === 'user') {
+  if (role === 'user') {
     route.push("/user")
     return;
-  } else if (session?.user?.role === 'Doctor') {
+  } else if (role === 'Doctor') {
     route.push("/doctor");
     return;
   }
@@ -36,7 +40,7 @@ export default function Home() {
                   <Img src="/img/favicon/favicon.ico" width={30} height={30} alt="Logo" />
 
                 </span>
-                <span className="app-brand-text demo menu-text fw-bold text-2xl">{session?.user?.name}</span>
+                <span className="app-brand-text demo menu-text fw-bold text-2xl">{Name}</span>
               </Link>
               <div onClick={handleClick} className=" cursor-pointer layout-menu-toggle menu-link text-large ms-auto">
                 <i className="ti menu-toggle-icon d-none d-xl-block ti-sm align-middle"></i>
@@ -146,8 +150,8 @@ export default function Home() {
                               </div>
                             </div>
                             <div className="flex-grow-1">
-                              <span className="fw-semibold d-block">{session?.user?.name}</span>
-                              <small className="text-muted">{session?.user?.role}</small>
+                              <span className="fw-semibold d-block">{Name}</span>
+                              <small className="text-muted">{role}</small>
                             </div>
                           </div>
                         </div>

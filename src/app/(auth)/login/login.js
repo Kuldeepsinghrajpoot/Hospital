@@ -5,13 +5,15 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useFormik } from 'formik';
 import Img from 'next/image'
-
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { toast } from 'react-toastify';
 import * as Yup from 'yup'
 
-
+import YourContext from '../../context/createContext';
 export default function LoginForm() {
+  // const { yourFunction } = useContext(YourContext)
+  // // alert(session)
+  // console.log(yourFunction);
   const [password, setpassword] = useState(false);
   const slashpassword = (e) => {
     // console.log("value of e-->"+e);
@@ -33,11 +35,8 @@ export default function LoginForm() {
       password: Yup.string().required("Enter valid password ")
     }),
 
-
-
     onSubmit: async (values) => {
       setLoading(true); // Set loading to true when the form is submitted
-
       try {
         const email = values.Email;
         const password = values.password
@@ -46,8 +45,6 @@ export default function LoginForm() {
           password,
           redirect: false,
         });
-
-
         if (res.ok) {
           toast.success('Successful loged in', {
             position: "top-right",
@@ -59,8 +56,8 @@ export default function LoginForm() {
             progress: undefined,
             theme: "light",
           });
-          route.refresh()
           route.replace('/user')
+          route.refresh()
         } else {
           toast.error(' Please enter vaild credentials', {
             position: "top-right",
@@ -71,7 +68,6 @@ export default function LoginForm() {
             draggable: true,
             progress: undefined,
             theme: "light",
-
           });
         }
       } catch (error) {
@@ -84,17 +80,12 @@ export default function LoginForm() {
           draggable: true,
           progress: undefined,
           theme: "light",
-
         });
-
-
-
       } finally {
         setLoading(false); // Set loading to false regardless of success or failure
       }
     }
   })
-
   return (
     <div>
       <div className="container-xxl">
@@ -109,11 +100,11 @@ export default function LoginForm() {
                     <span className="app-brand-logo ">
                       <Img src="/img/favicon/favicon.ico" width={50} height={50} alt="Logo" />
                     </span>
-                    <span className="app-brand-text demo text-body fw-bold ms-1">Uday</span>
+                    <span className="app-brand-text demo text-body fw-bold ms-1">Uday Clinic</span>
                   </Link>
                 </div>
                 {/* <!-- /Logo --> */}
-                <h4 className="mb-1 pt-2">Welcome to uday clinic! 👋</h4>
+                <h4 className="mb-1 pt-2">Welcome to Uday clinic! 👋</h4>
                 <p className="mb-4">Please sign-in to your account</p>
                 <form id="formAuthentication" className="mb-3" action="index.html" onSubmit={handleSubmit}>
                   <div className="mb-3">
@@ -155,7 +146,6 @@ export default function LoginForm() {
                         placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                         aria-describedby="password"
                       />
-
                       <span className="input-group-text cursor-pointer" onClick={() => slashpassword('password')}><i className={password ? "ti ti-eye" : "ti ti-eye-off"}></i></span>
                     </div>
                   </div>
