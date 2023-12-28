@@ -11,6 +11,7 @@ export async function POST(request) {
 
     const { Name, Doctor, AppointmentDate, Phone, Age, Gender, Address } = await request.json()
     await connectMongoDB();
+   
     const date = { year: 'numeric', month: '2-digit', day: '2-digit' };
     const standardDate = new Date(AppointmentDate).toLocaleDateString('en-US', date);
     await appointment.create({ Name, Doctor, AppointmentDate:standardDate, Phone, UserId: id, Age, Gender, Address });

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React from 'react'
-import Doctor from './fatchDoctor'
+import Doctor from './addPatients'
 const fetchData = async () => {
   const url = process.env.URI;
   try {

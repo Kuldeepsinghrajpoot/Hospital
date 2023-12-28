@@ -6,6 +6,10 @@ export async function POST(request) {
   const {name,lastname,email,password,contactnumber,dob,gender,address,role} = await request.json();
 
   await connectMongoDB();
+  const find_email = await appointment.findOne({email});
+  if(find_email){
+      return NextResponse.json({status:404})
+  }
   const hasPassword = await bcrypt.hash(password,10);
   await Doctor.create({ name,lastname,email,password:hasPassword,contactnumber,dob,gender,address,role});
   return NextResponse.json({ message: "sucessfull created" }, { status: 201 });

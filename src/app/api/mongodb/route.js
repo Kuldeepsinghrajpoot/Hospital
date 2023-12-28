@@ -2,14 +2,16 @@ import { NextResponse } from "next/server";
 import connectMongoDB from "../../../db/mongodb";
 import user from "@/models/schema";
 import bcrypt from 'bcryptjs'
-import { getSession } from "next-auth/react";
-import { authOptions } from "../auth/[...nextauth]/route";
+
 
 export async function POST(request) {
-  const session = await getSession(authOptions);
-  const data = session?.user?.role;
+
   const { name, lastname, email, password, contactnumber, Age, gender, address, role } = await request.json();
   await connectMongoDB();
+  const find_email = await user.findOne({email});
+  if(find_email){
+      return NextResponse.json({status:403})
+  }
   const hasPassword = await bcrypt.hash(password, 10);
   await user.create({ name, lastname, email, password: hasPassword, contactnumber, Age, gender, address, role });
   return NextResponse.json({ message: "sucessfull created" }, { status: 201 });

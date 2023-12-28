@@ -43,10 +43,9 @@ return (
                       </thead>
                       <tbody>
                         {data.doctor.map((e) => {
-                          const { name, lastname, email, contactnumber, dob, gender, address,role } = e;                 
+                          const { name, lastname, email, contactnumber, Age, gender, address,role } = e;                 
                           // const inputDate = new Date(DOB);
-                          const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
-                          const standardDate = new Date(dob).toLocaleDateString('en-US', options);
+                          
                           
                           return (
                             <tr key={e._id}>
@@ -55,7 +54,7 @@ return (
                               <td>{email}</td>
                               <td>{contactnumber}</td>
                               {/* <td>{day+"-"+month+"-"+year}</td> */}
-                              <td>{standardDate=='invalid'?standardDate:".."}</td>
+                              <td>{Age}</td>
                               <td>{gender}</td>
                               <td>{address}</td>
                           

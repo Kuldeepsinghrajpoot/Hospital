@@ -36,18 +36,16 @@ const UserInformation = async () => {
                             <th>LastName</th>
                             <th>Email</th>
                             <th>Contact Number</th>
-                            <th>DOB</th>
+                            <th>Age</th>
                             <th>Gender</th>
                             <th>Address</th>
                           </tr>
                         </thead>
                         <tbody>
                           {data.patientDetails.map((e) => {
-                            const { name, lastname, email, contactnumber, dob, gender, address,role } = e;                 
+                            const { name, lastname, email, contactnumber, Age, gender, address,role } = e;                 
                             // const inputDate = new Date(DOB);
-                            const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
-                            const standardDate = new Date(dob).toLocaleDateString('en-US', options);
-                            
+                           
                             return (
                               <tr key={e._id}>
                                 <td>{name}</td>
@@ -55,7 +53,7 @@ const UserInformation = async () => {
                                 <td>{email}</td>
                                 <td>{contactnumber}</td>
                                 {/* <td>{day+"-"+month+"-"+year}</td> */}
-                                <td>{standardDate}</td>
+                                <td>{Age}</td>
                                 <td>{gender}</td>
                                 <td>{address}</td>
                             
