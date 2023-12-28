@@ -116,7 +116,7 @@ const Dashboard = ({ data }) => {
                               <span>Visit page</span>
                             </Link>
                           </div>
-                          <a href="javascript:void(0);" className="text-muted">
+                          <a href="" className="text-muted">
                             <i className="ti ti-copy ti-md"></i>
                           </a>
                         </div>
@@ -216,7 +216,7 @@ const Dashboard = ({ data }) => {
                               <span>Visit page</span>
                             </Link>
                           </div>
-                          <a href="javascript:void(0);" className="text-muted">
+                          <a href="" className="text-muted">
                             <i className="ti ti-copy ti-md"></i>
                           </a>
                         </div>
@@ -316,7 +316,7 @@ const Dashboard = ({ data }) => {
                               <span>Visit page</span>
                             </Link>
                           </div>
-                          <a href="javascript:void(0);" className="text-muted">
+                          <a href="" className="text-muted">
                             <i className="ti ti-copy ti-md"></i>
                           </a>
                         </div>
@@ -416,7 +416,7 @@ const Dashboard = ({ data }) => {
                               <span>Visit page</span>
                             </Link>
                           </div>
-                          <a href="javascript:void(0);" className="text-muted">
+                          <a href="" className="text-muted">
                             <i className="ti ti-copy ti-md"></i>
                           </a>
                         </div>
