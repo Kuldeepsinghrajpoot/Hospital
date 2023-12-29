@@ -5,10 +5,14 @@ import Schema from "@/models/schema";
 
 export async function GET() {
   await connectMongoDB();
-  const doctor = await Schema.find({role:"Doctor"}).count({role:"Doctor"});
-  const admin = await Schema.find({role:"Admin"}).count({role:"Admin"});
-  const user = await Schema.find({role:"user"}).count({role:"user"});
-  const patient = await appointment.find({}).count('name');
+  const doctor = await Schema.find({role:"Doctor"}).countDocuments();
+  ;
+  const admin = await Schema.find({role:"Admin"}).countDocuments();
+  ;
+  const user = await Schema.find({role:"user"}).countDocuments();
+  ;
+  const patient = await appointment.find({}).countDocuments();
+  ;
 
   return NextResponse.json({doctor,user,admin,patient});
 }
