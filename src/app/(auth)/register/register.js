@@ -49,7 +49,8 @@ const Register = () => {
                     },
                     body: JSON.stringify(values),
                 });
-                if (!response.ok) {
+                const res =await response.json();
+                if (res.status===403) {
                     toast.error(' This email already register', {
                         position: "top-right",
                         autoClose: 5000,

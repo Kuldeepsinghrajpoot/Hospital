@@ -1,3 +1,5 @@
+// import Link from 'next/link'
+import Remove from './remove'
 const todoItems = async () => {
   const url = process.env.URI;
   try {
@@ -39,6 +41,7 @@ return (
                           <th>DOB</th>
                           <th>Gender</th>
                           <th>Address</th>
+                          <th>Delete</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -57,7 +60,7 @@ return (
                               <td>{Age}</td>
                               <td>{gender}</td>
                               <td>{address}</td>
-                          
+                              <td className=' text-center'><Remove id={e._id}></Remove></td>
                             </tr>
                           )
                         })}

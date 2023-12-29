@@ -65,7 +65,7 @@ const Page = () => {
                               <td>{Gender}</td>
                               <td>{standardDate}</td>
                              
-                              <td><Link href={`/${e._id}`} target='_blank'>Click</Link></td>
+                              <td><Link href={`/${e._id}`} className='flex justify-center  text-black' target='_blank'><i class="ti ti-printer"></i></Link></td>
                             </tr>
                           )
                         })}

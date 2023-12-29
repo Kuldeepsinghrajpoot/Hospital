@@ -40,7 +40,9 @@ const DoctorTable = () => {
                     },
                     body: JSON.stringify(values),
                 });
-                if (!response.ok) {
+                const data = await response.json();
+                // console.log("data",data);
+                if (data.status===409) {
                     toast.error('This email already register', {
                         position: "top-right",
                         autoClose: 5000,
@@ -51,10 +53,10 @@ const DoctorTable = () => {
                         progress: undefined,
                         theme: "light",
                     });
-                    resetForm()
+                    // resetForm()
                     // route.replace('/login')
                 } else {
-                    toast.success('Successful created', {
+                    toast.success('Successfully created', {
                         position: "top-right",
                         autoClose: 5000,
                         hideProgressBar: false,

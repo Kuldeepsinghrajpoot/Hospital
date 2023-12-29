@@ -27,6 +27,6 @@ export async function POST(request) {
         }
     } catch (error) {
         console.log(error)
-        return NextResponse.json("Some thing went wrong", error)
+        return NextResponse.json({"Some thing went wrong":error,status:404})
     }
 }

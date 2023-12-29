@@ -1,4 +1,5 @@
 import PrintAppoitment from './invoice';
+import Notfound from '../not-found'
 import React from 'react';
 const getTopicById = async (id) => {
   const url = process.env.URI;
@@ -16,10 +17,19 @@ const getTopicById = async (id) => {
 };
 export default async function Invoice({ params }) {
   const { id } = params;
-  const { printAppointment } = await getTopicById(id);
-  const { Name, Doctor, AppointmentDate, Phone, Age, Gender, Address,AppointmentId,_id } = printAppointment;
-  // console.log(Name);
-  return <PrintAppoitment name={Name} doctor={Doctor} appointmentDate={AppointmentDate} phone={Phone} age={Age} gender={Gender} address={Address} appointmentId={AppointmentId} id={_id}/>;
+  try {
+    
+    
+    const { printAppointment } = await getTopicById(id);
+    const { Name, Doctor, AppointmentDate, Phone, Age, Gender, Address,AppointmentId,_id } = printAppointment;
+    // console.log(Name);
+    return <PrintAppoitment name={Name} doctor={Doctor} appointmentDate={AppointmentDate} phone={Phone} age={Age} gender={Gender} address={Address} appointmentId={AppointmentId} id={_id}/>;
+  } catch (error) {
+    
+    return<>
+    <Notfound/>
+    </>;
+  }
 }
 export function generateMetadata() {
   return {

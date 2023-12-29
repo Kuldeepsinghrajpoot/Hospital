@@ -27,7 +27,7 @@ const Forgot = () => {
           },
           body: JSON.stringify(values),
         });
-
+        
         if (!res.ok) {
           throw new Error("Invalid Email id");
         }

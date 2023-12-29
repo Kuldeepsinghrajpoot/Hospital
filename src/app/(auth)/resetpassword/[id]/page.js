@@ -55,8 +55,8 @@ const Reset = ({ params }) => {
                         values
                     ),
                 });
-
-                if (res.ok) {
+                const response = await res.json()
+                if (response.status===200) {
                     toast.success('Successful Updated password', {
                         position: "top-right",
                         autoClose: 5000,

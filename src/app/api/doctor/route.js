@@ -8,7 +8,7 @@ export async function POST(request) {
   await connectMongoDB();
   const find_email = await Doctor.findOne({email});
   if(find_email){
-      return NextResponse.json({status:403})
+      return NextResponse.json({status:409,message: "Email already exists" })
   }
   const hasPassword = await bcrypt.hash(password,10);
   await Doctor.create({ name,lastname,email,password:hasPassword,contactnumber,dob,gender,address,role});

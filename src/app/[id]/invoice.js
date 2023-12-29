@@ -36,7 +36,7 @@ const Invoice = ({ name, doctor, appointmentDate, appointmentId, id, phone, age,
     };
   }, []);
   return (
-    <div className="invoice-print ">
+    <div className="invoice-print bg-white w-screen h-screen">
       <div className="d-flex justify-content-between flex-row">
         <div className="mb-4">
           <div className="d-flex svg-illustration mb-3 gap-2">
@@ -100,10 +100,7 @@ const Invoice = ({ name, doctor, appointmentDate, appointmentId, id, phone, age,
                 <td className="pe-3">Age/Gender:</td>
                 <td>{age}Year/{gender}</td>
               </tr>
-              <tr>
-                <td className="pe-3">Valid upto</td>
-                <td>December 18, 2023</td>
-              </tr>
+            
 
             </tbody>
           </table>
