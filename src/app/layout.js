@@ -38,6 +38,7 @@ import "../assets/css/animate.css"
 import "../assets/css/tiny-slider.css"
 import "../assets/css/glightbox.min.css"
 // import "../main/main.css" 
+import { SpeedInsights } from '@vercel/speed-insights/next';
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
@@ -75,6 +76,7 @@ export default function RootLayout({ children }) {
           <ContextProvider>
             <ToastContainer />
             {children}
+            <SpeedInsights />
           </ContextProvider>
         </AuthProvider>
         <Script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></Script>

@@ -34,9 +34,9 @@ const page = () => {
                 <div className="nav-inner">
                   {/*- Start Navbar */}
                   <nav className="navbar navbar-expand-lg ">
-                    <a className="navbar-brand w-20" href="index.html" >
+                    <Link className="navbar-brand w-20" href="/login" target='_blank' >
                       <Img src="/img/favicon/favicon.ico" width={50} height={50} alt="Logo"/>
-                    </a>
+                    </Link>
                     {/* hide the mobile phone */}
                     <button className="navbar-toggler mobile-menu-btn hidden" type="button" data-bs-toggle="collapse"
                       data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"

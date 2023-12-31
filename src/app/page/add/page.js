@@ -13,7 +13,7 @@ const DoctorTable = () => {
                                 <div className="row mb-4">
                                     {/*/  Refer & Earn */}
                                     <Adduser></Adduser>
-                                    <AddDoctor></AddDoctor>
+                                    {/* <AddDoctor></AddDoctor> */}
                                 </div>
 
                                 {/*  */}

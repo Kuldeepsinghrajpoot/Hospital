@@ -3,7 +3,7 @@ import Dashboards from './Dashboard'
 const dataSet = async () => {
   const url = process.env.URI;
   try {
-      const response = await fetch(`${url}/api/count`, {
+      const response = await fetch(`${url}/api/mongodb`, {
           cache: "no-store",
       });
       // setData(response.data);

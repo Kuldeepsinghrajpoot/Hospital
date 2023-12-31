@@ -3,8 +3,6 @@ import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
-import axios from 'axios';
-
 const Addpatient = ({ data }) => {
 
 const [loading, setloading] = useState(false);

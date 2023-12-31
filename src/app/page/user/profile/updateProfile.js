@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import Link from 'next/link'
+import Img from 'next/image'
 const UpdateData = ({ firstName, lastName, email, contactNumber, dOB, gender, address, problem }) => {
 
 
@@ -95,12 +96,12 @@ const UpdateData = ({ firstName, lastName, email, contactNumber, dOB, gender, ad
                           {/* <!-- Account --> */}
                           <div className="card-body">
                             <div className="d-flex align-items-start align-items-sm-center gap-4">
-                              <img
+                              <Img  
                                 src="/img/avatars/1.png"
                                 alt="user-avatar"
                                 className="d-block rounded"
-                                height="100"
-                                width="100"
+                                height={100}
+                                width={100}
                                 id="uploadedAvatar"
                               />
                               <div className="button-wrapper">

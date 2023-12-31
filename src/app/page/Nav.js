@@ -1,18 +1,31 @@
 'use client'
 import Link from 'next/link'
-import { useContext, useState } from 'react';
+import { useContext, useState,useEffect,useRef } from 'react';
 import Img from 'next/image'
 import { usePathname, useRouter } from 'next/navigation'
 import { signOut } from 'next-auth/react';
 import context from '../context/createContext';
 
 export default function Home() {
-  const{role,Name}=useContext(context)
- 
+  const { role, Name } = useContext(context)
+  const searchInputRef = useRef(null);
   const router = usePathname();
- 
- 
   const route = useRouter();
+  const [query, setQuery] = useState('');
+
+  useEffect(() => {
+    // const timeoutId = setTimeout(() => {
+      console.log(query);
+      if (query) {
+        route.push(`${router}?q=${searchInputRef.current.value}`);
+      }else{
+        route.push(`${router}`)
+      }
+    // }, 1); // Delay in milliseconds
+  
+    // return () => clearTimeout(timeoutId);
+  }, [query, router]);
+  
   const [divClass, setDivClass] = useState('initial-class');
   const [drop, setdrop] = useState('dropdown-menu');
   if (role === 'user') {
@@ -35,7 +48,7 @@ export default function Home() {
           {/* <!-- Menu --> */}
           <aside id="layout-menu" className="layout-menu menu-vertical menu bg-menu-theme  drop-shadow-2xl  md:drop-shadow-0 xl:drop-shadow-sm" >
             <div className="app-brand demo ">
-              <Link href="/" className="app-brand-link">
+              <Link href="/page" className="app-brand-link">
                 <span className=" demo">
                   <Img src="/img/favicon/favicon.ico" width={30} height={30} alt="Logo" />
 
@@ -71,7 +84,7 @@ export default function Home() {
               <li className={`${router == '/page/add' ? "menu-item active" : "menu-item"}`}>
                 <Link href="/page/add" className="menu-link">
                   <i className="menu-icon tf-icons ti ti-square"></i>
-                  <div data-i18n="Chat">Add Doctor / Patient</div>
+                  <div data-i18n="Chat">Add Patient</div>
                 </Link>
               </li>
               {/* <!-- Icons --> */}
@@ -93,6 +106,13 @@ export default function Home() {
                   <div data-i18n="Icons absolute mx-10">Doctors</div>
                 </Link>
               </li>
+              <li className={`${router == '/page/Manager' ? "menu-item active" : "menu-item"}`}>
+                <Link href="/page/Manager" className="menu-link">
+                <i className="menu-icon ti ti-user-check"></i>
+
+                  <div data-i18n="Icons absolute mx-10">Manager</div>
+                </Link>
+              </li>
 
             </ul>
           </aside>
@@ -112,10 +132,28 @@ export default function Home() {
                 {/* <!-- Search --> */}
                 <div className="navbar-nav align-items-center">
                   <div className="nav-item navbar-search-wrapper mb-0">
-                    <Link className="nav-item nav-link search-toggler d-flex align-items-center px-0" href="">
-                      <i className="ti ti-search ti-md me-2"></i>
-                      <span className="d-none d-md-inline-block text-muted">Search (Ctrl+/)</span>
-                    </Link>
+                    <div className="nav-item nav-link search-toggler d-flex align-items-center px-0" href="">
+                    <div className="flex justify-start text-center " >
+                      <i className="ti ti-search ti-md me-2 mt-1"></i>
+                              {/* <label htmlFor="firstName" className="form-label">FirstName</label> */}
+                              <input
+                                className="form-control  w-96"
+                                type="text"
+                                id="search"
+                                name="search"
+                                ref={searchInputRef}
+                                value={query}
+                                onChange={(e) => setQuery(e.target.value)}
+                                placeholder='Search (Ctrl+/)'
+                                // value={FirstName}
+                                // onChange={(e) => setFirstName(e.target.value)}
+                                // autoFocus
+                              />
+                            </div>
+                      
+                      {/* <span className="d-none d-md-inline-block text-muted">Search (Ctrl+/)</span>
+                      <input type="text" name='serach bar ' /> */}
+                    </div>
                   </div>
                 </div>
                 {/* <!-- /Search --> */}

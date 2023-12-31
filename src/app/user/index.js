@@ -41,7 +41,7 @@ if (role==='undefine') {
 
         <aside id="layout-menu" className="layout-menu menu-vertical menu bg-menu-theme  drop-shadow-2xl  md:drop-shadow-0 xl:drop-shadow-sm" >
           <div className="app-brand demo ">
-            <Link href="/" className="app-brand-link">
+            <Link href="/user" className="app-brand-link">
             <span className=" demo">
                   <Img src="/img/favicon/favicon.ico" width={30} height={30} alt="Logo" />
 

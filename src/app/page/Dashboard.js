@@ -2,7 +2,7 @@
 import React from "react";
 import Img from "next/image";
 import Link from "next/link";
-
+import Manager from './add/addManager/page'
 const Dashboard = ({ data }) => {
   return (
     <>
@@ -26,7 +26,7 @@ const Dashboard = ({ data }) => {
                   <div className="col-xl-4 col-lg-6 col-md-6">
                     <div className="card">
                       <div className="card-body">
-                        <div className="d-flex justify-content-between">
+                        <div className="">
                           <h6 className="fw-normal mb-2">
                             Total {data.admin + 1} users
                           </h6>
@@ -123,6 +123,75 @@ const Dashboard = ({ data }) => {
                       </div>
                     </div>
                   </div>
+                  {/* manager */}
+                  <div class="col-xl-4 col-lg-6 col-md-6">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between">
+                        <h6 class="fw-normal mb-2">Total {data.Manager} users</h6>
+                        <ul class="list-unstyled d-flex align-items-center avatar-group mb-0">
+                          <li
+                            data-bs-toggle="tooltip"
+                            data-popup="tooltip-custom"
+                            data-bs-placement="top"
+                            title="Jimmy Ressula"
+                            class="avatar avatar-sm pull-up"
+                          >
+                            <Img width={100} height={100} class="rounded-circle" src="/img/avatars/4.png" alt="Avatar" />
+                          </li>
+                          <li
+                            data-bs-toggle="tooltip"
+                            data-popup="tooltip-custom"
+                            data-bs-placement="top"
+                            title="John Doe"
+                            class="avatar avatar-sm pull-up"
+                          >
+                            <Img width={100} height={100} class="rounded-circle" src="/img/avatars/1.png" alt="Avatar" />
+                          </li>
+                          <li
+                            data-bs-toggle="tooltip"
+                            data-popup="tooltip-custom"
+                            data-bs-placement="top"
+                            title="Kristi Lawker"
+                            class="avatar avatar-sm pull-up"
+                          >
+                            <Img width={100} height={100} class="rounded-circle" src="/img/avatars/2.png" alt="Avatar" />
+                          </li>
+                          <li
+                            data-bs-toggle="tooltip"
+                            data-popup="tooltip-custom"
+                            data-bs-placement="top"
+                            title="Kaith D'souza"
+                            class="avatar avatar-sm pull-up"
+                          >
+                            <Img width={100} height={100} class="rounded-circle" src="/img/avatars/3.png" alt="Avatar" />
+                          </li>
+                          <li
+                            data-bs-toggle="tooltip"
+                            data-popup="tooltip-custom"
+                            data-bs-placement="top"
+                            title="Danny Paul"
+                            class="avatar avatar-sm pull-up"
+                          >
+                            <Img width={100} height={100} class="rounded-circle" src="/img/avatars/7.png" alt="Avatar" />
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="d-flex justify-content-between align-items-end mt-1">
+                        <div class="role-heading">
+                          <h4 class="mb-1">Manager</h4>
+                          <a
+                            href="javascript:;"
+                            data-bs-toggle="modal"
+                            data-bs-target="#addRoleModal"
+                            class="role-edit-modal"
+                            ><span>Edit Role</span></a>
+                        </div>
+                        <a href="javascript:void(0);" class="text-muted"><i class="ti ti-copy ti-md"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                   <div className="col-xl-4 col-lg-6 col-md-6">
                     <div className="card">
                       <div className="card-body">
@@ -223,12 +292,13 @@ const Dashboard = ({ data }) => {
                       </div>
                     </div>
                   </div>
+                  
                   <div className="col-xl-4 col-lg-6 col-md-6">
                     <div className="card">
                       <div className="card-body">
                         <div className="d-flex justify-content-between">
                           <h6 className="fw-normal mb-2">
-                            Total {data.user} Users
+                            Total {data.User} Users
                           </h6>
                           <ul className="list-unstyled d-flex align-items-center avatar-group mb-0">
                             <li
@@ -323,7 +393,7 @@ const Dashboard = ({ data }) => {
                       </div>
                     </div>
                   </div>
-
+{/* patient */}
                   
                   <div className="col-xl-4 col-lg-6 col-md-6">
                     <div className="card">
@@ -425,6 +495,9 @@ const Dashboard = ({ data }) => {
                       </div>
                     </div>
                   </div>
+                  {/* add role */}
+                  <Manager/>
+              </div>
                 </div>
               </div>
 
@@ -432,7 +505,7 @@ const Dashboard = ({ data }) => {
             </div>
           </div>
         </div>
-      </div>
+      {/* </div> */}
     </>
   );
 };

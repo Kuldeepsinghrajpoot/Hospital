@@ -8,12 +8,14 @@ import Img from 'next/image'
 import React, { useState, useContext } from 'react';
 import { toast } from 'react-toastify';
 import * as Yup from 'yup'
-
+import ReCAPTCHA from 'react-google-recaptcha';
 import YourContext from '../../context/createContext';
 export default function LoginForm() {
   // const { yourFunction } = useContext(YourContext)
   // // alert(session)
   // console.log(yourFunction);
+  const [recaptchaValue, setRecaptchaValue] = useState(null);
+
   const [password, setpassword] = useState(false);
   const slashpassword = (e) => {
     // console.log("value of e-->"+e);
@@ -36,6 +38,20 @@ export default function LoginForm() {
     }),
 
     onSubmit: async (values) => {
+      if (!recaptchaValue) {
+        toast.error(' Please fill the recaptcha', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+        // Handle the case where reCAPTCHA is not completed
+        return;
+      }
       setLoading(true); // Set loading to true when the form is submitted
       try {
         const email = values.Email;
@@ -44,6 +60,7 @@ export default function LoginForm() {
           email,
           password,
           redirect: false,
+          recaptcha: recaptchaValue,
         });
         if (res.ok) {
           toast.success('Successful loged in', {
@@ -90,7 +107,7 @@ export default function LoginForm() {
     <div>
       <div className="container-xxl">
         <div className="authentication-wrapper authentication-basic container-p-y">
-          <div className="authentication-inner py-4">
+          <div className="authentication-inner">
             {/* <!-- Login --> */}
             <div className="card">
               <div className="card-body">
@@ -156,6 +173,8 @@ export default function LoginForm() {
                     </div>
                   </div>
                   <div className="mb-3">
+                  <ReCAPTCHA  className="flex justify-center mb-2" sitekey="6Lfe9T8pAAAAAM8Mu3vv7svYB4t7KksBMbuYPjme" onChange={(value) => setRecaptchaValue(value)} />
+
                     <button
                       className=" flex justify-center items-center w-100 bg-[#7367F0] hover:bg-[#7b70fa] text-white font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded w-full"
                       type="submit"
@@ -172,6 +191,7 @@ export default function LoginForm() {
                         'Login'
                       )}
                     </button>
+                    
                   </div>
                 </form>
                 <p className="text-center">

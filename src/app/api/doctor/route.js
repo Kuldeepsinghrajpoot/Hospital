@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import connectMongoDB from "../../../db/mongodb";
 import Doctor from "@/models/schema";
 import bcrypt from 'bcryptjs'
+import Manager from "@/models/schema";
+
 export async function POST(request) {
   const {name,lastname,email,password,contactnumber,dob,gender,address,role} = await request.json();
 
@@ -17,5 +19,6 @@ export async function POST(request) {
 export async function GET() {
   await connectMongoDB();
   const doctor = await Doctor.find({role:"Doctor"});
-  return NextResponse.json({doctor});
+  const manager = await Manager.find({role:"Manager"});
+  return NextResponse.json({doctor,manager});
 }

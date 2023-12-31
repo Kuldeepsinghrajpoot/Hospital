@@ -50,7 +50,7 @@ const Invoice = ({ name, doctor, appointmentDate, appointmentId, id, phone, age,
           <p className="mb-0">+917398391052</p>
         </div>
         <div>
-          <h4 className="fw-bold">INVOICE #{id}</h4>
+          <h4 className="fw-bold">Appointment No. #{appointmentId}</h4>
           <div className="mb-2">
             <span className="text-muted">Date Issues:</span>
             <span className="fw-bold">{standardDate}</span>

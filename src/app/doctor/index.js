@@ -38,7 +38,7 @@ export default function Home() {
 
         <aside id="layout-menu" className="layout-menu menu-vertical menu bg-menu-theme  drop-shadow-2xl  md:drop-shadow-0 xl:drop-shadow-sm" >
           <div className="app-brand demo ">
-            <Link href="/" className="app-brand-link">
+            <Link href="/doctor" className="app-brand-link">
             <span className=" demo">
                   <Img src="/img/favicon/favicon.ico" width={30} height={30} alt="Logo" />
 
@@ -203,7 +203,7 @@ export default function Home() {
                 <li className="nav-item navbar-dropdown dropdown-user dropdown">
                   <div className="nav-link dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                     <div className="avatar avatar-online">
-                      <img src="/img/avatars/1.png" alt="img" className="h-auto rounded-circle" />
+                      <Img width={100} height={100} src="/img/avatars/1.png" alt="img" className="h-auto rounded-circle" />
                     </div>
                   </div>
                   {/*  dropdown-menu */}

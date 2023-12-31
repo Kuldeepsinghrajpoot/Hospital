@@ -21,7 +21,7 @@ if (!data) {
 // console.log(patientDetails);
 return (
   <>
-    <Searching data={data.doctor}/>
+    <Searching data={data.manager}/>
   </>
 );
 }

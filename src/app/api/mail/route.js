@@ -1,9 +1,10 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer'
 import connectMongoDB from "@/db/mongodb";
-import img from './favicon.ico'
 import User from '@/models/schema'
 import Cryptr from 'cryptr'
+// const path = require('path');
+import path from 'path'
 import cryptoRandomString from 'crypto-random-string'
 // async..await is not allowed in global scope, must use a wrapper
 export async function POST(request) {
@@ -34,23 +35,19 @@ const url = `${process.env.URI}/resetpassword/${encrypted_email}/?signature=${ra
     const info = await transporter.sendMail({
       from: process.env.LOGIN, // sender address
       to: user.email, // list of receivers
-      subject: "Reset password ", // Subject line
+      subject: "Reset password", // Subject line
       html: `<!DOCTYPE html>
-        <html
-        lang="en">
+        <html lang="en">
         <head>
-        <meta
-        charset="UTF-8">
-        <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"> 
-        <title>Recover your password on Uday Clinic</title>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Recover your password on Uday Clinic</title>
           <style>
             body {
               font-family: Arial, sans-serif;
               margin: 0;
               padding: 0;
-              color:black
+              color: black;
             }
             .container {
               padding: 20px;
@@ -59,9 +56,9 @@ const url = `${process.env.URI}/resetpassword/${encrypted_email}/?signature=${ra
               text-align: center;
               margin-bottom: 20px;
             }
-            .logo image{
-                width:100px;
-                height:100px;
+            .logo img {
+              width: 100px;
+              height: 100px;
             }
             .message {
               line-height: 1.5;
@@ -82,7 +79,7 @@ const url = `${process.env.URI}/resetpassword/${encrypted_email}/?signature=${ra
         <body>
           <div class="container">
             <div class="logo">
-              <img src=${img} alt="Uday Clinic" />
+              <img src="cid:unique@logo" alt="Uday Clinic" />
               <h1>Uday Clinic</h1>
             </div>
             <h2 class="message">Hi ${user.name} ${user.lastname},</h2>
@@ -94,24 +91,19 @@ const url = `${process.env.URI}/resetpassword/${encrypted_email}/?signature=${ra
             <p class="message">The Uday Clinic Team</p>
           </div>
         </body>
-        </html>`
+        </html>`,
+      attachments: [
+        {
+          filename: 'favicon.ico', // change to your image file name
+          path: path.join(process.cwd(), 'favicon.ico'), // assuming the image file is in the same directory
+          cid: 'unique@logo', // use a unique Content-ID value
+        },
+      ],
     });
+    
     return NextResponse.json(info.messageId)
   } catch (error) {
     console.log("\nerror on token", error);
     return NextResponse.json({ message: "Error updating token" });
   }
-}
-
-
-
-
-export async function PUT(request) {
-  // const passwordsMatch = await bcrypt.compare(currentPassword, user.password);
-  const { confirmPassword: password, userid } = await request.json();
-  // const userinfo = await User.findById({_id:userid});
-  const hashedPassword = await bcrypt.hash(password, 10);
-  await connectMongoDB();
-  const user = await User.findByIdAndUpdate(userid, { password: hashedPassword }, { new: true });
-  return NextResponse.json({ message: "update password" }, { status: 200 });
 }
