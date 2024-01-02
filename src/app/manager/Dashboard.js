@@ -2,7 +2,7 @@
 import React from "react";
 import Img from "next/image";
 import Link from "next/link";
-import Manager from './add/addmanager/page'
+
 const Dashboard = ({ data }) => {
   return (
     <>
@@ -77,13 +77,9 @@ const Dashboard = ({ data }) => {
                       <div class="d-flex justify-content-between align-items-end mt-1">
                         <div class="role-heading">
                           <h4 class="mb-1">Administrator</h4>
-                          <Link
-                            href="/page"
-                         
-                            class="role-edit-modal"
-                            ><span>Visit page</span></Link>
+                      
                         </div>
-                        <a  class="text-muted"><i class="ti ti-copy ti-md"></i></a>
+                        <a href="javascript:void(0);" class="text-muted"><i class="ti ti-copy ti-md"></i></a>
                       </div>
                     </div>
                   </div>
@@ -144,13 +140,9 @@ const Dashboard = ({ data }) => {
                       <div class="d-flex justify-content-between align-items-end mt-1">
                         <div class="role-heading">
                           <h4 class="mb-1">Manager</h4>
-                          <Link
-                            href="/page/Manager"
-                         
-                            class="role-edit-modal"
-                            ><span>Visit page</span></Link>
+                     
                         </div>
-                        <a  class="text-muted"><i class="ti ti-copy ti-md"></i></a>
+                        <a href="javascript:void(0);" class="text-muted"><i class="ti ti-copy ti-md"></i></a>
                       </div>
                     </div>
                   </div>
@@ -211,13 +203,9 @@ const Dashboard = ({ data }) => {
                       <div class="d-flex justify-content-between align-items-end mt-1">
                         <div class="role-heading">
                           <h4 class="mb-1">Doctors</h4>
-                          <Link
-                            href="/page/doctor"
-                           
-                            class="role-edit-modal"
-                            ><span>Visit page</span></Link>
+                         
                         </div>
-                        <a  class="text-muted"><i class="ti ti-copy ti-md"></i></a>
+                        <a href="javascript:void(0);" class="text-muted"><i class="ti ti-copy ti-md"></i></a>
                       </div>
                     </div>
                   </div>
@@ -278,12 +266,9 @@ const Dashboard = ({ data }) => {
                       <div class="d-flex justify-content-between align-items-end mt-1">
                         <div class="role-heading">
                           <h4 class="mb-1">Patient</h4>
-                          <Link
-                            href="/page/patient"
-                        
-                            ><span>Visit page</span></Link>
+                         
                         </div>
-                        <a  class="text-muted"><i class="ti ti-copy ti-md"></i></a>
+                        <a href="javascript:void(0);" class="text-muted"><i class="ti ti-copy ti-md"></i></a>
                       </div>
                     </div>
                   </div>
@@ -344,19 +329,15 @@ const Dashboard = ({ data }) => {
                       <div class="d-flex justify-content-between align-items-end mt-1">
                         <div class="role-heading">
                           <h4 class="mb-1"> User</h4>
-                          <Link
-                            href="/page/user"
-                         
-                            class="role-edit-modal"
-                            ><span>Visit page</span></Link>
+                        
                         </div>
-                        <div  class="text-muted"><i class="ti ti-copy ti-md"></i></div>
+                        <a href="javascript:void(0);" class="text-muted"><i class="ti ti-copy ti-md"></i></a>
                       </div>
                     </div>
                   </div>
                 </div>
                   {/* add role */}
-                  <Manager/>
+                  {/* <Manager/> */}
               </div>
                 </div>
               </div>

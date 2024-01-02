@@ -30,6 +30,10 @@ if (role==='undefine') {
     router.push("/page");
     return;
   }
+  else if(role==='Manager'){
+    router.push("/manager");
+    return;
+  }
   function handleClick() {
     setDivClass(divClass === 'initial-class' ? 'transition ease-in-out delay-150  light-style layout-navbar-fixed layout-menu-100vh layout-menu-fixed layout-footer-fixed layout-menu-expanded' : 'initial-class');
   }

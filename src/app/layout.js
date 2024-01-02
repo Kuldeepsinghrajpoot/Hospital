@@ -6,7 +6,7 @@ import { ToastContainer } from 'react-toastify';
 import { AuthProvider } from './Provider'
 import 'react-toastify/dist/ReactToastify.css';
 import ContextProvider from './context/ContextProvider';
-
+import NextTopLoader from 'nextjs-toploader';
 // import Nav from './nav'
 import "../assets/vendor/fonts/fontawesome.css"
 import "../assets/vendor/fonts/tabler-icons.css"
@@ -75,6 +75,7 @@ export default function RootLayout({ children }) {
         <AuthProvider>
           <ContextProvider>
             <ToastContainer />
+            <NextTopLoader  color="#7367F0"  crawlSpeed={200}/>
             {children}
             <SpeedInsights />
           </ContextProvider>

@@ -2,30 +2,8 @@
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Loading from './loading'
-const Page = () => {
-    const [data, setData] = useState([]);
-    const [loading, setLoading] = useState(true);
-
-    const getData = async () => {
-        try {
-            const response = await axios.get('/api/appointmentsDetalis', {
-                // You can set additional configurations here
-            });
-            const data = response.data.Appointment;
-            setData(data);
-            setLoading(false); // Set loading to false when data is fetched
-        } catch (error) {
-            // Handle any errors that occur during the request
-            console.error('Error fetching data:', error);
-            setLoading(false); // Update loading state in case of error
-        }
-    };
-
-    useEffect(() => {
-        getData();
-    }, []);
-
+const Page = ({data}) => {
+    
     if (!data) {
         return;
     }
@@ -36,9 +14,7 @@ const Page = () => {
                     <div className="layout-page">
                         <div className="content-wrapper">
                             <div className="container-xxl flex-grow-1 container-p-y">
-                                {loading ? (
-                                    <div><Loading></Loading></div> // Show a loader while fetching data
-                                ) : (
+                                {
                                     <div className="row">
                                         {data.length === 0 ? (
                                             <div>No Appointment</div>
@@ -123,7 +99,7 @@ const Page = () => {
                                             })
                                         )}
                                     </div>
-                                )}
+                                }
                             </div>
                             <div className="content-backdrop fade"></div>
                         </div>

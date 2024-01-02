@@ -17,7 +17,7 @@ export async function POST(request) {
   }
   const hasPassword = await bcrypt.hash(password, 10);
   await user.create({ name, lastname, email, password: hasPassword, contactnumber, Age, gender, address, role });
-  return NextResponse.json({ message: "sucessfull created" }, { status: 201 });
+  return NextResponse.json({ message: "sucessfully created" }, { status: 200 });
 }
 
 export async function GET() {

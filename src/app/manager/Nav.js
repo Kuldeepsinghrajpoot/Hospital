@@ -24,7 +24,7 @@ export default function Home() {
     // }, 1); // Delay in milliseconds
   
     // return () => clearTimeout(timeoutId);
-  }, [query, router]);
+  }, [query, route]);
   
   const [divClass, setDivClass] = useState('initial-class');
   const [drop, setdrop] = useState('dropdown-menu');
@@ -34,10 +34,12 @@ export default function Home() {
   } else if (role === 'Doctor') {
     route.push("/doctor");
     return;
-  }  else if(role==='Manager'){
-    route.push("/manager");
+  }
+  else if (role === 'Admin') {
+    route.push("/doctor");
     return;
   }
+ 
   function dropDown() {
     setdrop(drop === 'dropdown-menu' ? '' : 'dropdown-menu')
   }
@@ -51,7 +53,7 @@ export default function Home() {
           {/* <!-- Menu --> */}
           <aside id="layout-menu" className="layout-menu menu-vertical menu bg-menu-theme  drop-shadow-2xl  md:drop-shadow-0 xl:drop-shadow-sm" >
             <div className="app-brand demo ">
-              <Link href="/page" className="app-brand-link">
+              <Link href="/manager" className="app-brand-link">
                 <span className=" demo">
                   <Img src="/img/favicon/favicon.ico" width={30} height={30} alt="Logo" />
 
@@ -68,8 +70,8 @@ export default function Home() {
               {/* <!-- Dashboards --> */}
               {/* active */}
               {/* <!-- Layouts --> */}
-              <li className={`${router == '/page' ? "menu-item active" : "menu-item"}`}>
-                <Link href="/page" className="menu-link">
+              <li className={`${router == '/manager' ? "menu-item active" : "menu-item"}`}>
+                <Link href="/manager" className="menu-link">
                   <i className="menu-icon tf-icons ti ti-smart-home"></i>
                   <div data-i18n="Analytics">Dashboard</div>
                 </Link>
@@ -78,50 +80,34 @@ export default function Home() {
               <li className="menu-header small text-uppercase">
                 <span className="menu-header-text">Apps &amp; Pages</span>
               </li>
-              <li className={`${router == '/page/profile' || router == '/page/profile/updatepassword' ? "menu-item active" : "menu-item"}`}>
-                <Link href="/page/profile" className="menu-link">
+              <li className={`${router == '/manager/profile' || router == '/manager/profile/updatepassword' ? "menu-item active" : "menu-item"}`}>
+                <Link href="/manager/profile" className="menu-link">
                   <i className="menu-icon ti ti-user-check"></i>
                   <div data-i18n="Email">Profile</div>
                 </Link>
               </li>
-              <li className={`${router == '/page/add' ? "menu-item active" : "menu-item"}`}>
-                <Link href="/page/add" className="menu-link">
+              <li className={`${router == '/manager/add' ? "menu-item active" : "menu-item"}`}>
+                <Link href="/manager/add" className="menu-link">
                   <i className="menu-icon tf-icons ti ti-square"></i>
                   <div data-i18n="Chat">Add Patient</div>
                 </Link>
               </li>
               {/* <!-- Icons --> */}
-              <li className={`${router == '/page/user' ? "menu-item active" : "menu-item"}`}>
-                <Link href="/page/user" className="menu-link">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-users-group me-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1" /><path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M17 10h2a2 2 0 0 1 2 2v1" /><path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /><path d="M3 13v-1a2 2 0 0 1 2 -2h2" /></svg> <div data-i18n="Icons">Users</div>
-                </Link>
-              </li>
-              <li className={`${router == '/page/patient' ? "menu-item active" : "menu-item"}`}>
-                <Link href="/page/patient" className="menu-link">
+             
+              <li className={`${router == '/manager/patient' ? "menu-item active" : "menu-item"}`}>
+                <Link href="/manager/patient" className="menu-link">
                   <i class="fa-solid fa-hospital-user me-2" ></i>
                   <div data-i18n="Icons">Patients</div>
                 </Link>
               </li>
-              <li className={`${router == '/page/doctor' ? "menu-item active" : "menu-item"}`}>
-                <Link href="/page/doctor" className="menu-link">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-stethoscope me-2  " width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M6 4h-1a2 2 0 0 0 -2 2v3.5h0a5.5 5.5 0 0 0 11 0v-3.5a2 2 0 0 0 -2 -2h-1" /><path d="M8 15a6 6 0 1 0 12 0v-3" /><path d="M11 3v2" /><path d="M6 3v2" /><path d="M20 10m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /></svg>
-
-                  <div data-i18n="Icons absolute mx-10">Doctors</div>
-                </Link>
-              </li>
-              <li className={`${router == '/page/Manager' ? "menu-item active" : "menu-item"}`}>
-                <Link href="/page/Manager" className="menu-link">
-                <i className="menu-icon ti ti-user-check"></i>
-
-                  <div data-i18n="Icons absolute mx-10">Manager</div>
-                </Link>
-              </li>
+            
+             
 
             </ul>
           </aside>
           {/* <!-- / Menu --> */}
           {/* <!-- Layout container --> */}
-          <div className="layout-page">
+          <div className="layout-manager">
             {/* <!-- Navbar --> */}
             <nav
               className="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
@@ -201,7 +187,7 @@ export default function Home() {
                         <div className="dropdown-divider"></div>
                       </li>
                       <li >
-                        <Link className="dropdown-item" href="/page/profile">
+                        <Link className="dropdown-item" href="/manager/profile">
                           <i className="ti ti-user-check me-2 ti-sm"></i>
                           <span className="align-middle">My Profile</span>
                         </Link>

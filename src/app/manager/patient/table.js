@@ -29,7 +29,6 @@ const Page = ({data}) => {
                         <th>Appointment Date</th>
                         <th>Address</th>
                         <th>Print</th>
-                        <th>Delete</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -39,8 +38,8 @@ const Page = ({data}) => {
                                         ) : (
                       data.map((e) => {
                         const { Name, Doctor, AppointmentDate, Phone,Age,Gender,Address,AppointmentId } = e;
-                        const options = { month: '2-digit', day: '2-digit' ,year: 'numeric', };
-                        const standardDate = new Date(AppointmentDate).toLocaleDateString('en-IN', options);
+                        const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+                        const standardDate = new Date(AppointmentDate).toLocaleDateString('en-US', options);
                         return (
                           <tr key={e._id}>
                             
@@ -53,7 +52,6 @@ const Page = ({data}) => {
                             <td>{standardDate}</td>
                             <td>{Address}</td>
                             <td><Link href={`/${e._id}`} className='flex justify-center  text-black' target='_blank'><i class="ti ti-printer"></i></Link></td>
-                            <td className=' text-center'><Remove id={e._id}></Remove></td>
                             
                           </tr>
                         )

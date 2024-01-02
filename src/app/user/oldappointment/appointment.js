@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Loading from './loading'
+
 import Remove from './remove'
 const Appointment = () => {
     const [data, setData] = useState([]);
@@ -35,9 +35,7 @@ const Appointment = () => {
                 <div className="layout-page">
                     <div className="content-wrapper">
                         {/* Content */}
-                        {loading ? (
-                            <div><Loading></Loading></div> // Show a loader while fetching data
-                        ) : (
+                        {
                             <div className="container-xxl flex-grow-1 container-p-y">
                                 <div className="row">
                                     {data.length === 0 ? (
@@ -45,7 +43,7 @@ const Appointment = () => {
                                     ) : (
 
                                         data.map((e) => {
-                                            const { Name, Gender, Doctor, Status, _id, AppointmentDate, Age, Phone, Email } = e;
+                                            const { Name, Gender, Doctor, Status,_id, AppointmentId, AppointmentDate, Age, Phone, Email } = e;
                                             // const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
                                             // const standardDate = new Date(AppointmentDate).toLocaleDateString('en-IN', options);
 
@@ -68,8 +66,8 @@ const Appointment = () => {
                                             console.log(standardDate); // Output the formatted date in Indian Standard Time
 
                                             return (
-                                                <div className="col-xl-4 col-md-6 mb-4" key={Email}>
-                                                    <div className="card h-100">
+                                                <div className="col-xl-4  mb-4" key={Email}>
+                                                    <div className="card  ">
                                                         <div className="card-header d-flex flex justify-between ">
                                                             <div className=" ">
                                                                 <h5 className="m-0 me-2 ">{Name}</h5>
@@ -96,7 +94,7 @@ const Appointment = () => {
                                                                                 <h6 className="mb-0">Appointment id</h6>
                                                                             </div>
                                                                             <div className="user-progress">
-                                                                                <small>{_id}</small>
+                                                                                <small>{AppointmentId}</small>
                                                                             </div>
                                                                         </div>
                                                                         {/* date */}
@@ -168,7 +166,7 @@ const Appointment = () => {
                             </div>
 
 
-                        )}
+                        }
 
 
 

@@ -21,6 +21,9 @@ export default function Home() {
   } else if (role === 'Admin') {
     router.push("/page");
     return;
+  }  else if(role==='Manager'){
+    router.push("/manager");
+    return;
   }
  
   function dropDown() {

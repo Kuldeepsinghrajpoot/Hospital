@@ -21,6 +21,9 @@ export default async function Home() {
   if (role==="Admin") {
     redirect("/page")
   }
+  if (role==="Manager") {
+    redirect("/manager")
+  }
   return (
     <main>
       <LoginForm />

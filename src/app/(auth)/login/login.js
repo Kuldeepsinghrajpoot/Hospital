@@ -73,7 +73,7 @@ export default function LoginForm() {
             progress: undefined,
             theme: "light",
           });
-          route.replace('/user')
+          route.replace('/page')
           route.refresh()
         } else {
           toast.error(' Please enter vaild credentials', {

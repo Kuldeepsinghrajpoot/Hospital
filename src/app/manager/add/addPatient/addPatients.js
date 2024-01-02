@@ -29,7 +29,7 @@ const [loading, setloading] = useState(false);
         initialValues: initialize,
         validationSchema: Yup.object({
             Name: Yup.string().required("Name is required"),
-            Phone: Yup.string().matches(/^\d{10}$/, "Phone must be a 10-digit number"),
+            Phone: Yup.string().required("Phone is required"),
             Age: Yup.string().required("Age is requied"),
             Gender: Yup.string().required("Gender is requied"),
             Doctor: Yup.string().required("Doctor is requied"),

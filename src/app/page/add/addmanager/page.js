@@ -3,8 +3,11 @@ import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
+import Img from 'next/image'
+import {useRouter} from 'next/navigation'
 
-const DoctorTable = () => {
+const Manager = () => {
+    const router = useRouter();
     const [loading, setloading] = useState(false);
     const initialValues = {
         name: "",
@@ -68,6 +71,7 @@ const DoctorTable = () => {
                         theme: "light",
                     });
                     resetForm()
+                    router.refresh();
                     // route.replace('/user')
                 }
             } catch (error) {
@@ -85,20 +89,20 @@ const DoctorTable = () => {
                     <div class="row h-100">
                         <div class="col-sm-5">
                             <div class="d-flex align-items-end h-100 justify-content-center mt-sm-0 mt-3">
-                                <img
+                                <Img width={83} height={100}
                                     src="/img/illustrations/add-new-roles.png"
                                     class="img-fluid mt-sm-4 mt-md-0"
                                     alt="add-new-roles"
-                                    width="83"
+                                    
                                 />
                             </div>
                         </div>
                         <div class="col-sm-7">
                             <div class="card-body text-sm-end text-center ps-sm-0">
-                                <button
+                                <button style={{background:"#7367F0" , color:"white"}}
                                     data-bs-target="#addRoleModal"
                                     data-bs-toggle="modal"
-                                    class="btn btn-primary mb-2 text-nowrap add-new-role"
+                                    class="btn btn-primary mb-2 text-nowrap add-new-role "
                                 >
                                     Add New Role
                                 </button>
@@ -297,11 +301,11 @@ const DoctorTable = () => {
                                 </div>
                                     <div className=" grid grid-cols-2 gap-1">
                                         <div className="flex items-center pl-4 border gap-2 border-gray-200 rounded dark:border-gray-700">
-                                            <input onChange={handleChange} onBlur={handleBlur} id="role" type="radio" value={"Doctor"} name="role" />
+                                            <input onChange={handleChange} onBlur={handleBlur} id="roleDoctor" type="radio" value={"Doctor"} name="role" />
                                             <label htmlFor="role" className="w-full py-2 "> Doctor</label>
                                         </div>
                                         <div className="flex items-center pl-4 border gap-2 border-gray-200 rounded dark:border-gray-700">
-                                            <input onChange={handleChange} onBlur={handleBlur} id="role" type="radio" value={"Manager"} name="role" />
+                                            <input onChange={handleChange} onBlur={handleBlur} id="roleManager" type="radio" value={"Manager"} name="role" />
                                             <label htmlFor="role" className="w-full py-2 "> Manager</label>
                                         </div>
                                         
@@ -342,4 +346,4 @@ const DoctorTable = () => {
     );
 }
 
-export default DoctorTable;
+export default Manager;

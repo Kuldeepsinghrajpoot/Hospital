@@ -38,12 +38,12 @@ const Invoice = ({ name, doctor, appointmentDate, appointmentId, id, phone, age,
   return (
     <div className="invoice-print bg-white w-screen h-screen">
       <div className="d-flex justify-content-between flex-row">
-        <div className="mb-4">
+        <div className="">
           <div className="d-flex svg-illustration mb-3 gap-2">
-            <Img src="/img/favicon/favicon.ico" width={80} height={80} alt="Logo" />
+            <Img src="/img/favicon/favicon.ico" width={50} height={50} alt="Logo" />
 
 
-            <span className="app-brand-text fw-bold position-absolute top-9 start-20   text-2xl"> Uday Clinic </span>
+            <span className="app-brand-text fw-bold position-absolute top-2 start-12   text-2xl"> Uday Clinic </span>
           </div>
           <p className="mb-1">एफ-9, 10, फर्स्ट फ्लोर, वीरांगना जे.डी.ए. कॉम्पलैक्स, मेडिकल कॉलेज के पास,झॉसी</p>
           <p className="mb-1">झॉसी, उत्तर प्रदेश,भारत</p>
@@ -75,10 +75,7 @@ const Invoice = ({ name, doctor, appointmentDate, appointmentId, id, phone, age,
                   <td className="pe-3">Address:</td>
                   <td>{address}</td>
                 </tr>
-                <tr>
-                  <td className="pe-3">Phone:</td>
-                  <td>{phone}</td>
-                </tr>
+               
                 <tr>
                   <td className="pe-3">Doctor Name:</td>
                   <td>Dr.{doctor}</td>
@@ -101,7 +98,10 @@ const Invoice = ({ name, doctor, appointmentDate, appointmentId, id, phone, age,
                 <td>{age}Year/{gender}</td>
               </tr>
             
-
+              <tr>
+                  <td className="pe-3">Phone:</td>
+                  <td>{phone}</td>
+                </tr>
             </tbody>
           </table>
         </div>
@@ -140,13 +140,13 @@ const Invoice = ({ name, doctor, appointmentDate, appointmentId, id, phone, age,
               </td>
               <td className="text-end px-4 py-3">
                 <p className="mb-2">Subtotal:</p>
-                <p className="mb-2">Discount:</p>
+                
 
                 <p className="mb-0">Total:</p>
               </td>
               <td className="px-4 py-3">
                 <p className="fw-bold mb-2">300.00</p>
-                <p className="fw-bold mb-2">00.00</p>
+              
 
                 <p className="fw-bold mb-0">300.00</p>
               </td>
@@ -158,7 +158,7 @@ const Invoice = ({ name, doctor, appointmentDate, appointmentId, id, phone, age,
       <div className="row">
         <div className="col-12">
           <span className="fw-bold">Note:</span>
-          <span>Your appointment is void for 7 days only.</span> <br />
+          <span>Your appointment is valid for 7 days only.</span> <br />
           <span>Thank You!</span>
         </div>
       </div>
