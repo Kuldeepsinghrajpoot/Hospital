@@ -85,7 +85,7 @@ const UpdateData = ({ firstName, lastName, email, contactNumber, dOB, gender, ad
                         ><i className="ti-xs ti ti-users me-1"></i> Account</div>
                       </li>
                       <li className="nav-item">
-                        <Link className="nav-link" href="/doctor/profile/updatepassword"><i className="ti-xs ti ti-lock me-1"></i> Security</Link>
+                        <Link className="nav-link" href="/user/profile/updatepassword"><i className="ti-xs ti ti-lock me-1"></i> Security</Link>
                       </li>
                     </ul>
                     <div class="card mb-4">

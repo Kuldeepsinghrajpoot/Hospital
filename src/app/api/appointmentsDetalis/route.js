@@ -1,22 +1,14 @@
 import { NextResponse } from "next/server";
-import connectMongoDB from "../../../db/mongodb";
+import connectMongoDB from "@/db/mongodb";
 import appointment from "@/models/appointment";
 
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-
-
-export async function GET() {
-
-    const sessionid = await getServerSession(authOptions);
-    const id = sessionid?.user?.id;
-    
-    // const token = req.headers.authorization;
+export async function GET(request) {
+    const id = request.nextUrl.searchParams.get("id");
+   
+    await connectMongoDB();
     try {
-      
-        await connectMongoDB();
-        
-        const Appointment = await appointment.find({UserId:id});
+
+        const Appointment = await appointment.find({ UserId: id });
         return NextResponse.json({ Appointment })
 
     } catch (error) {
@@ -26,8 +18,8 @@ export async function GET() {
 export async function DELETE(request) {
     const id = request.nextUrl.searchParams.get("id");
     await connectMongoDB();
-    console.log("this is id",id);
+    console.log("this is id", id);
     await appointment.findByIdAndDelete(id);
-  
+
     return NextResponse.json({ message: "Topic deleted" }, { status: 200 });
-  }
+}

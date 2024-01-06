@@ -11,9 +11,7 @@ import * as Yup from 'yup'
 import ReCAPTCHA from 'react-google-recaptcha';
 import YourContext from '../../context/createContext';
 export default function LoginForm() {
-  // const { yourFunction } = useContext(YourContext)
-  // // alert(session)
-  // console.log(yourFunction);
+;
   const [recaptchaValue, setRecaptchaValue] = useState(null);
 
   const [password, setpassword] = useState(false);
@@ -63,6 +61,7 @@ export default function LoginForm() {
           recaptcha: recaptchaValue,
         });
         if (res.ok) {
+          route.replace('page')
           toast.success('Successful loged in', {
             position: "top-right",
             autoClose: 5000,
@@ -73,7 +72,6 @@ export default function LoginForm() {
             progress: undefined,
             theme: "light",
           });
-          route.replace('/page')
           route.refresh()
         } else {
           toast.error(' Please enter vaild credentials', {
@@ -86,6 +84,7 @@ export default function LoginForm() {
             progress: undefined,
             theme: "light",
           });
+          return;
         }
       } catch (error) {
         toast.error(' Please enter vaild credentials', {

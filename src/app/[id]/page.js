@@ -21,9 +21,13 @@ export default async function Invoice({ params }) {
     
     
     const { printAppointment } = await getTopicById(id);
-    const { Name, Doctor, AppointmentDate, Phone, Age, Gender, Address,AppointmentId,_id } = printAppointment;
+    const { Name, Doctor, Phone, Age, Gender, Address,AppointmentId,_id,
+      createdAt
+       } = printAppointment;
     // console.log(Name);
-    return <PrintAppoitment name={Name} doctor={Doctor} appointmentDate={AppointmentDate} phone={Phone} age={Age} gender={Gender} address={Address} appointmentId={AppointmentId} id={_id}/>;
+    return <PrintAppoitment name={Name} doctor={Doctor} appointmentDate={createdAt} phone={Phone} age={Age} gender={Gender} address={Address} appointmentId={
+      AppointmentId
+      } id={_id}/>;
   } catch (error) {
     
     return<>

@@ -4,17 +4,18 @@ import user from "@/models/schema";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]/route";
 
-export async function GET() {
+export async function GET(request) {
+  const id = request.nextUrl.searchParams.get("id")
+  try {
 
-    const sessionid = await getServerSession(authOptions);
-    const userid = sessionid?.user?.id;
-    try {
-        await connectMongoDB();
-        const userinfo = await user.find({ _id: userid });
-        return NextResponse.json(userinfo)
-    } catch (error) {
-        console.log(error);
-    }
+      await connectMongoDB();
+
+      const Appointment = await user.find({_id:id});
+      return NextResponse.json({ Appointment })
+
+  } catch (error) {
+      console.log(error);
+  }
 }
 export async function PUT(request) {
     const sessionid = await getServerSession(authOptions);

@@ -14,14 +14,14 @@ export default async function Home() {
       redirect("/user")
   }
   
-  if (role==='Doctor') {
+  else if (role==='Doctor') {
     redirect("/doctor")
   }
 
-  if (role==="Admin") {
+  else if (role==="Admin") {
     redirect("/page")
   }
-  if (role==="Manager") {
+  else if (role==="Manager") {
     redirect("/manager")
   }
   return (

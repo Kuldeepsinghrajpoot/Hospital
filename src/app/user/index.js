@@ -17,21 +17,17 @@ export default function Home() {
   const [divClass, setDivClass] = useState('initial-class');
  
 
-if (role==='undefine') {
-  // signOut()
-  router.push("/login")
-  router.refresh()
-}
+
    if(role==='Doctor'){
-    router.push("/doctor");
+    router.replace("/doctor");
     return;
   }
   else if(role==='Admin'){
-    router.push("/page");
+    router.replace("/page");
     return;
   }
   else if(role==='Manager'){
-    router.push("/manager");
+    router.replace("/manager");
     return;
   }
   function handleClick() {

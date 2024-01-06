@@ -78,7 +78,7 @@ const UpdateData = ({ firstName, lastName, email, contactNumber, dOB, gender, ad
                         ><i className="ti-xs ti ti-users me-1"></i> Account</div>
                       </li>
                       <li className="nav-item">
-                        <Link className="nav-link" href="/doctor/profile/updatepassword"><i className="ti-xs ti ti-lock me-1"></i> Security</Link>
+                        <Link className="nav-link" href="/page/profile/updatepassword"><i className="ti-xs ti ti-lock me-1"></i> Security</Link>
                       </li>
                     </ul>
                     <div class="card mb-4">
@@ -94,9 +94,9 @@ const UpdateData = ({ firstName, lastName, email, contactNumber, dOB, gender, ad
                             width={100}
                             height={100}
                           />
-                          <div class="button-wrapper">
+                          <div class="button-wrapper" >
                             <label for="upload" class="btn btn-primary me-2 mb-3" tabindex="0">
-                              <span class="d-none d-sm-block">Upload new photo</span>
+                              <span class="d-none d-sm-block" style={{background:"#7367F0" , color:"white"}}>Upload new photo</span>
                               <i class="ti ti-upload d-block d-sm-none"></i>
                               <input
                                 type="file"

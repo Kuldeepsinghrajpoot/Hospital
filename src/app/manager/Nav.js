@@ -24,19 +24,19 @@ export default function Home() {
     // }, 1); // Delay in milliseconds
   
     // return () => clearTimeout(timeoutId);
-  }, [query, route]);
+  }, []);
   
   const [divClass, setDivClass] = useState('initial-class');
   const [drop, setdrop] = useState('dropdown-menu');
   if (role === 'user') {
-    route.push("/user")
+    route.replace("/user")
     return;
   } else if (role === 'Doctor') {
-    route.push("/doctor");
+    route.replace("/doctor");
     return;
   }
   else if (role === 'Admin') {
-    route.push("/doctor");
+    route.replace("/page");
     return;
   }
  

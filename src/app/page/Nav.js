@@ -29,13 +29,13 @@ export default function Home() {
   const [divClass, setDivClass] = useState('initial-class');
   const [drop, setdrop] = useState('dropdown-menu');
   if (role === 'user') {
-    route.push("/user")
+    route.replace("/user")
     return;
   } else if (role === 'Doctor') {
-    route.push("/doctor");
+    route.replace("/doctor");
     return;
   }  else if(role==='Manager'){
-    route.push("/manager");
+    route.replace("/manager");
     return;
   }
   function dropDown() {

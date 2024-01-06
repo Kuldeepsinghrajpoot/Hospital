@@ -3,7 +3,7 @@ import connectMongoDB from "../../../db/mongodb";
 import appointment from "@/models/appointment";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-
+import moment from 'moment-timezone'
 
 export async function GET() {
     const sessionid = await getServerSession(authOptions);
@@ -11,8 +11,9 @@ export async function GET() {
     // const date = new Date();
     try {
         await connectMongoDB();
-        const date = { year: 'numeric', month: '2-digit', day: '2-digit' };
-        const standardDate = new Date().toLocaleDateString('en-US', date);
+        const originalDate = moment.tz(new Date(), "Asia/Kolkata");
+        // const originalDate = moment.utc(appointmentDate);
+        const standardDate = originalDate.format("MMMM Do YYYY");
         const Appointment = await appointment.find({ AppointmentDate: standardDate }).sort({ createdAt: -1 });
         return NextResponse.json({ Appointment })
     } catch (error) {

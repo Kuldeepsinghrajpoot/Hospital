@@ -1,30 +1,35 @@
-'use client'
-import React, { useState, useEffect } from 'react';
+
+import React from 'react';
 import Update from './updateProfile'
-import axios from 'axios';
-const Page = () => {
-  const [data, setData] = useState([]);
-  const getData = async () => {
-    try {
-      const response = await axios.get('/api/individualUserInformation', {
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+
+const GetData = async () => {
+  getServerSession(authOptions)
+  const session = await getServerSession(authOptions)
+  const url = process.env.URI;
+  try {
+      const response = await fetch(`${url}/api/individualUserInformation?id=${session?.user?.id}`, {
+          cache: "no-store",
       });
-      const data = response.data;
-      setData(data);
+      // setData(response.data);
+      const data = await response.json();
+      return data;
+  } catch (error) {
+      console.log(error);
+  }
 
-    } catch (error) {
-      console.error('Error fetching data:', error);
-
-    }
-  };
-  useEffect(() => {
-    getData();
-  }, []);
+}
+const Page = async() => {
+const data = await GetData()
 
   if (!data) {
     return;
   }
+  // console.log(data.Appointment);
+  // return;
   return (<>
-    {data.map((e) => {
+    {data.Appointment.map((e) => {
       return (
         <>
           <div key={e._id}><Update firstName={e.name} lastName={e.lastname} email={e.email} contactNumber={e.contactnumber} dOB={e.Age} gender={e.gender} address={e.address}></Update></div>
@@ -38,3 +43,13 @@ const Page = () => {
 }
 
 export default Page;
+
+export async function generateMetadata(){
+  return{
+
+    title:"Profile",
+    description:"user profile"
+  }
+
+  
+}

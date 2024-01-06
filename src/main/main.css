@@ -49,7 +49,7 @@ button:focus,
 }
 
 .form-check-input:checked {
-  background-color: #7266f0;
+  background-color: #991B1B;
   border-color: #7266f0;
 }
 
@@ -903,7 +903,7 @@ ol {
 }
 
 .breadcrumbs.overlay::before {
-  background-color: #7266f0;
+  background-color: #991B1B;
   opacity: 0.9;
 }
 
@@ -1022,7 +1022,7 @@ ol {
   height: 4px;
   width: 50px;
   border-radius: 5px;
-  background: #7266f0;
+  background: #991B1B;
   content: "";
 }
 
@@ -1046,7 +1046,7 @@ ol {
   bottom: -1px;
   height: 2px;
   width: 50px;
-  background: #7266f0;
+  background: #991B1B;
   content: "";
 }
 
@@ -1065,7 +1065,7 @@ ol {
   width: 45px;
   height: 45px;
   line-height: 45px;
-  background: #7266f0;
+  background: #991B1B;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1164,7 +1164,7 @@ ol {
 
 .pagination .pagination-list li.active a,
 .pagination .pagination-list li:hover a {
-  background: #7266f0;
+  background: #991B1B;
   color: #fff;
   border-color: transparent;
 }
@@ -1207,7 +1207,7 @@ ol {
 .button .btn::before {
   height: 100%;
   width: 0%;
-  background-color: #7266f0;
+  background-color: #991B1B;
   left: 0;
   top: 0;
   position: absolute;
@@ -1336,7 +1336,7 @@ ol {
 }
 
 .header .top-bar {
-  background-color: #7266f0;
+  background-color: #991B1B;
 }
 
 .header .top-bar .inner-topbar {
@@ -1501,7 +1501,7 @@ ol {
 .navbar-area.sticky {
   position: fixed;
   z-index: 99;
-  background: #7266f0;
+  background: #991B1B;
   -webkit-box-shadow: 0px 20px 50px 0px rgba(0, 0, 0, 0.05);
   box-shadow: 0px 20px 50px 0px rgba(0, 0, 0, 0.05);
   -webkit-transition: all 0.3s ease-out 0s;
@@ -1646,7 +1646,7 @@ ol {
   bottom: 0;
   height: 3px;
   width: 0%;
-  background: #7266f0;
+  background: #991B1B;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
@@ -1763,7 +1763,7 @@ ol {
   top: 0;
   height: 100%;
   width: 0%;
-  background-color: #7266f0;
+  background-color: #991B1B;
   z-index: -1;
   opacity: 0;
   visibility: hidden;
@@ -1847,7 +1847,7 @@ ol {
 
 .navbar-nav .nav-item .sub-menu > li.active > a {
   color: #fff !important;
-  background-color: #7266f0;
+  background-color: #991B1B;
 }
 
 .navbar-nav .nav-item .sub-menu > li > a {
@@ -1893,7 +1893,7 @@ ol {
   .navbar-nav .nav-item .sub-menu > li.active > a,
   .navbar-nav .nav-item .sub-menu > li:hover > a {
     color: #fff !important;
-    background-color: #7266f0 !important;
+    background-color: #991B1B !important;
   }
 }
 
@@ -2037,7 +2037,7 @@ ol {
   z-index: 2;
   position: relative;
   overflow: hidden;
-  background-color: #7266f0;
+  background-color: #991B1B;
 }
 
 .hero-area .single-slider .hero-image {
@@ -2122,7 +2122,7 @@ ol {
 
 .about-us .content-left .video:hover {
   color: #fff;
-  background-color: #7266f0;
+  background-color: #991B1B;
   -webkit-transform: scale(1.05);
   transform: scale(1.05);
 }
@@ -2206,7 +2206,7 @@ ol {
   font-weight: 500;
   font-size: 14px;
   color: #fff;
-  background-color: #7266f0;
+  background-color: #991B1B;
   padding: 5px 20px;
   border-radius: 4px;
 }
@@ -2272,7 +2272,7 @@ ol {
 .our-achievement {
   padding-top: 70px;
   padding: 60px 0 90px 0;
-  background-color: #7266f0;
+  background-color: #991B1B;
   background-image: url("/images/achievement/pattern.png");
 }
 
@@ -2337,7 +2337,7 @@ ol {
   font-size: 30px;
   color: #fff;
   opacity: 1;
-  background-color: #7266f0;
+  background-color: #991B1B;
   padding: 30px 30px;
   border-radius: 0 0 0 50px;
 }
@@ -3832,14 +3832,13 @@ ol {
   margin-top: 30px;
 }
 
-.call-action .content .button .btn:hover {
-}
+
 
 /*======================================
 	Footer CSS
 ========================================*/
 .footer {
-  background-image: url("/images/footer/footer-bg.jpg");
+  background-image: url("/img/d6.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -3848,7 +3847,7 @@ ol {
 }
 
 .footer.overlay::before {
-  background-color: #7266f0;
+  background-color: #991B1B;
   opacity: 0.95;
   z-index: -1;
 }
@@ -3964,7 +3963,7 @@ ol {
 
 .footer .footer-top .newsletter-form .button .btn {
   display: inline-block;
-  background: #7266f0;
+  background: #991B1B;
   color: #fff;
   height: 55px;
 }

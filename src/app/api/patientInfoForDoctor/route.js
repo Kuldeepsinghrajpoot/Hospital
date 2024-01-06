@@ -1,25 +1,17 @@
 import { NextResponse } from "next/server";
-import connectMongoDB from "../../../db/mongodb";
+import connectMongoDB from "@/db/mongodb";
 import appointment from "@/models/appointment";
 
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-
-
-export async function GET() {
-
-    const sessionid = await getServerSession(authOptions);
-    const id = sessionid?.user?.name;
-    
-    // const token = req.headers.authorization;
+export async function GET(request) {
+    const id = request.nextUrl.searchParams.get("id")
     try {
-      
+  
         await connectMongoDB();
-        
+  
         const Appointment = await appointment.find({Doctor:id});
-        return NextResponse.json({ Appointment })
-
+        return NextResponse.json( Appointment )
+  
     } catch (error) {
         console.log(error);
     }
-}
+  }

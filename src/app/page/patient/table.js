@@ -3,6 +3,7 @@
 import React from 'react';
 import Remove from './remove'
 import Link from 'next/link'
+import moment from 'moment-timezone'
 const Page = ({data}) => {
 
 // console.log(data.filter(item=>item.AppointmentId.includes('K')));
@@ -39,8 +40,9 @@ const Page = ({data}) => {
                                         ) : (
                       data.map((e) => {
                         const { Name, Doctor, AppointmentDate, Phone,Age,Gender,Address,AppointmentId } = e;
-                        const options = { month: '2-digit', day: '2-digit' ,year: 'numeric', };
-                        const standardDate = new Date(AppointmentDate).toLocaleDateString('en-IN', options);
+                        const originalDate = moment.tz(AppointmentDate, "Asia/Kolkata");
+                        // const originalDate = moment.utc(appointmentDate);
+                        const standardDate = originalDate.format("MMMM Do YYYY");
                         return (
                           <tr key={e._id}>
                             
@@ -50,7 +52,7 @@ const Page = ({data}) => {
                             <td>{Doctor}</td>
                             <td>{Age}</td>
                             <td>{Gender}</td>
-                            <td>{standardDate}</td>
+                            <td>{standardDate==="Invalid date"?AppointmentDate:standardDate}</td>
                             <td>{Address}</td>
                             <td><Link href={`/${e._id}`} className='flex justify-center  text-black' target='_blank'><i class="ti ti-printer"></i></Link></td>
                             <td className=' text-center'><Remove id={e._id}></Remove></td>

@@ -93,7 +93,7 @@ const UpdateData = () => {
                                         <div className="col-md-12">
                                             <ul className="nav nav-pills flex-column flex-md-row mb-4">
                                                 <li className="nav-item">
-                                                    <Link className="nav-link " href="/doctor/profile"
+                                                    <Link className="nav-link " href="/page/profile"
                                                     ><i className="ti-xs ti ti-users me-1"></i> Account</Link>
                                                 </li>
                                                 <li className="nav-item">

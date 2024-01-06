@@ -1,6 +1,6 @@
 import mongoose, { Schema } from 'mongoose'
 
-const Doctor = new Schema({
+const user = new Schema({
 
     name: { 
         type: String, 
@@ -42,5 +42,5 @@ const Doctor = new Schema({
     timestamps:true
 })
 
-const doctorSchema = mongoose.models.doctor|| mongoose.model("doctor",Doctor);
+const doctorSchema = mongoose.models.user|| mongoose.model("user",user);
 export default doctorSchema

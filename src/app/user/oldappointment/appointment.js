@@ -1,30 +1,6 @@
-'use client'
-
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-
 import Remove from './remove'
-const Appointment = () => {
-    const [data, setData] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const getData = async () => {
-        try {
-            const response = await axios.get("/api/appointmentsDetalis", {
-                // You can set additional configurations here
-            });
-            const data = response.data.Appointment;
-            setData(data);
-            setLoading(false); // Set loading to false when data is fetched
-        } catch (error) {
-            // Handle any errors that occur during the request
-            console.error('Error fetching data:', error);
-            setLoading(false); // Update loading state in case of error
-        }
-    };
-
-    useEffect(() => {
-        getData();
-    }, []);
+import moment from 'moment-timezone'
+const Appointment = ({ data }) => {
 
     if (!data) {
         return;
@@ -43,30 +19,13 @@ const Appointment = () => {
                                     ) : (
 
                                         data.map((e) => {
-                                            const { Name, Gender, Doctor, Status,_id, AppointmentId, AppointmentDate, Age, Phone, Email } = e;
-                                            // const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
-                                            // const standardDate = new Date(AppointmentDate).toLocaleDateString('en-IN', options);
-
-
-                                            // new date and time 
-
-                                            const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
-
-                                            // Replace this with your actual date or date string
-                                            // const appointmentDateString = '2023-12-17T12:34:56.789Z';
-                                            const AppointmentDates = new Date(AppointmentDate);
-
-                                            // Convert to Indian Standard Time (IST)
-                                            const ISTOffset = 5.5 * 60 * 60 * 1000; // IST is UTC+5.5
-                                            const ISTDate = new Date(AppointmentDates.getTime() + ISTOffset);
-
-                                            // Format the date
-                                            const standardDate = ISTDate.toLocaleDateString('en-IN', options);
-
-                                            console.log(standardDate); // Output the formatted date in Indian Standard Time
+                                            const { Name, Gender, Doctor, Status, _id, AppointmentId, createdAt, Age, Phone, Email } = e;
+                                            const originalDate = moment.tz(createdAt, "Asia/Kolkata");
+                                            // const originalDate = moment.utc(appointmentDate);
+                                            const formattedDates = originalDate.format("MMMM Do YYYY, h:mm:ss a");
 
                                             return (
-                                                <div className="col-xl-4  mb-4" key={Email}>
+                                                <div className="col-xl-3 gap-20  mb-4" key={Email}>
                                                     <div className="card  ">
                                                         <div className="card-header d-flex flex justify-between ">
                                                             <div className=" ">
@@ -74,7 +33,7 @@ const Appointment = () => {
                                                                 <h5 className="m-0 me-2">Age-{Age}</h5>
                                                             </div>
                                                             <div className=' cursor-pointer'>
-                                                            <Remove id={_id}></Remove>
+                                                                <Remove id={_id}></Remove>
                                                             </div>
                                                         </div>
                                                         <div className="card-body pb-0">
@@ -85,15 +44,15 @@ const Appointment = () => {
                                                                         {/* appointment id */}
                                                                         <div className='w-full grid  grid-cols-2'>
 
-                                                                            <div className="me-2 flex w-fit h-fit gap-2 ">
+                                                                            <div className="me-4 flex w-fit h-fit gap-2 ">
                                                                                 <div className="badge bg-label-success rounded p-2">
                                                                                     <i className="fa-regular fa-calendar-check fa-lg">
                                                                                     </i>
                                                                                 </div>
 
-                                                                                <h6 className="mb-0">Appointment id</h6>
+                                                                                <h6 className="mb-0 ">Appointment</h6><h6>No.</h6>
                                                                             </div>
-                                                                            <div className="user-progress">
+                                                                            <div className="user-progress mx-11">
                                                                                 <small>{AppointmentId}</small>
                                                                             </div>
                                                                         </div>
@@ -106,7 +65,7 @@ const Appointment = () => {
                                                                                 <h6 className="mb-0">Date</h6>
                                                                             </div>
                                                                             <div className="user-progress">
-                                                                                <small>{standardDate}</small>
+                                                                                <small>{formattedDates}</small>
                                                                             </div>
                                                                         </div>
                                                                         {/* Doctor */}

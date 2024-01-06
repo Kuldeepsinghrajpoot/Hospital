@@ -251,11 +251,11 @@ const Register = () => {
                                     </div>
                                     {/* contact number */}
                                     <div className=" mb-3">
-                                        <label htmlFor="contactnumber" className="form-label">contact Number</label>
+                                        <label htmlFor="contactnumber" className="form-label">Contact Number</label>
                                         <input onChange={handleChange} onBlur={handleBlur} value={values.contactnumber} type="text" className={`form-control ${errors.contactnumber && touched.contactnumber
                                              ? "form-control border border-danger"
                                              : "form-control"
-                                            }`} id="contactnumber" name="contactnumber" placeholder="Enter your email" />
+                                            }`} id="contactnumber" name="contactnumber" placeholder="Enter  Contact Number" />
                                         {errors.contactnumber && touched.contactnumber ? (
                                             <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
                                                 {errors.contactnumber}

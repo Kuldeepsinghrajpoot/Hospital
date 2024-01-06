@@ -5,7 +5,7 @@ const patientSchema = new Schema({
     Name: String,
     AppointmentId: { type: Number },
     Doctor: String,
-    AppointmentDate: Date,
+    AppointmentDate: String,
     Phone: String,
     Gender: String,
     UserId: String,

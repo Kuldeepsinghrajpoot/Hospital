@@ -8,7 +8,7 @@ const Page = ({data}) => {
         return;
     }
     return (
-        <div>
+        <>
             <div className="layout-wrapper layout-content-navbar">
                 <div className="layout-container">
                     <div className="layout-page">
@@ -107,7 +107,7 @@ const Page = ({data}) => {
                 </div>
                 {/* Overlay, Drag Target Area */}
             </div>
-        </div>
+        </>
     );
 };
 

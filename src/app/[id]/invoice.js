@@ -3,38 +3,43 @@
 import Img from 'next/image'
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation'
-const Invoice = ({ name, doctor, appointmentDate, appointmentId, id, phone, age, gender, address }) => {
-  // console.log({para});
-  const option = { year: 'numeric', month: '2-digit', day: '2-digit' };
-  const inputDate = new Date(appointmentDate).toLocaleDateString('en-US', option);
-  // var inputDate = "12/11/2023";
-  // Split the input date into month, day, and year
-  var dateParts = inputDate.split("/");
-  var month = parseInt(dateParts[0], 10);
-  var day = parseInt(dateParts[1], 10);
-  var year = parseInt(dateParts[2], 10);
-  // Create a Date object using the extracted parts
-  var formattedDate = new Date(year, month - 1, day);
+import { addDays, format } from 'date-fns';
+import moment from 'moment';
+import momentDate from 'moment-timezone';
+const Invoice = ({ name, doctor, appointmentDate, appointmentId, phone, age, gender, address }) => {
 
-  // Format the date as "Month day, Year"
-  var options = { year: 'numeric', month: 'long', day: 'numeric' };
-  var standardDate = formattedDate.toLocaleDateString(undefined, options);
 
+  const capitalizeFirstLetter = (value) => {
+    const words = value.split([" ",'/',"{}","[]","()"]);
+
+    for (let i = 0; i < words.length; i++) {
+      words[i] = words[i][0].toUpperCase() + words[i].substr(1);
+    }
+
+    return words.join(" ");
+  //  return words
+  };
   const router = useRouter();
-  if (!name, !doctor, !appointmentDate, !phone, !age, !gender, !address) {
-    router.refresh()
-  }
-  window.print();
+
+  // Check for missing data and refresh the page if any are missing
   useEffect(() => {
-    const handleAfterPrint = () => {
-      // Close the tab after printing (if the user clicks "Cancel" in the print dialog)
-      window.close();
-    };
-    window.addEventListener('afterprint', handleAfterPrint);
-    return () => {
-      window.removeEventListener('afterprint', handleAfterPrint);
-    };
-  }, []);
+    // Check for missing data and refresh the page if any are missing
+    if (!name || !doctor || !appointmentDate || !phone || !age || !gender || !address) {
+      router.refresh();
+    }
+    // Trigger window.print after the component has mounted
+    window.print();
+    // window.close();
+  }, [router, name, doctor, appointmentDate, phone, age, gender, address]);
+  const originalDate = momentDate.tz(appointmentDate, "Asia/Kolkata");
+  // const originalDate = moment.utc(appointmentDate);
+  const formattedDates = originalDate.format("MMMM Do YYYY, h:mm:ss a");
+
+  const originalDates = moment.utc(appointmentDate);
+  const dateAfter7Days = originalDates.add(7, 'days');
+  const newDate = dateAfter7Days.format("MMMM Do YYYY")
+
+
   return (
     <div className="invoice-print bg-white w-screen h-screen">
       <div className="d-flex justify-content-between flex-row">
@@ -51,9 +56,10 @@ const Invoice = ({ name, doctor, appointmentDate, appointmentId, id, phone, age,
         </div>
         <div>
           <h4 className="fw-bold">Appointment No. #{appointmentId}</h4>
-          <div className="mb-2">
-            <span className="text-muted">Date Issues:</span>
-            <span className="fw-bold">{standardDate}</span>
+
+          <div className="">
+            <span className="text-muted">Till Valid</span>
+            <span className="fw-bold">:  {newDate}</span>
           </div>
 
         </div>
@@ -68,17 +74,17 @@ const Invoice = ({ name, doctor, appointmentDate, appointmentId, id, phone, age,
             <table className=' w-96'>
               <tbody>
                 <tr>
-                  <td className="pe-3">Patient Name:</td>
-                  <td><strong>{name}</strong></td>
+                  <td className="pe-3">Patient Name</td>
+                  <td><strong>:  {capitalizeFirstLetter(name)}</strong></td>
                 </tr>
                 <tr>
-                  <td className="pe-3">Address:</td>
-                  <td>{address}</td>
+                  <td className="pe-3">Address</td>
+                  <td>:  {address}</td>
                 </tr>
-               
+
                 <tr>
-                  <td className="pe-3">Doctor Name:</td>
-                  <td>Dr.{doctor}</td>
+                  <td className="pe-3">Doctor Name</td>
+                  <td>:  Dr.{" "}{doctor}</td>
                 </tr>
 
               </tbody>
@@ -90,18 +96,18 @@ const Invoice = ({ name, doctor, appointmentDate, appointmentId, id, phone, age,
           <table>
             <tbody>
               <tr>
-                <td className="pe-3">Date:</td>
-                <td><strong>{standardDate}</strong></td>
+                <td className="pe-3">Date Issue</td>
+                <td><strong>: {formattedDates}</strong></td>
               </tr>
               <tr>
-                <td className="pe-3">Age/Gender:</td>
-                <td>{age}Year/{gender}</td>
+                <td className="pe-3">Age/Gender</td>
+                <td>:  {age}Year/{gender}</td>
               </tr>
-            
+
               <tr>
-                  <td className="pe-3">Phone:</td>
-                  <td>{phone}</td>
-                </tr>
+                <td className="pe-3">Phone</td>
+                <td>:  {phone}</td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -132,21 +138,21 @@ const Invoice = ({ name, doctor, appointmentDate, appointmentId, id, phone, age,
               <td colspan="3" className="align-top px-4 py-3">
                 <p className="mb-2">
                   <span className="me-1 fw-bold">Payment Mode:</span>
-                  <span>Cash</span><br></br>
-                  <span className='fw-bold'>recived a sum of rupees three hundred</span>
+                  <span>CASH</span><br></br>
+                  <span className='fw-bold'>Recived a sum of rupees three hundred</span>
 
                 </p>
                 {/* <span>Thanks for reaching us</span> */}
               </td>
               <td className="text-end px-4 py-3">
                 <p className="mb-2">Subtotal:</p>
-                
+
 
                 <p className="mb-0">Total:</p>
               </td>
               <td className="px-4 py-3">
                 <p className="fw-bold mb-2">300.00</p>
-              
+
 
                 <p className="fw-bold mb-0">300.00</p>
               </td>

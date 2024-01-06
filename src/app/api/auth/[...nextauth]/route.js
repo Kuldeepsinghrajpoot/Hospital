@@ -47,9 +47,11 @@ export const authOptions = {
         token.role = user.role
         token.email = user.email
         token.id = user.id
-      };
+      }
+    
       return token;
     },
+  
     async session({ session, token }) {
       if (session?.user) {
         session.user.name = token.name

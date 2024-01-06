@@ -4,6 +4,7 @@ import Img from "next/image";
 import Link from "next/link";
 
 const Dashboard = ({ data }) => {
+ 
   return (
     <>
       <div className="layout-wrapper layout-content-navbar">

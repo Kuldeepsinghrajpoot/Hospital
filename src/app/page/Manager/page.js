@@ -29,7 +29,7 @@ return (
 export default UserInformation;
 export async function generateMetadata() {
   return {
-      title: 'Doctors',
-      deScription: 'Register'
+      title: 'Manager',
+      deScription: 'Manager'
   }
 }

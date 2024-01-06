@@ -4,16 +4,22 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup'
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
-
+import moment from 'moment-timezone'
 
 const Appointment = ({ data }) => {
     const [loading, setloading] = useState(false);
+    const [date, setdate] = useState({});
+   
+    const originalDate = moment.tz(date, "Asia/Kolkata");
+    // const originalDate = moment.utc(appointmentDate);
+    const formattedDates = originalDate.format("MMMM Do YYYY");
+
     const initialize = {
         Name: '',
 
         Doctor: '',
         Status: '',
-        AppointmentDate: '',
+        AppointmentDate: formattedDates,
         Phone: '',
         Email: '',
         Age: '',
@@ -199,8 +205,8 @@ const Appointment = ({ data }) => {
                                                         <input
                                                             type='date'
                                                             name='AppointmentDate'
-                                                            value={values.AppointmentDate}
-                                                            onChange={handleChange}
+                                                            value={date}
+                                                            onChange={(e)=>setdate(e.target.value)}
                                                             id="basic-icon-default-message"
                                                             className="form-control"
                                                             placeholder="Hi, Do you have any problem?"
